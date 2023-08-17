@@ -22,7 +22,18 @@ return [
     "thursday"=>"Cümə axşamı",
     "friday"=>"Cümə",
     "saturday"=>"Şənbə",
-    "sunday"=>"Bazar günü"
+    "sunday"=>"Bazar günü",
+
+
+    "med_history"=>"Tariximiz",
+    "faq_stuff"=>"Tez-tez verilən suallar və materiallar",
+    "professional"=>"Peşəkar",
+    "quality"=>"Keyfiyyət",
+    "medical_team"=>"Peşəkar Həkimlərimiz"
+
+
+
+
 
 
 

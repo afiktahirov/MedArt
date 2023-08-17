@@ -23,7 +23,17 @@ return [
     "thursday"=>"Четверг",
     "friday"=>"Пятница",
     "saturday"=>"Суббота",
-    "sunday"=>"Воскресенье"
+    "sunday"=>"Воскресенье",
+
+
+    "med_history"=>"История медицины",
+    "faq_stuff"=>"Вопросы и ответы",
+    "professional"=>"Профессиональный",
+    "quality"=>"Качество",
+    "medical_team"=>"Наши врачи"
+
+
+
 
 
 
