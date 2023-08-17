@@ -129,6 +129,30 @@
             </div>
         </div>
     </div>
+    <div class="modal fade" id="deleteSliderModal" tabindex="-1" role="dialog" aria-labelledby="deleteModalLabel"
+        aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered" role="document">
+            <div class="modal-content text-center">
+                <div class="modal-header justify-content-center">
+                    <h5 class="modal-title font-weight-normal" id="deleteModalLabel">Əminsinizmi ?</h5>
+                </div>
+                <div class="modal-body">
+                    <strong class="text-danger">
+                        Slider silinəcək və geri alına bilməz
+                        !</strong>
+                </div>
+                <div class="modal-footer justify-content-between">
+                    <button type="button" class="btn bg-secondary text-white" data-bs-dismiss="modal">Bağla</button>
+                    <form action="{{ route('slider.destroy')}}" method="POST" class="d-inline-block">
+                        @csrf
+                        @method('DELETE')
+                        <input type="hidden" name="id" id="delete__item__id" value="">
+                        <button type="submit" class="btn bg-gradient-danger">Bəli, silinsin</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
     <main>
         <div class="header">
             <div class="left">
@@ -224,7 +248,8 @@
                                 </div>
                             </div>
                             <div class="buttons_ d-flex justify-content-center gap-3">
-                                <button class="btn btn-danger  mt-1  ">Sil</button>
+                                <button class="btn btn-danger  mt-1" data-bs-toggle="modal"
+                                data-bs-target="#deleteSliderModal" id="deleteSlider" data-id="{{$slider->id}}">Sil</button>
                                 <button class="btn btn-warning mt-1  ">Redakte et</button>
                                 <button class="btn btn-warning mt-1 add-language-button"
                                     data-bs-target="#addBannerLanguage" data-bs-toggle="modal"
@@ -259,12 +284,16 @@
                 addLanguageModal.show();
             });
         });
+        // let deleteSlider = new bootstrap.Modal(document.getElementById("addBannerLanguage"));
 
-        // saveButton = document.querySelector(".sum");
+        let deleteSliderButtons = document.querySelectorAll("#deleteSlider");
 
-        // saveButton.addEventListener("click", (e) => {
-
-        //     e.preventDefault();
-        // });
+        deleteSliderButtons.forEach(function(button){
+            button.addEventListener("click",function(){
+                let sliderId = button.getAttribute("data-id");
+                let sliderIdInput = document.querySelector(" #deleteSliderModal input[name='id']");
+                sliderIdInput.value = sliderId;
+            })
+        })
     });
 </script>

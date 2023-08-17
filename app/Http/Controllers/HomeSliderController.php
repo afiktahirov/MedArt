@@ -30,7 +30,7 @@ class HomeSliderController extends Controller
     public function store(Request $request)
     {
 
-        // is qalib bi dene sekil gonderilecek 
+        // is qalib bi dene sekil gonderilecek
         $request->validate([
            "title"=>"required|min:6|max:255",
            "text"=>"required|min:12|max:50000",
@@ -81,8 +81,21 @@ class HomeSliderController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(HomeSlider $homeSlider)
+    public function destroy(Request $request)
     {
-        //
+        $sliderId = $request->id;
+
+        $slider = HomeSlider::find($sliderId);
+        $sliderLanguages = HomeSliderLanguage::find($sliderId);
+
+        if ($slider) {
+            $slider->delete();
+            if($sliderLanguages){
+                $sliderLanguages->delete();
+            }
+            return redirect()->back()->with('success', 'Slider  silindi.');
+        } else {
+            return redirect()->back()->with('error', 'Slider Tapılmadı.');
+        }
     }
 }

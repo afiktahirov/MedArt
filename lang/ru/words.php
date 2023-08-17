@@ -7,7 +7,7 @@ return [
     'news' => 'Новости',
     'contact' => 'Контакт',
     'read_more' => 'Читать далее',
-    'Opening_Hours' => 'Часы работы',
+    'Opening_Hours' => 'Время работы',
     'Emergency' => 'Горячая линия',
     'Make_an_Appointment' => 'Записаться на прием',
     'boom_appoitnmentt' => 'Отправлять',

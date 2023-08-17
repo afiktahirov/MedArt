@@ -11,4 +11,4 @@
             </div>
         </div>
     </div>
-<img class="header-img" src="images/service-bg.png" alt="">
+<img class="header-img" src="{{asset("images/service-bg.png")}}" alt="">
