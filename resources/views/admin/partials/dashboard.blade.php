@@ -222,13 +222,7 @@
             <div class="orders">
                 <h1 class="d-flex justify-content-center ">Aktiv Bannerlər</h1>
                 <hr color="white">
-                {{-- <h1 class="d-flex justify-content-center text-size-20 ">Dillərə görə sliderler</h1> --}}
-                {{-- <div class="con">
-                    @foreach (languages() as $key => $lang)
-                        <a href="?lang={{ $lang->lang }}"
-                            class="text-white btn btn-success mt-2 mx-2">{{ $lang->name }}</a>
-                    @endforeach
-                </div> --}}
+
                 <hr color="white">
                 @foreach ($slidersActive as $slider)
                     @php
@@ -255,7 +249,7 @@
                                                 <p>{{ $text }}</p>
                                             </div>
                                             <footer class="entry-footer d-flex flex-wrap align-items-center mt-4">
-                                                <a href="#" class="button gradient-bg">Read More</a>
+                                                <a href="#" class="button gradient-bg">{{__("words.read_more")}}</a>
                                             </footer>
                                         </div>
                                     </div>
@@ -280,9 +274,23 @@
             <div class="orders">
                 <h1 class="d-flex justify-content-center ">Aktiv Şöbələr</h1>
                 <hr color="white">
+                <div class="departmen_dashboard_colmn">
+                    <div class="our-departments-cont">
+                        <header class="entry-header d-flex flex-wrap align-items-center">
+                            <img src="images/cardiogram.png" alt="">
+                            <h3>Cardioology</h3>
+                        </header>
+                        <div class="entry-content">
+                            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec malesuada
+                                lorem maximus mauris.</p>
+                        </div>
+                        <footer class="entry-footer">
+                            <a href="#">Читать далее</a>
+                        </footer>
+                    </div>
+                </div>
             </div>
         </div>
-        <div class="div"></div>
     </main>
 @endsection
 
