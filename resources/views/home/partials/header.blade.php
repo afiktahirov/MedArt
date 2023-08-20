@@ -6,7 +6,7 @@
                     $text = "Hələki bu dilə tərcümə edilməyib";
                     $title = "Hələki bu dilə tərcümə edilməyib";
                 }else{
-                    $text = $slider->languages[0]->title;
+                    $text = $slider->languages[0]->textj;
                     $title = $slider->languages[0]->title;
                 }
             @endphp
