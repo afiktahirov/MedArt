@@ -5,27 +5,12 @@
         <div class="modal-dialog">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h1 class="modal-title fs-5" id="exampleModalLabel">Yeni Slider</h1>
+                    <h1 class="modal-title fs-5" id="exampleModalLabel">Yeni Banner</h1>
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body">
                     <form action="{{ route('slider.save') }}" method="POST" enctype="multipart/form-data">
                         @csrf
-                        <div class="mb-3">
-                            <label for="recipient-name" class="col-form-label">Başlıq:</label>
-                            <input type="text" class="form-control" name="title" id="recipient-name">
-                            @error('title')
-                                <div class="alert alert-danger">{{ $message }}</div>
-                            @enderror
-                        </div>
-                        <div class="mb-3">
-                            <label for="message-text" class="col-form-label">Məlumat:</label>
-                            <textarea class="form-control" id="message-text" name="text"></textarea>
-                            @error('text')
-                                <div class="alert alert-danger">{{ $message }}</div>
-                            @enderror
-                        </div>
-                        <!-- Fotoraf Yükleme Alanı -->
                         <div class="mb-3">
                             <label class="col-form-label">Banner Şəkili:</label>
                             <input type="file" name="image" class="form-control" id="photo-upload" accept="image/*">
@@ -172,7 +157,22 @@
             <button class="btn btn-primary mt-2 mx-2" data-bs-toggle="modal" data-bs-target="#lang_modal">Yeni
                 Dil</button>
         </div>
-
+        @if(count($errors))
+        <div id="myAlert" class="alert alert-warning" role="alert">
+             <a href="#" class="alert-link">
+                @foreach ($errors->all() as $error)
+                <li style="color: white">{{ $error }}</li>
+                @endforeach
+             </a>
+        </div>
+        @endif
+        @if(session('success'))
+        <div id="myAlert"  class="alert alert-success" role="alert">
+          <a href="#" class="alert-link">
+            <li style="color: white">{{session("success")}}</li>
+          </a>
+          </div>
+        @endif
         <div class="bottom-data">
             <div class="orders">
                 <h1 class="d-flex justify-content-center">Aktiv Dillər</h1>
@@ -206,15 +206,27 @@
         </div>
         <div class="bottom-data">
             <div class="orders">
-                <h1 class="d-flex justify-content-center ">Aktiv Sliderler</h1>
+                <h1 class="d-flex justify-content-center ">Dilə görə filtrələ</h1>
                 <hr color="white">
-                {{-- <h1 class="d-flex justify-content-center text-size-20 ">Dillərə görə sliderler</h1> --}}
                 <div class="con">
                     @foreach (languages() as $key => $lang)
                         <a href="?lang={{ $lang->lang }}"
                             class="text-white btn btn-success mt-2 mx-2">{{ $lang->name }}</a>
                     @endforeach
                 </div>
+            </div>
+        </div>
+        <div class="bottom-data">
+            <div class="orders">
+                <h1 class="d-flex justify-content-center ">Aktiv Bannerlər</h1>
+                <hr color="white">
+                {{-- <h1 class="d-flex justify-content-center text-size-20 ">Dillərə görə sliderler</h1> --}}
+                {{-- <div class="con">
+                    @foreach (languages() as $key => $lang)
+                        <a href="?lang={{ $lang->lang }}"
+                            class="text-white btn btn-success mt-2 mx-2">{{ $lang->name }}</a>
+                    @endforeach
+                </div> --}}
                 <hr color="white">
                 @foreach ($slidersActive as $slider)
                     @php
@@ -261,6 +273,12 @@
                 @endforeach
             </div>
         </div>
+        <div class="bottom-data">
+            <div class="orders">
+                <h1 class="d-flex justify-content-center ">Aktiv Şöbələr</h1>
+                <hr color="white">
+            </div>
+        </div>
         <div class="div"></div>
     </main>
 @endsection
@@ -295,5 +313,24 @@
                 sliderIdInput.value = sliderId;
             })
         })
+    });
+
+
+        // Sayfa yüklendikten sonra işlemleri gerçekleştir
+        document.addEventListener("DOMContentLoaded", function() {
+        // Alert div'inin referansını al
+        var alertDiv = document.getElementById("myAlert");
+
+        // Alert div'inin içindeki bağlantıları dinle ve tıklama durumunda sayfayı yeniden yükleme
+        var alertLink = alertDiv.querySelector(".alert-link");
+        alertLink.addEventListener("click", function(event) {
+            event.preventDefault();
+            window.location.reload();
+        });
+
+        // 5 saniye sonra alert div'i gizle
+        setTimeout(function() {
+            alertDiv.style.display = "none";
+        }, 10000);
     });
 </script>
