@@ -128,7 +128,7 @@
                 </div>
                 <div class="modal-footer justify-content-between">
                     <button type="button" class="btn bg-secondary text-white" data-bs-dismiss="modal">Bağla</button>
-                    <form action="{{ route('slider.destroy')}}" method="POST" class="d-inline-block">
+                    <form action="{{ route('slider.destroy') }}" method="POST" class="d-inline-block">
                         @csrf
                         @method('DELETE')
                         <input type="hidden" name="id" id="delete__item__id" value="">
@@ -157,21 +157,23 @@
             <button class="btn btn-primary mt-2 mx-2" data-bs-toggle="modal" data-bs-target="#lang_modal">Yeni
                 Dil</button>
         </div>
-        @if(count($errors))
-        <div id="myAlert" class="alert alert-warning" role="alert">
-             <a href="#" class="alert-link">
-                @foreach ($errors->all() as $error)
-                <li style="color: white">{{ $error }}</li>
-                @endforeach
-             </a>
-        </div>
+        @if (count($errors))
+            <div id="myAlert" class="alert alert-warning d-flex justify-content-between" role="alert">
+                <a href="#" class="alert-link">
+                    @foreach ($errors->all() as $error)
+                        <li style="color: white">{{ $error }}</li>
+                    @endforeach
+                </a>
+                <a class="close_alert" style="font-size: 20px; cursor: pointer;">X</a>
+            </div>
         @endif
-        @if(session('success'))
-        <div id="myAlert"  class="alert alert-success" role="alert">
-          <a href="#" class="alert-link">
-            <li style="color: white">{{session("success")}}</li>
-          </a>
-          </div>
+        @if (session('success'))
+            <div id="myAlert" class="alert alert-success d-flex justify-content-space-between" role="alert">
+                <a href="#" class="alert-link">
+                    <li style="color: white">{{ session('success') }}</li>
+                </a>
+                <div class="close">Close</div>
+            </div>
         @endif
         <div class="bottom-data">
             <div class="orders">
@@ -261,7 +263,8 @@
                             </div>
                             <div class="buttons_ d-flex justify-content-center gap-3">
                                 <button class="btn btn-danger  mt-1" data-bs-toggle="modal"
-                                data-bs-target="#deleteSliderModal" id="deleteSlider" data-id="{{$slider->id}}">Sil</button>
+                                    data-bs-target="#deleteSliderModal" id="deleteSlider"
+                                    data-id="{{ $slider->id }}">Sil</button>
                                 <button class="btn btn-warning mt-1  ">Redakte et</button>
                                 <button class="btn btn-warning mt-1 add-language-button"
                                     data-bs-target="#addBannerLanguage" data-bs-toggle="modal"
@@ -306,31 +309,34 @@
 
         let deleteSliderButtons = document.querySelectorAll("#deleteSlider");
 
-        deleteSliderButtons.forEach(function(button){
-            button.addEventListener("click",function(){
+        deleteSliderButtons.forEach(function(button) {
+            button.addEventListener("click", function() {
                 let sliderId = button.getAttribute("data-id");
-                let sliderIdInput = document.querySelector(" #deleteSliderModal input[name='id']");
+                let sliderIdInput = document.querySelector(
+                    " #deleteSliderModal input[name='id']");
                 sliderIdInput.value = sliderId;
             })
         })
     });
 
 
-        // Sayfa yüklendikten sonra işlemleri gerçekleştir
-        document.addEventListener("DOMContentLoaded", function() {
-        // Alert div'inin referansını al
-        var alertDiv = document.getElementById("myAlert");
+    document.addEventListener("DOMContentLoaded", function() {
+    var alertDiv = document.getElementById("myAlert");
 
-        // Alert div'inin içindeki bağlantıları dinle ve tıklama durumunda sayfayı yeniden yükleme
-        var alertLink = alertDiv.querySelector(".alert-link");
-        alertLink.addEventListener("click", function(event) {
-            event.preventDefault();
-            window.location.reload();
-        });
+    if (alertDiv) {
+        var alertLink = alertDiv.querySelector(".close_alert");
 
-        // 5 saniye sonra alert div'i gizle
+        if (alertLink) {
+            alertLink.addEventListener("click", function(event) {
+                event.preventDefault();
+                window.location.reload();
+            });
+        }
+
         setTimeout(function() {
             alertDiv.style.display = "none";
-        }, 10000);
-    });
+        }, 1000);
+    }
+});
+
 </script>

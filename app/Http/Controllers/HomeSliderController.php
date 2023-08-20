@@ -38,15 +38,12 @@ class HomeSliderController extends Controller
 
         if ($request->hasFile("image")) {
 
-            $file = $request->file("image");
-            $extension = $file->getClientOriginalExtension();
-            $hashname = md5(time()) . '.' . $extension;
-
-
-            $file->storeAs("/uploads/sliders", $hashname, "public");
-
+            $slider = new HomeSlider();
+            $hashname = $request->file("image")->hashName();
+            $request->file("image")->storeAs("/uploads/sliders",$hashname,"public");
             $slider->image = $hashname;
             $slider->save();
+            return redirect()->back();
 
             return redirect()->back()->with("success", "Banner şəkli yükləndi aktiv etmək aktiv olmayan bannerlər səhifəsinə gedin.");
         }
