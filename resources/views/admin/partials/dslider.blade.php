@@ -178,7 +178,7 @@
                                 <button class="btn btn-danger  mt-1  ">Sil</button>
                                 <button class="btn btn-warning mt-1  ">Redakte et</button>
                                 <button class="btn btn-warning mt-1 add-language-button" data-bs-target="#addBannerLanguage"
-                                    data-bs-toggle="modal" data-sliderid="{{ $slider->id }}">Başqa dildə əlavə et</button>
+                                    data-bs-toggle="modal" data-sliderid="{{ $slider->id }}">Dil əlavə et</button>
                                 <button class="btn btn-info activateButton   mt-1 " data-bs-target="#activateBanner"
                                     data-bs-toggle="modal" data-sliderid="{{ $slider->id }}">Aktiv et</button>
                             </div>

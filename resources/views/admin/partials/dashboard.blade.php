@@ -114,6 +114,7 @@
             </div>
         </div>
     </div>
+    {{--Delete Slider Modal --}}
     <div class="modal fade" id="deleteSliderModal" tabindex="-1" role="dialog" aria-labelledby="deleteModalLabel"
         aria-hidden="true">
         <div class="modal-dialog modal-dialog-centered" role="document">
@@ -172,7 +173,7 @@
                 <a href="#" class="alert-link">
                     <li style="color: white">{{ session('success') }}</li>
                 </a>
-                <div class="close">Close</div>
+                <div class="close df-flex">X</div>
             </div>
         @endif
         <div class="bottom-data">
@@ -262,7 +263,7 @@
                                 <button class="btn btn-warning mt-1  ">Redakte et</button>
                                 <button class="btn btn-warning mt-1 add-language-button"
                                     data-bs-target="#addBannerLanguage" data-bs-toggle="modal"
-                                    data-sliderid="{{ $slider->id }}">Başqa dildə əlavə et</button>
+                                    data-sliderid="{{ $slider->id }}">Dil əlavə et</button>
                                 <button class="btn btn-info    mt-1  ">Offline</button>
                             </div>
                         </div>
@@ -313,7 +314,6 @@
                 addLanguageModal.show();
             });
         });
-        // let deleteSlider = new bootstrap.Modal(document.getElementById("addBannerLanguage"));
 
         let deleteSliderButtons = document.querySelectorAll("#deleteSlider");
 
