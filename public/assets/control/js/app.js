@@ -61,3 +61,7 @@ $("[data-bs-target='#deleteModal']").click(function () {
     );
     $("#delete__item__id").val($(this).data().id);
 });
+
+
+
+

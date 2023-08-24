@@ -221,11 +221,5 @@
                 activateBannerModal.show();
             });
         });
-        // $("[data-bs-target='#activateBanner']").click(function() {
-        //     $("#delete__item__name").text(
-        //         $(this).closest("tr").find("td:first").text()
-        //     );
-        //     $("#delete__item__id").val($(this).data().id);
-        // });
     });
 </script>

@@ -129,6 +129,30 @@
             </div>
         </div>
     </div>
+    {{-- Delete  Modal Slider --}}
+    <div class="modal fade" id="deleteSliderModal" tabindex="-1" role="dialog" aria-labelledby="deleteModalLabel"
+        aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered" role="document">
+            <div class="modal-content text-center">
+                <div class="modal-header justify-content-center">
+                    <h5 class="modal-title font-weight-normal" id="deleteModalLabel">Əminsinizmi ?</h5>
+                </div>
+                <div class="modal-body">
+                    <strong class="text-danger">
+                        <span id="delete__item__name"></span> dili silinəcək və geri alına bilməz
+                        !</strong>
+                </div>
+                <div class="modal-footer justify-content-between">
+                    <button type="button" class="btn bg-secondary text-white" data-bs-dismiss="modal">Bağla</button>
+                    <form action="{{ route('language.destroy') }}" method="POST" class="d-inline-block">
+                        @csrf
+                        <input type="hidden" name="id" id="delete__item__id" value="">
+                        <button type="submit" class="btn bg-gradient-danger">Bəli, silinsin</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
     <main>
         <div class="header">
             <div class="left">
@@ -242,29 +266,21 @@
 
 
 
-
 <script>
     document.addEventListener("DOMContentLoaded", function() {
-        var addLanguageModal = new bootstrap.Modal(document.getElementById("addBannerLanguage"));
+    var addLanguageModal = new bootstrap.Modal(document.getElementById("addBannerLanguage"));
 
-        var languageButtons = document.querySelectorAll(".add-language-button");
+    var languageButtons = document.querySelectorAll(".add-language-button");
 
-        languageButtons.forEach(function(button) {
-            button.addEventListener("click", function() {
-                var sliderId = button.getAttribute("data-sliderid");
-                var sliderIdInput = document.querySelector(
-                    "#addBannerLanguage input[name='slider_id']");
-                sliderIdInput.value = sliderId;
+    languageButtons.forEach(function(button) {
+        button.addEventListener("click", function() {
+            var sliderId = button.getAttribute("data-sliderid");
+            var sliderIdInput = document.querySelector(
+                "#addBannerLanguage input[name='slider_id']");
+            sliderIdInput.value = sliderId;
 
-                addLanguageModal.show();
-            });
+            addLanguageModal.show();
         });
-
-        // saveButton = document.querySelector(".sum");
-
-        // saveButton.addEventListener("click", (e) => {
-
-        //     e.preventDefault();
-        // });
     });
+});
 </script>
