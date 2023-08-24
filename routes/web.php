@@ -47,6 +47,8 @@ Route::prefix('admin')->group(function () {
         Route::get("/slider/deactive",[AdminController::class ,"slider_d"])->name("admin.dslider");
         Route::post("/slider/deactive",[AdminController::class ,"slider_d_active"])->name("admin.dsilder.active");
 
+        Route::get("/test/tiny",[AdminController::class,"test_tiny"])->name("admin.test_tiny");
+
     });
 });
 

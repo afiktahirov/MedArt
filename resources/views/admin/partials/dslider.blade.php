@@ -105,7 +105,7 @@
             </div>
         </div>
     </div>
-    {{-- Delete Language Modal --}}
+    {{-- Banner Active Modal --}}
     <div class="modal fade" id="bannerActivateModal" tabindex="-1" role="dialog" aria-labelledby="deleteModalLabel"
         aria-hidden="true">
         <div class="modal-dialog modal-dialog-centered" role="document">
@@ -115,12 +115,12 @@
                 </div>
                 <div class="modal-body">
                     <strong class="text-danger">
-                        <span id="delete__item__name"></span> Banner aktiv edilsin?
-                        !</strong>
+                        Banner aktiv edilsin?
+                    </strong>
                 </div>
                 <div class="modal-footer justify-content-between">
                     <button type="button" class="btn bg-secondary text-white" data-bs-dismiss="modal">Bağla</button>
-                    <form action="{{route("admin.dsilder.active")}}" method="POST" class="d-inline-block">
+                    <form action="{{ route('admin.dsilder.active') }}" method="POST" class="d-inline-block">
                         @csrf
                         <input type="hidden" name="slider_id">
                         <button type="submit" class="btn bg-gradient-danger">Bəli, aktiv edilsin</button>
@@ -129,8 +129,50 @@
             </div>
         </div>
     </div>
+    {{-- Delete Slider Modal --}}
+    <div class="modal fade" id="deleteSliderModal" tabindex="-1" role="dialog" aria-labelledby="deleteModalLabel"
+        aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered" role="document">
+            <div class="modal-content text-center">
+                <div class="modal-header justify-content-center">
+                    <h5 class="modal-title font-weight-normal" id="deleteModalLabel">Əminsinizmi ?</h5>
+                </div>
+                <div class="modal-body">
+                    <strong class="text-danger">
+                        Slider silinəcək və geri alına bilməz
+                        !</strong>
+                </div>
+                <div class="modal-footer justify-content-between">
+                    <button type="button" class="btn bg-secondary text-white" data-bs-dismiss="modal">Bağla</button>
+                    <form action="{{ route('slider.destroy') }}" method="POST" class="d-inline-block">
+                        @csrf
+                        @method('DELETE')
+                        <input type="hidden" name="id" id="delete__item__id" value="">
+                        <button type="submit" class="btn bg-gradient-danger">Bəli, silinsin</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
     <main>
-
+        @if (count($errors))
+            <div id="myAlert" class="alert alert-warning d-flex justify-content-between" role="alert">
+                <a href="#" class="alert-link">
+                    @foreach ($errors->all() as $error)
+                        <li style="color: white">{{ $error }}</li>
+                    @endforeach
+                </a>
+                <a class="close_alert" style="font-size: 20px; cursor: pointer;">X</a>
+            </div>
+        @endif
+        @if (session('success'))
+            <div id="myAlert" class="alert alert-success d-flex justify-content-between" role="alert">
+                <a href="#" class="alert-link">
+                    <li style="color: white">{{ session('success') }}</li>
+                </a>
+                <a class="close_alert" style="font-size: 20px; cursor: pointer;">X</a>
+            </div>
+        @endif
         <div class="bottom-data">
             <div class="orders">
                 <h1 class="d-flex justify-content-center ">Aktiv Olmayan Sliderler</h1>
@@ -175,12 +217,15 @@
                                 </div>
                             </div>
                             <div class="buttons_ d-flex justify-content-center gap-3">
-                                <button class="btn btn-danger  mt-1  ">Sil</button>
+                                <button class="btn btn-danger  mt-1" data-bs-toggle="modal"
+                                    data-bs-target="#deleteSliderModal" id="deleteSlider"
+                                    data-id="{{ $slider->id }}">Sil</button>
                                 <button class="btn btn-warning mt-1  ">Redakte et</button>
-                                <button class="btn btn-warning mt-1 add-language-button" data-bs-target="#addBannerLanguage"
-                                    data-bs-toggle="modal" data-sliderid="{{ $slider->id }}">Dil əlavə et</button>
+                                <button class="btn btn-warning mt-1 add-language-button"
+                                    data-bs-target="#addBannerLanguage" data-bs-toggle="modal"
+                                    data-sliderid="{{ $slider->id }}">Dil əlavə et</button>
                                 <button class="btn btn-info activateButton   mt-1 " data-bs-target="#activateBanner"
-                                    data-bs-toggle="modal" data-sliderid="{{ $slider->id }}">Aktiv et</button>
+                                    data-sliderid="{{ $slider->id }}">Aktiv et</button>
                             </div>
                         </div>
                     </div>
@@ -197,9 +242,6 @@
         let addLanguageModal = new bootstrap.Modal(document.getElementById("addBannerLanguage"));
         let languageButtons = document.querySelectorAll(".add-language-button");
 
-        let activateBannerButton = document.querySelectorAll(".activateButton");
-        let activateBannerModal = new bootstrap.Modal(document.getElementById("bannerActivateModal"));
-
         languageButtons.forEach(function(button) {
             button.addEventListener("click", function() {
                 var sliderId = button.getAttribute("data-sliderid");
@@ -211,8 +253,10 @@
             });
         });
 
-        activateBannerButton.forEach(function(button){
-            button.addEventListener("click",function() {
+        let activateBannerButton = document.querySelectorAll(".activateButton");
+        let activateBannerModal = new bootstrap.Modal(document.getElementById("bannerActivateModal"));
+        activateBannerButton.forEach(function(button) {
+            button.addEventListener("click", function() {
                 let sliderId = button.getAttribute("data-sliderid");
                 let sliderIdInput = document.querySelector(
                     "#bannerActivateModal input[name='slider_id']");
@@ -221,11 +265,36 @@
                 activateBannerModal.show();
             });
         });
-        // $("[data-bs-target='#activateBanner']").click(function() {
-        //     $("#delete__item__name").text(
-        //         $(this).closest("tr").find("td:first").text()
-        //     );
-        //     $("#delete__item__id").val($(this).data().id);
-        // });
+
+        let deleteSliderButtons = document.querySelectorAll("#deleteSlider");
+
+        deleteSliderButtons.forEach(function(button) {
+            button.addEventListener("click", function() {
+                let sliderId = button.getAttribute("data-id");
+                let sliderIdInput = document.querySelector(
+                    " #deleteSliderModal input[name='id']");
+                sliderIdInput.value = sliderId;
+            })
+        })
+
+
+        var alertDiv = document.getElementById("myAlert");
+
+        if (alertDiv) {
+            var alertLink = alertDiv.querySelector(".close_alert");
+
+            if (alertLink) {
+                alertLink.addEventListener("click", function(event) {
+                    event.preventDefault();
+                    window.location.reload();
+                });
+            }
+
+            setTimeout(function() {
+                alertDiv.style.display = "none";
+            }, 1000);
+
+
+        }
     });
 </script>

@@ -169,11 +169,11 @@
             </div>
         @endif
         @if (session('success'))
-            <div id="myAlert" class="alert alert-success d-flex justify-content-space-between" role="alert">
+            <div id="myAlert" class="alert alert-success d-flex justify-content-between" role="alert">
                 <a href="#" class="alert-link">
                     <li style="color: white">{{ session('success') }}</li>
                 </a>
-                <div class="close df-flex">X</div>
+                <a class="close_alert" style="font-size: 20px; cursor: pointer;">X</a>
             </div>
         @endif
         <div class="bottom-data">
@@ -344,6 +344,8 @@
         setTimeout(function() {
             alertDiv.style.display = "none";
         }, 1000);
+
+
     }
 });
 
