@@ -25,9 +25,9 @@
         </div>
     </div>
     {{-- Add Banner Language --}}
-    <div class="modal fade" id="addBannerLanguage" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal fade"  id="addBannerLanguage" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
         <div class="modal-dialog">
-            <div class="modal-content">
+            <div class="modal-content "style="width:100%;height:100%">
                 <div class="modal-header">
                     <h1 class="modal-title fs-5" id="exampleModalLabel">Yeni Slider</h1>
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
@@ -38,7 +38,8 @@
                         <input type="hidden" name="slider_id">
                         <div class="mb-3">
                             <label for="recipient-name" class="col-form-label">Başlıq:</label>
-                            <input type="text" class="form-control" name="title" id="recipient-name">
+                            {{-- <input type="text" class="form-control" name="title" id="recipient-name"> --}}
+                            <textarea class="editor" name="" id="" cols="30" rows="10"></textarea>
                         </div>
                         <div class="mb-3">
                             <label for="recipient-name" class="col-form-label">Dili</label>

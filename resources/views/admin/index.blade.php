@@ -17,11 +17,11 @@
     <link rel="stylesheet" href="{{asset("css/style.css")}}">
     <link rel="stylesheet" href="{{asset("css/swiper.min.css")}}">
 
-    <script src="https://cdn.tiny.cloud/1/5bc9of2zzrr1q2zpsgfqxkirxmypgu00kqkso1hziyd8st9h/tinymce/6/tinymce.min.js" referrerpolicy="origin"></script>
 
 
     <script src="{{asset("js/custom.js")}}"></script>
     <title>Responsive Dashboard Design #2 | AsmrProg</title>
+    {{-- <script src="https://cdn.tiny.cloud/1/5bc9of2zzrr1q2zpsgfqxkirxmypgu00kqkso1hziyd8st9h/tinymce/6/tinymce.min.js" referrerpolicy="origin"></script> --}}
 </head>
 
 <body class="{{ Cache::get('darkMode') ? 'dark' : '' }}">
