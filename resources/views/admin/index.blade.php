@@ -18,8 +18,10 @@
     <link rel="stylesheet" href="{{asset("css/swiper.min.css")}}">
 
 
+
     <script src="{{asset("js/custom.js")}}"></script>
     <title>Responsive Dashboard Design #2 | AsmrProg</title>
+    {{-- <script src="https://cdn.tiny.cloud/1/5bc9of2zzrr1q2zpsgfqxkirxmypgu00kqkso1hziyd8st9h/tinymce/6/tinymce.min.js" referrerpolicy="origin"></script> --}}
 </head>
 
 <body class="{{ Cache::get('darkMode') ? 'dark' : '' }}">
@@ -35,7 +37,7 @@
             <li class="{{request()->routeIs("admin.shoup")?"active":""}}"><a href="{{route("admin.shoup")}}"><i class='bx bxs-news'></i>News</a></li>
             <li class="{{request()->routeIs("admin.dslider")?"active":""}}"><a href="{{route("admin.dslider")}}"><i class='bx bx-analyse'></i>Analytics</a></li>
             <li class="{{request()->routeIs("admin.settingsPages")?"active":""}}"><a href="{{route("admin.settingsPages")}}"><i class='bx bx-message-square-dots'></i>Tickets</a></li>
-            <li class=""><a href="#"><i class='bx bx-group'></i>Users</a></li>
+            <li class=""><a href="{{route("admin.test_tiny")}}"><i class='bx bx-group'></i>Users</a></li>
             <li class=""><a href="#"><i class='bx bx-cog'></i>Settings</a></li>
         </ul>
         <ul class="side-menu">

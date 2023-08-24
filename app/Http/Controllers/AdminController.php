@@ -128,6 +128,14 @@ class AdminController extends Controller
 
         return response()->json(['dark_mode' => $darkMode]);
     }
+
+
+
+
+    public function test_tiny(){
+
+        return view("admin.partials.tiny_test");
+    }
     /**
      * Store a newly created resource in storage.
      */

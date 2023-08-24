@@ -43,9 +43,7 @@ class HomeSliderController extends Controller
             $request->file("image")->storeAs("/uploads/sliders",$hashname,"public");
             $slider->image = $hashname;
             $slider->save();
-            return redirect()->back();
-
-            return redirect()->back()->with("success", "Banner şəkli yükləndi aktiv etmək aktiv olmayan bannerlər səhifəsinə gedin.");
+            return redirect()->back()->with("success", "Banner şəkli yükləndi aktiv olmayan bannerlər səhifəsinə gedin.");
         }
 
         return redirect()->back()->with("error", "Dosya yüklenirken bir hata oluştu.");
