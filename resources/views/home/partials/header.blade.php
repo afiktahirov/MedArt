@@ -3,10 +3,10 @@
         @foreach ($sliders as $slider)
             @php
                 if (!count($slider->languages)){
-                    $text = "Hələki bu dilə tərcümə edilməyib";
-                    $title = "Hələki bu dilə tərcümə edilməyib";
+                    $text = "";
+                    $title = "";
                 }else{
-                    $text = $slider->languages[0]->textj;
+                    $text = $slider->languages[0]->text;
                     $title = $slider->languages[0]->title;
                 }
             @endphp
@@ -24,7 +24,9 @@
                                     </p>
                                 </div>
                                 <footer class="entry-footer d-flex flex-wrap align-items-center mt-4">
+                                    @if(Str::length($text)>0 && Str::length($title)>0)
                                     <a href="#" class="button gradient-bg">{{__("words.read_more")}}</a>
+                                    @endif
                                 </footer>
                             </div>
                         </div>
