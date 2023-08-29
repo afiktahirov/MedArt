@@ -253,13 +253,45 @@ left: 0;
 background: rgba(0,0,0,0);
 }
 
-.hero-content-overlay h1 {
+.hero-content-overlay h1{
 margin: 0;
 font-size: 60px;
 font-weight: 600;
 line-height: 1.2;
 color: #404040;
 }
+
+.hero-content-overlay .content h1{
+
+    font-size: 80px;
+}
+
+.hero-content-overlay .content h2{
+
+    font-size: 70px;
+}
+.hero-content-overlay .content h3{
+
+    font-size: 60px;
+}
+.hero-content-overlay .content h4{
+
+    font-size: 50px;
+}
+.hero-content-overlay .content h5{
+
+    font-size: 40px;
+}
+.hero-content-overlay .content h6{
+
+    font-size: 30px;
+}
+
+.hero-content-overlay .content p{
+
+    font-size: 40px;
+}
+
 
 .hero-content-overlay p {
 font-size: 14px;

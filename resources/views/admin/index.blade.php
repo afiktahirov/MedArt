@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
 
 <head>
     <meta charset="UTF-8">
@@ -7,7 +7,7 @@
     <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9" crossorigin="anonymous">
     <link id="pagestyle" href="{{ asset('assets/control/css/material-dashboard.min.css') }}" rel="stylesheet" />
-    <script src="https://kit.fontawesome.com/42d5adcbca.js" crossorigin="anonymous"></script>
+    {{-- <script src="https://kit.fontawesome.com/42d5adcbca.js" crossorigin="anonymous"></script> --}}
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons+Round" rel="stylesheet">
     <link href="{{ asset('assets/control/css/nucleo-icons.css') }}" rel="stylesheet" />
     <link href="{{ asset('assets/control/css/nucleo-svg.css') }}" rel="stylesheet" />
@@ -17,11 +17,14 @@
     <link rel="stylesheet" href="{{asset("css/style.css")}}">
     <link rel="stylesheet" href="{{asset("css/swiper.min.css")}}">
 
+    <script src="{{ asset('assets/vendor/build/ckeditor.js') }}"></script>
+    {{-- <script src="https://cdn.ckeditor.com/ckeditor5/39.0.1/classic/ckeditor.js"></script> --}}
 
 
-    <script src="{{asset("js/custom.js")}}"></script>
+
+
+    {{-- <script src="{{asset("js/custom.js")}}"></script> --}}
     <title>Responsive Dashboard Design #2 | AsmrProg</title>
-    {{-- <script src="https://cdn.tiny.cloud/1/5bc9of2zzrr1q2zpsgfqxkirxmypgu00kqkso1hziyd8st9h/tinymce/6/tinymce.min.js" referrerpolicy="origin"></script> --}}
 </head>
 
 <body class="{{ Cache::get('darkMode') ? 'dark' : '' }}">
@@ -88,7 +91,7 @@
     <script src="{{ asset('assets/control/js/bootstrap.min.js') }}"></script>
     <script src="{{ asset('assets/control/js/perfect-scrollbar.min.js') }}"></script>
     <script src="{{ asset('assets/control/js/material-dashboard.min.js') }}"></script>
-    <script src="{{ asset('assets/control/js/tinymce/tinymce.min.js') }}"></script>
+    {{-- <script src="{{ asset('assets/vendor/build/ckeditor.js') }}"></script> --}}
     <script src="{{ asset('assets/control/js/app.js') }}"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-HwwvtgBNo3bZJJLYd8oVXjrBZt8cqVSpeBNS5n7C8IVInixGAoxmnlMuBnhbgrkm" crossorigin="anonymous"></script>
 </body>

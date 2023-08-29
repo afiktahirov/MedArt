@@ -55,8 +55,7 @@ class HomeSliderController extends Controller
         $sliderLang = new HomeSliderLanguage();
         $sliderLang->home_slider_id = $request->slider_id;
         $sliderLang->lang =  $request->lang;
-        $sliderLang->title = $request->title;
-        $sliderLang->text = $request->text;
+        $sliderLang->text = $request->editor_content;
         $sliderLang->save();
         return redirect()->back();
     }
