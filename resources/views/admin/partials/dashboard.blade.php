@@ -25,9 +25,9 @@
         </div>
     </div>
     {{-- Add Banner Language --}}
-    <div class="modal fade"  id="addBannerLanguage" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal fade" id="addBannerLanguage" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
         <div class="modal-dialog">
-            <div class="modal-content "style="width:100%;height:100%">
+            <div class="modal-content" style="width:700px;height:650px">
                 <div class="modal-header">
                     <h1 class="modal-title fs-5" id="exampleModalLabel">Yeni Slider</h1>
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
@@ -37,11 +37,6 @@
                         @csrf
                         <input type="hidden" name="slider_id">
                         <div class="mb-3">
-                            <label for="recipient-name" class="col-form-label">Başlıq:</label>
-                            {{-- <input type="text" class="form-control" name="title" id="recipient-name"> --}}
-                            <textarea class="editor" name="" id="" cols="30" rows="10"></textarea>
-                        </div>
-                        <div class="mb-3">
                             <label for="recipient-name" class="col-form-label">Dili</label>
                             <select name="lang" id="" class="form-control">
                                 @foreach (languages() as $lang)
@@ -50,9 +45,16 @@
                             </select>
                         </div>
                         <div class="mb-3">
+                            <label for="recipient-name" class="col-form-label">Başlıq:</label>
+                            {{-- <input type="text" class="form-control" name="title" id="recipient-name"> --}}
+                            <textarea  name="editor_content" id="editor" cols="40" rows="10"></textarea>
+                            {{-- <input type="text" name="editor_content" id="editor"> --}}
+
+                        </div>
+                        {{-- <div class="mb-3">
                             <label for="message-text" class="col-form-label">Məlumat:</label>
                             <textarea class="form-control" id="message-text" name="text"></textarea>
-                        </div>
+                        </div> --}}
                         <!-- Fotoraf Yükleme Alanı -->
                         <div class="modal-footer">
                             <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Bağla</button>
@@ -115,7 +117,7 @@
             </div>
         </div>
     </div>
-    {{--Delete Slider Modal --}}
+    {{-- Delete Slider Modal --}}
     <div class="modal fade" id="deleteSliderModal" tabindex="-1" role="dialog" aria-labelledby="deleteModalLabel"
         aria-hidden="true">
         <div class="modal-dialog modal-dialog-centered" role="document">
@@ -245,14 +247,16 @@
                                         <div
                                             class="col-12 col-lg-6 d-flex flex-column justify-content-center align-items-start">
                                             <header class="entry-header d_header">
-                                                <h1>{{ $title }}</h1>
+                                                <div class="content">
+                                                    {!! str_replace(['{', '}'], '', $text) !!}
+                                                    <footer class="entry-footer d-flex flex-wrap align-items-center mt-4">
+                                                        <a href="#"
+                                                            class="button gradient-bg">{{ __('words.read_more') }}</a>
+                                                    </footer>
+                                                </div>
                                             </header>
                                             <div class="entry-content mt-4">
-                                                <p>{{ $text }}</p>
                                             </div>
-                                            <footer class="entry-footer d-flex flex-wrap align-items-center mt-4">
-                                                <a href="#" class="button gradient-bg">{{__("words.read_more")}}</a>
-                                            </footer>
                                         </div>
                                     </div>
                                 </div>
@@ -330,24 +334,30 @@
 
 
     document.addEventListener("DOMContentLoaded", function() {
-    var alertDiv = document.getElementById("myAlert");
+        var alertDiv = document.getElementById("myAlert");
 
-    if (alertDiv) {
-        var alertLink = alertDiv.querySelector(".close_alert");
+        if (alertDiv) {
+            var alertLink = alertDiv.querySelector(".close_alert");
 
-        if (alertLink) {
-            alertLink.addEventListener("click", function(event) {
-                event.preventDefault();
-                window.location.reload();
-            });
+            if (alertLink) {
+                alertLink.addEventListener("click", function(event) {
+                    event.preventDefault();
+                    window.location.reload();
+                });
+            }
+
+            setTimeout(function() {
+                alertDiv.style.display = "none";
+            }, 1000);
+
+
         }
+        ClassicEditor
+        .create(document.querySelector('#editor'))
+        .catch(error => {
+            console.error(error);
+        });
 
-        setTimeout(function() {
-            alertDiv.style.display = "none";
-        }, 1000);
 
-
-    }
-});
-
+    });
 </script>
