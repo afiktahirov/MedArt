@@ -247,7 +247,7 @@
                                         <div
                                             class="col-12 col-lg-6 d-flex flex-column justify-content-center align-items-start">
                                             <header class="entry-header d_header">
-                                                <div class="content">
+                                                <div class="content_dash">
                                                     {!! str_replace(['{', '}'], '', $text) !!}
                                                     <footer class="entry-footer d-flex flex-wrap align-items-center mt-4">
                                                         <a href="#"
