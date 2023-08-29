@@ -106,6 +106,17 @@ class AdminController extends Controller
         return redirect()->back();
     }
 
+    public function slider_d_deactive(Request $request)
+    {
+        $sliderId = $request->slider_id;
+        $slider = HomeSlider::find($sliderId);
+        if($slider){
+            $slider->status = 0;
+            $slider->save();
+        }
+        return redirect()->back();
+    }
+
     public function setDarkMode($value)
     {
         Cache::put('darkMode', $value, null);

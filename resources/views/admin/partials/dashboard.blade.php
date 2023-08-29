@@ -47,7 +47,7 @@
                         <div class="mb-3">
                             <label for="recipient-name" class="col-form-label">Başlıq:</label>
                             {{-- <input type="text" class="form-control" name="title" id="recipient-name"> --}}
-                            <textarea  name="editor_content" id="editor" cols="40" rows="10"></textarea>
+                            <textarea name="editor_content" id="editor" cols="40" rows="10"></textarea>
                             {{-- <input type="text" name="editor_content" id="editor"> --}}
 
                         </div>
@@ -137,6 +137,30 @@
                         @method('DELETE')
                         <input type="hidden" name="id" id="delete__item__id" value="">
                         <button type="submit" class="btn bg-gradient-danger">Bəli, silinsin</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+    {{-- Banner Disable Modal --}}
+    <div class="modal fade" id="bannerDisableModal" tabindex="-1" role="dialog" aria-labelledby="deleteModalLabel"
+        aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered" role="document">
+            <div class="modal-content text-center">
+                <div class="modal-header justify-content-center">
+                    <h5 class="modal-title font-weight-normal" id="deleteModalLabel">Əminsinizmi ?</h5>
+                </div>
+                <div class="modal-body">
+                    <strong class="text-danger">
+                        Banner deaktiv edilsin?
+                    </strong>
+                </div>
+                <div class="modal-footer justify-content-between">
+                    <button type="button" class="btn bg-secondary text-white" data-bs-dismiss="modal">Bağla</button>
+                    <form action="{{ route('admin.dsilder.deactive') }}" method="POST" class="d-inline-block">
+                        @csrf
+                        <input type="hidden" name="slider_id">
+                        <button type="submit" class="btn bg-gradient-danger">Bəli, aktiv edilsin</button>
                     </form>
                 </div>
             </div>
@@ -269,7 +293,8 @@
                                 <button class="btn btn-warning mt-1 add-language-button"
                                     data-bs-target="#addBannerLanguage" data-bs-toggle="modal"
                                     data-sliderid="{{ $slider->id }}">Dil əlavə et</button>
-                                <button class="btn btn-info    mt-1  ">Offline</button>
+                                <button class="btn btn-info deactivateButton   mt-1 " data-bs-target="#deactivateBanner"
+                                data-sliderid="{{ $slider->id }}">Deaktiv Et</button>
                             </div>
                         </div>
                     </div>
@@ -308,6 +333,19 @@
         var addLanguageModal = new bootstrap.Modal(document.getElementById("addBannerLanguage"));
 
         var languageButtons = document.querySelectorAll(".add-language-button");
+
+        let deactivateBannerButton = document.querySelectorAll(".deactivateButton");
+        let deactivateBannerModal = new bootstrap.Modal(document.getElementById("bannerDisableModal"));
+        deactivateBannerButton.forEach(function(button) {
+            button.addEventListener("click", function() {
+                let sliderId = button.getAttribute("data-sliderid");
+                let sliderIdInput = document.querySelector(
+                    "#bannerDisableModal input[name='slider_id']");
+                sliderIdInput.value = sliderId;
+
+                deactivateBannerModal.show();
+            });
+        });
 
         languageButtons.forEach(function(button) {
             button.addEventListener("click", function() {
@@ -353,10 +391,10 @@
 
         }
         ClassicEditor
-        .create(document.querySelector('#editor'))
-        .catch(error => {
-            console.error(error);
-        });
+            .create(document.querySelector('#editor'))
+            .catch(error => {
+                console.error(error);
+            });
 
 
     });
