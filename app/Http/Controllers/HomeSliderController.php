@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\HomeSlider;
 use App\Models\HomeSliderLanguage;
+use App\Models\Language;
 use Illuminate\Http\Request;
 
 class HomeSliderController extends Controller
@@ -76,15 +77,20 @@ class HomeSliderController extends Controller
         return redirect()->back();
     }
 
-    public function sliderLangEdit($sliderId)
+    public function sliderLangEdit($sliderId, $lang)
     {
-        $slider = HomeSlider::find($sliderId);
+        $slider = HomeSlider::with(['languages' => function($query) use ($lang) {
+            $query->where('lang', $lang);
+        }])
+        ->find($sliderId);
+        
+        $lang = Language::where("lang",$lang)->first();
 
         if ($slider) {
-            return response()->json(['text' => $slider->languages[0]->text]);
+            return response()->json(['text' => $slider->languages[0]->text, 'lang' => $lang]);
         }
 
-        return response()->json(['text' => '']);
+        return response()->json(['text' => '', 'lang' => '']);
     }
 
     /**
