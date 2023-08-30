@@ -45,7 +45,7 @@ class AdminController extends Controller
         return view('admin.index');
     }
 
-    public function dashboard()
+    public function dashboard(Request $request)
     {
         $lang = request()->lang ? request()->lang : 'az';
         $languages = languages();
@@ -63,7 +63,15 @@ class AdminController extends Controller
                 },
             ])
             ->get();
-        return view('admin.partials.dashboard', compact('languages', 'slidersActive', 'slidersDeactive'));
+        $sliderId =  $request->sliderId;
+        $sliderLang = null;
+        if(isset($sliderId)){
+            $sliderId = $request->sliderId;
+            $sliderLang = HomeSlider::where('home_slider_id', $sliderId)
+                                    ->where('lang', $request->lang)
+                                    ->first();
+        }
+        return view('admin.partials.dashboard', compact('languages', 'slidersActive', 'slidersDeactive',"sliderLang"));
     }
 
     public function settingsPages(){
