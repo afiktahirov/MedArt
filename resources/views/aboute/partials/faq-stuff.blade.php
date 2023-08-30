@@ -2,7 +2,7 @@
     <div class="container">
         <div class="row">
             <div class="col-12">
-                <h2>Faq &amp; Stuff</h2>
+                <h2>{{__("words.faq_stuff")}}</h2>
             </div>
             <div class="col-12 col-lg-6 mb-5 mb-lg-0">
                 <div class="accordion-wrap type-accordion">
@@ -33,14 +33,14 @@
                 <div class="row">
                     <div class="col-12 col-md-6">
                         <div class="professional-box">
-                            <h2 class="d-flex align-items-center">Professional</h2>
+                            <h2 class="d-flex align-items-center">{{__("words.professional")}}</h2>
                             <img src="{{asset("images/cardiogram-2.png")}}" alt="">
                             <p>Lorem ipsum dolor sit amet, cons ectetur adipiscing elit. Donec males uada lorem.</p>
                         </div>
                     </div>
                     <div class="col-12 col-md-6">
                         <div class="quality-box">
-                            <h2 class="d-flex align-items-center">Quality</h2>
+                            <h2 class="d-flex align-items-center">{{__("words.quality")}}</h2>
                             <img src="images/hospital.png" alt="">
                             <p>Lorem ipsum dolor sit amet, cons ectetur adipiscing elit. Donec males uada lorem.</p>
                         </div>

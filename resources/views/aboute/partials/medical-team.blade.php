@@ -2,7 +2,7 @@
     <div class="container">
         <div class="row">
             <div class="col-12">
-                <h2>The Medical Team</h2>
+                <h2>{{__("words.medical_team")}}</h2>
             </div>
             <div class="col-12 col-md-6 col-lg-3">
                 <div class="medical-team-wrap">

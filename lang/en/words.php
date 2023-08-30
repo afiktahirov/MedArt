@@ -22,7 +22,14 @@ return [
     "thursday"=>"Thursday",
     "friday"=>"Friday",
     "saturday"=>"Saturday",
-    "sunday"=>"Sunday"
+    "sunday"=>"Sunday",
+
+    "med_history"=>"Med History",
+    "faq_stuff"=>"Faq & Stuff",
+    "professional"=>"Professional",
+    "quality"=>"Quality",
+    "medical_team"=>"The Medical Team"
+
 
 
 

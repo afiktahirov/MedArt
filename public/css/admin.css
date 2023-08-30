@@ -679,3 +679,43 @@ body{
     }
 
 }
+
+.departmen_dashboard_colmn{
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 20px;
+}
+
+
+/* slider control  */
+
+.content_dash h1{
+
+    font-size: 80px;
+}
+
+.content_dash h2{
+
+    font-size: 70px;
+}
+.content_dash h3{
+
+    font-size: 60px;
+}
+.content_dash h4{
+
+    font-size: 50px;
+}
+.content_dash h5{
+
+    font-size: 40px;
+}
+.content_dash h6{
+
+    font-size: 30px;
+}
+
+.content_dash p{
+
+    font-size: 40px !important;
+}

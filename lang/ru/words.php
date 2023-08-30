@@ -7,7 +7,7 @@ return [
     'news' => 'Новости',
     'contact' => 'Контакт',
     'read_more' => 'Читать далее',
-    'Opening_Hours' => 'Часы работы',
+    'Opening_Hours' => 'Время работы',
     'Emergency' => 'Горячая линия',
     'Make_an_Appointment' => 'Записаться на прием',
     'boom_appoitnmentt' => 'Отправлять',
@@ -23,7 +23,17 @@ return [
     "thursday"=>"Четверг",
     "friday"=>"Пятница",
     "saturday"=>"Суббота",
-    "sunday"=>"Воскресенье"
+    "sunday"=>"Воскресенье",
+
+
+    "med_history"=>"История медицины",
+    "faq_stuff"=>"Вопросы и ответы",
+    "professional"=>"Профессиональный",
+    "quality"=>"Качество",
+    "medical_team"=>"Наши врачи"
+
+
+
 
 
 

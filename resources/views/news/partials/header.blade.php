@@ -12,5 +12,5 @@
             </div>
         </div>
     </div>
-    <img class="header-img" src="images/news-bg.png" alt="">
+    <img class="header-img" src="{{asset("images/news-bg.png")}}" alt="">
 

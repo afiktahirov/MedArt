@@ -106,6 +106,17 @@ class AdminController extends Controller
         return redirect()->back();
     }
 
+    public function slider_d_deactive(Request $request)
+    {
+        $sliderId = $request->slider_id;
+        $slider = HomeSlider::find($sliderId);
+        if($slider){
+            $slider->status = 0;
+            $slider->save();
+        }
+        return redirect()->back();
+    }
+
     public function setDarkMode($value)
     {
         Cache::put('darkMode', $value, null);
@@ -127,6 +138,14 @@ class AdminController extends Controller
         $this->setDarkMode($darkMode);
 
         return response()->json(['dark_mode' => $darkMode]);
+    }
+
+
+
+
+    public function test_tiny(){
+
+        return view("admin.partials.tiny_test");
     }
     /**
      * Store a newly created resource in storage.

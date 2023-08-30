@@ -15,9 +15,9 @@ return new class extends Migration
             $table->id();
             $table->unsignedBigInteger("home_slider_id");
             $table->string("lang");
-            $table->string("title");
             $table->text("text");
             $table->timestamps();
+            $table->softDeletes();
         });
     }
 
