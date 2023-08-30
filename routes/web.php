@@ -42,7 +42,7 @@ Route::prefix('admin')->group(function () {
         Route::post("/slider/add",[HomeSliderController::class,"store"])->name("slider.save");
         Route::delete("/slider/delete",[HomeSliderController::class,"destroy"])->name("slider.destroy");
         Route::post("/slider/add/languages",[HomeSliderController::class,"sliderLang"])->name("sliderLang");
-        Route::get('/getSliderContent/{sliderId}',[HomeSliderController::class,"sliderLangEdit"])->name("sliderLangEdit");
+        Route::get('/getSliderContent/{sliderId}/{lang}',[HomeSliderController::class,"sliderLangEdit"])->name("sliderLangEdit");
         Route::post("/slider/edit/languages",[HomeSliderController::class,"editSliderLang"])->name("editSliderLang");
         Route::get("/shoup",[AdminController::class ,"shoup"])->name("admin.shoup");
         Route::get("/settings/pages",[AdminController::class,"settingsPages"])->name("admin.settingsPages");

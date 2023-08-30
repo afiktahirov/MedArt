@@ -79,10 +79,8 @@
                         <input type="hidden" name="slider_id">
                         <div class="mb-3">
                             <label for="recipient-name" class="col-form-label">Yazı dili</label>
-                            <select name="lang" id="" class="form-control">
-                                @foreach (languages() as $lang)
-                                    <option value="{{ $lang->lang }}">{{ $lang->name }}</option>
-                                @endforeach
+                            <select name="lang" id="EditBannerLang" class="form-control">
+                                    <option value="" name="lang"></option>
                             </select>
                         </div>
                         <div class="mb-3">
@@ -432,12 +430,19 @@
             });
         ClassicEditor
             .create(document.querySelector('#editor_edit'))
+            .then(newEditor => {
+                editorEdit = newEditor;
+            })
             .catch(error => {
                 console.error(error);
-            });
+            });;
 
         var editBannerModal = new bootstrap.Modal(document.getElementById("EditBannerText"));
-        var editorEdit = ClassicEditor.create(document.querySelector('#editor_edit'));
+        var editorEdit = document.querySelector('#editor_edit');
+        var langParam = new URLSearchParams(window.location.search).get("lang");
+        var selectedLang = langParam || "az";
+        var selectLang = document.querySelector('#EditBannerText select[name="lang"]');
+        var editBannerLang = document.querySelector("#EditBannerLang option[name='lang']");
 
         var editBannerButtons = document.querySelectorAll(".editBanner");
 
@@ -445,12 +450,14 @@
             button.addEventListener("click", function() {
                 var sliderId = button.getAttribute("data-sliderid");
 
-                // Slider verilerini alıp textarea'ya doldur
                 fetch('/admin/getSliderContent/' +
-                    sliderId) // Bu endpoint'i, slider verilerini döndüren bir Laravel rotası olarak düşünün
+                        sliderId + '/' + selectedLang
+                    )
                     .then(response => response.json())
                     .then(data => {
-                        editorEdit.setData(data.text); // Textarea'ya slider verilerini yaz
+                        editorEdit.setData(data.text);
+                        editBannerLang.value = data.lang.lang
+                        editBannerLang.textContent = data.lang.name
                     });
 
                 editBannerModal.show();
