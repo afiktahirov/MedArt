@@ -191,7 +191,7 @@
                     <form action="{{ route('admin.dsilder.deactive') }}" method="POST" class="d-inline-block">
                         @csrf
                         <input type="hidden" name="slider_id">
-                        <button type="submit" class="btn bg-gradient-danger">Bəli, aktiv edilsin</button>
+                        <button type="submit" class="btn bg-gradient-danger">Bəli, deaktiv edilsin</button>
                     </form>
                 </div>
             </div>
@@ -321,7 +321,13 @@
                                     data-bs-target="#deleteSliderModal" id="deleteSlider"
                                     data-id="{{ $slider->id }}">Sil</button>
                                 <button class="btn btn-warning mt-1 editBanner" data-bs-toggle="modal"
-                                    data-bs-target="#EditBannerText" data-sliderid="{{ $slider->id }}">Redakte
+                                    data-bs-target="#EditBannerText" data-sliderid="{{ $slider->id }}"
+                                    @php
+                                     if(!count($slider->languages)){
+                                        echo 'style="pointer-events: none; opacity: 0.5;"';
+                                     }
+                                    @endphp
+                                    >Redakte
                                     et</button>
                                 <button class="btn btn-warning mt-1 add-language-button"
                                     data-bs-target="#addBannerLanguage" data-bs-toggle="modal"
