@@ -24,12 +24,12 @@
             </div>
         </div>
     </div>
-    {{-- Add Banner Language --}}
+    {{-- Add Banner text Modal --}}
     <div class="modal fade" id="addBannerLanguage" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
         <div class="modal-dialog">
             <div class="modal-content" style="width:700px;height:650px">
                 <div class="modal-header">
-                    <h1 class="modal-title fs-5" id="exampleModalLabel">Yeni Slider</h1>
+                    <h1 class="modal-title fs-5" id="exampleModalLabel">Banner yazısı </h1>
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body">
@@ -37,7 +37,7 @@
                         @csrf
                         <input type="hidden" name="slider_id">
                         <div class="mb-3">
-                            <label for="recipient-name" class="col-form-label">Dili</label>
+                            <label for="recipient-name" class="col-form-label">Yazı dili</label>
                             <select name="lang" id="" class="form-control">
                                 @foreach (languages() as $lang)
                                     <option value="{{ $lang->lang }}">{{ $lang->name }}</option>
@@ -45,9 +45,9 @@
                             </select>
                         </div>
                         <div class="mb-3">
-                            <label for="recipient-name" class="col-form-label">Başlıq:</label>
+                            <label for="recipient-name" class="col-form-label">Yazı məzmunu:</label>
                             {{-- <input type="text" class="form-control" name="title" id="recipient-name"> --}}
-                            <textarea name="editor_content" id="editor" cols="40" rows="10"></textarea>
+                            <textarea name="editor_content" id="editor_add" cols="40" rows="10"></textarea>
                             {{-- <input type="text" name="editor_content" id="editor"> --}}
 
                         </div>
@@ -58,7 +58,38 @@
                         <!-- Fotoraf Yükleme Alanı -->
                         <div class="modal-footer">
                             <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Bağla</button>
-                            <button type="submit" class="btn btn-primary">Gönder</button>
+                            <button type="submit" class="btn btn-primary">Yadda Saxla</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+    {{-- Edit banner text Modal --}}
+    <div class="modal fade" id="EditBannerText" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content" style="width:700px;height:650px">
+                <div class="modal-header">
+                    <h1 class="modal-title fs-5" id="exampleModalLabel">Banner yazısı </h1>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <form action="{{ route('editSliderLang') }}" method="POST" enctype="multipart/form-data">
+                        @csrf
+                        <input type="hidden" name="slider_id">
+                        <div class="mb-3">
+                            <label for="recipient-name" class="col-form-label">Yazı dili</label>
+                            <select name="lang" id="EditBannerLang" class="form-control">
+                                    <option value="" name="lang"></option>
+                            </select>
+                        </div>
+                        <div class="mb-3">
+                            <label for="recipient-name" class="col-form-label">Yazı məzmunu:</label>
+                            <textarea name="editor_content" id="editor_edit" cols="40" rows="10"></textarea>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Bağla</button>
+                            <button type="submit" class="btn btn-primary">Yadda Saxla</button>
                         </div>
                     </form>
                 </div>
@@ -160,7 +191,7 @@
                     <form action="{{ route('admin.dsilder.deactive') }}" method="POST" class="d-inline-block">
                         @csrf
                         <input type="hidden" name="slider_id">
-                        <button type="submit" class="btn bg-gradient-danger">Bəli, aktiv edilsin</button>
+                        <button type="submit" class="btn bg-gradient-danger">Bəli, deaktiv edilsin</button>
                     </form>
                 </div>
             </div>
@@ -289,19 +320,27 @@
                                 <button class="btn btn-danger  mt-1" data-bs-toggle="modal"
                                     data-bs-target="#deleteSliderModal" id="deleteSlider"
                                     data-id="{{ $slider->id }}">Sil</button>
-                                <button class="btn btn-warning mt-1  ">Redakte et</button>
+                                <button class="btn btn-warning mt-1 editBanner" data-bs-toggle="modal"
+                                    data-bs-target="#EditBannerText" data-sliderid="{{ $slider->id }}"
+                                    @php
+                                     if(!count($slider->languages)){
+                                        echo 'style="pointer-events: none; opacity: 0.5;"';
+                                     }
+                                    @endphp
+                                    >Redakte
+                                    et</button>
                                 <button class="btn btn-warning mt-1 add-language-button"
                                     data-bs-target="#addBannerLanguage" data-bs-toggle="modal"
-                                    data-sliderid="{{ $slider->id }}">Dil əlavə et</button>
+                                    data-sliderid="{{ $slider->id }}">Yazı əlavə et</button>
                                 <button class="btn btn-info deactivateButton   mt-1 " data-bs-target="#deactivateBanner"
-                                data-sliderid="{{ $slider->id }}">Deaktiv Et</button>
+                                    data-sliderid="{{ $slider->id }}">Deaktiv Et</button>
                             </div>
                         </div>
                     </div>
                 @endforeach
             </div>
         </div>
-        <div class="bottom-data">
+        {{-- <div class="bottom-data">
             <div class="orders">
                 <h1 class="d-flex justify-content-center ">Aktiv Şöbələr</h1>
                 <hr color="white">
@@ -321,7 +360,7 @@
                     </div>
                 </div>
             </div>
-        </div>
+        </div> --}}
     </main>
 @endsection
 
@@ -391,11 +430,45 @@
 
         }
         ClassicEditor
-            .create(document.querySelector('#editor'))
+            .create(document.querySelector('#editor_add'))
             .catch(error => {
                 console.error(error);
             });
+        ClassicEditor
+            .create(document.querySelector('#editor_edit'))
+            .then(newEditor => {
+                editorEdit = newEditor;
+            })
+            .catch(error => {
+                console.error(error);
+            });;
 
+        var editBannerModal = new bootstrap.Modal(document.getElementById("EditBannerText"));
+        var editorEdit = document.querySelector('#editor_edit');
+        var langParam = new URLSearchParams(window.location.search).get("lang");
+        var selectedLang = langParam || "az";
+        var selectLang = document.querySelector('#EditBannerText select[name="lang"]');
+        var editBannerLang = document.querySelector("#EditBannerLang option[name='lang']");
+
+        var editBannerButtons = document.querySelectorAll(".editBanner");
+
+        editBannerButtons.forEach(function(button) {
+            button.addEventListener("click", function() {
+                var sliderId = button.getAttribute("data-sliderid");
+
+                fetch('/admin/getSliderContent/' +
+                        sliderId + '/' + selectedLang
+                    )
+                    .then(response => response.json())
+                    .then(data => {
+                        editorEdit.setData(data.text);
+                        editBannerLang.value = data.lang.lang
+                        editBannerLang.textContent = data.lang.name
+                    });
+
+                editBannerModal.show();
+            });
+        });
 
     });
 </script>

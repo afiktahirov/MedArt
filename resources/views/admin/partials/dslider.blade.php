@@ -39,12 +39,12 @@
             </div>
         </div>
     </div>
-    {{-- Add Banner Language --}}
+    {{-- Add Banner text --}}
     <div class="modal fade" id="addBannerLanguage" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
         <div class="modal-dialog">
             <div class="modal-content" style="width:700px;height:650px">
                 <div class="modal-header">
-                    <h1 class="modal-title fs-5" id="exampleModalLabel">Yeni Slider</h1>
+                    <h1 class="modal-title fs-5" id="exampleModalLabel">Banner yazısı </h1>
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body">
@@ -52,7 +52,7 @@
                         @csrf
                         <input type="hidden" name="slider_id">
                         <div class="mb-3">
-                            <label for="recipient-name" class="col-form-label">Dili</label>
+                            <label for="recipient-name" class="col-form-label">Yazı dili</label>
                             <select name="lang" id="" class="form-control">
                                 @foreach (languages() as $lang)
                                     <option value="{{ $lang->lang }}">{{ $lang->name }}</option>
@@ -60,9 +60,9 @@
                             </select>
                         </div>
                         <div class="mb-3">
-                            <label for="recipient-name" class="col-form-label">Başlıq:</label>
+                            <label for="recipient-name" class="col-form-label">Yazı məzmunu:</label>
                             {{-- <input type="text" class="form-control" name="title" id="recipient-name"> --}}
-                            <textarea  name="editor_content" id="editor" cols="40" rows="10"></textarea>
+                            <textarea name="editor_content" id="editor" cols="40" rows="10"></textarea>
                             {{-- <input type="text" name="editor_content" id="editor"> --}}
 
                         </div>
@@ -73,7 +73,48 @@
                         <!-- Fotoraf Yükleme Alanı -->
                         <div class="modal-footer">
                             <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Bağla</button>
-                            <button type="submit" class="btn btn-primary">Gönder</button>
+                            <button type="submit" class="btn btn-primary">Yadda Saxla</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+    {{-- edit Banner --}}
+    <div class="modal fade" id="addBannerLanguage" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content" style="width:700px;height:650px">
+                <div class="modal-header">
+                    <h1 class="modal-title fs-5" id="exampleModalLabel">Banner yazısı </h1>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <form action="{{ route('sliderLang') }}" method="POST" enctype="multipart/form-data">
+                        @csrf
+                        <input type="hidden" name="slider_id">
+                        <div class="mb-3">
+                            <label for="recipient-name" class="col-form-label">Yazı dili</label>
+                            <select name="lang" id="" class="form-control">
+                                @foreach (languages() as $lang)
+                                    <option value="{{ $lang->lang }}">{{ $lang->name }}</option>
+                                @endforeach
+                            </select>
+                        </div>
+                        <div class="mb-3">
+                            <label for="recipient-name" class="col-form-label">Yazı məzmunu:</label>
+                            {{-- <input type="text" class="form-control" name="title" id="recipient-name"> --}}
+                            <textarea name="editor_content" id="editor" cols="40" rows="10"></textarea>
+                            {{-- <input type="text" name="editor_content" id="editor"> --}}
+
+                        </div>
+                        {{-- <div class="mb-3">
+                            <label for="message-text" class="col-form-label">Məlumat:</label>
+                            <textarea class="form-control" id="message-text" name="text"></textarea>
+                        </div> --}}
+                        <!-- Fotoraf Yükleme Alanı -->
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Bağla</button>
+                            <button type="submit" class="btn btn-primary">Yadda Saxla</button>
                         </div>
                     </form>
                 </div>
@@ -228,7 +269,7 @@
                                 <button class="btn btn-warning mt-1  ">Redakte et</button>
                                 <button class="btn btn-warning mt-1 add-language-button"
                                     data-bs-target="#addBannerLanguage" data-bs-toggle="modal"
-                                    data-sliderid="{{ $slider->id }}">Dil əlavə et</button>
+                                    data-sliderid="{{ $slider->id }}">Yazı əlavə et</button>
                                 <button class="btn btn-info activateButton   mt-1 " data-bs-target="#activateBanner"
                                     data-sliderid="{{ $slider->id }}">Aktiv et</button>
                             </div>

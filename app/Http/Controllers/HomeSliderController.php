@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\HomeSlider;
 use App\Models\HomeSliderLanguage;
+use App\Models\Language;
 use Illuminate\Http\Request;
 
 class HomeSliderController extends Controller
@@ -29,36 +30,69 @@ class HomeSliderController extends Controller
      */
     public function store(Request $request)
     {
-
         $request->validate([
-           "image" => "required|mimes:jpeg,png" // Maksimum 2MB jpeg png
+            'image' => 'required|mimes:jpeg,png', // Maksimum 2MB jpeg png
         ]);
 
         $slider = new HomeSlider();
 
-        if ($request->hasFile("image")) {
-
+        if ($request->hasFile('image')) {
             $slider = new HomeSlider();
-            $hashname = $request->file("image")->hashName();
-            $request->file("image")->storeAs("/uploads/sliders",$hashname,"public");
+            $hashname = $request->file('image')->hashName();
+            $request->file('image')->storeAs('/uploads/sliders', $hashname, 'public');
             $slider->image = $hashname;
             $slider->save();
-            return redirect()->back()->with("success", "Banner şəkli yükləndi aktiv olmayan bannerlər səhifəsinə gedin.");
+            return redirect()
+                ->back()
+                ->with('success', 'Banner şəkli yükləndi aktiv olmayan bannerlər səhifəsinə gedin.');
         }
 
-        return redirect()->back()->with("error", "Dosya yüklenirken bir hata oluştu.");
+        return redirect()
+            ->back()
+            ->with('error', 'Dosya yüklenirken bir hata oluştu.');
     }
 
-
-    public function sliderLang( Request $request){
-
+    public function sliderLang(Request $request)
+    {
         $sliderLang = new HomeSliderLanguage();
         $sliderLang->home_slider_id = $request->slider_id;
-        $sliderLang->lang =  $request->lang;
+        $sliderLang->lang = $request->lang;
         $sliderLang->text = $request->editor_content;
         $sliderLang->save();
         return redirect()->back();
     }
+
+    public function EditsliderLang(Request $request)
+    {
+        $sliderId = $request->sliderId;
+        $sliderLang = HomeSlider::where('home_slider_id', $sliderId)
+            ->where('lang', $request->lang)
+            ->first();
+
+        if ($sliderLang) {
+            $sliderLang->text = $request->editor_content;
+            $sliderLang->save();
+        }
+
+        return redirect()->back();
+    }
+
+    public function sliderLangEdit($sliderId, $lang)
+    {
+        $slider = HomeSlider::with(['languages' => function($query) use ($lang) {
+            $query->where('lang', $lang);
+        }])
+        ->find($sliderId);
+        
+        $lang = Language::where("lang",$lang)->first();
+
+        if ($slider) {
+            return response()->json(['text' => $slider->languages[0]->text, 'lang' => $lang]);
+        }
+
+        return response()->json(['text' => '', 'lang' => '']);
+    }
+
     /**
      * Display the specified resource.
      */
@@ -95,12 +129,16 @@ class HomeSliderController extends Controller
 
         if ($slider) {
             $slider->delete();
-            if($sliderLanguages){
+            if ($sliderLanguages) {
                 $sliderLanguages->delete();
             }
-            return redirect()->back()->with('success', 'Slider  silindi.');
+            return redirect()
+                ->back()
+                ->with('success', 'Slider  silindi.');
         } else {
-            return redirect()->back()->with('error', 'Slider Tapılmadı.');
+            return redirect()
+                ->back()
+                ->with('error', 'Slider Tapılmadı.');
         }
     }
 }
