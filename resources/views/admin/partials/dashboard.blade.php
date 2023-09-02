@@ -372,6 +372,8 @@
         var addLanguageModal = new bootstrap.Modal(document.getElementById("addBannerLanguage"));
 
         var languageButtons = document.querySelectorAll(".add-language-button");
+        var languageEditButtons = document.querySelectorAll(".editBanner");
+
 
         let deactivateBannerButton = document.querySelectorAll(".deactivateButton");
         let deactivateBannerModal = new bootstrap.Modal(document.getElementById("bannerDisableModal"));
@@ -397,6 +399,21 @@
             });
         });
 
+        languageEditButtons.forEach(function(button){
+            button.addEventListener("click",function(){
+                var sliderId = button.getAttribute("data-sliderid");
+                var sliderIdInput = document.querySelector(
+                    "#EditBannerText input[name='slider_id']"
+                );
+                console.log(sliderId);
+                sliderIdInput.value = sliderId;
+            })
+        })
+
+
+
+
+
         let deleteSliderButtons = document.querySelectorAll("#deleteSlider");
 
         deleteSliderButtons.forEach(function(button) {
@@ -405,6 +422,7 @@
                 let sliderIdInput = document.querySelector(
                     " #deleteSliderModal input[name='id']");
                 sliderIdInput.value = sliderId;
+
             })
         })
     });
