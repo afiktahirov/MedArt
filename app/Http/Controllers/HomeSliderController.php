@@ -6,6 +6,7 @@ use App\Models\HomeSlider;
 use App\Models\HomeSliderLanguage;
 use App\Models\Language;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Lang;
 
 class HomeSliderController extends Controller
 {
@@ -77,6 +78,9 @@ class HomeSliderController extends Controller
 
         if ($sliderLang) {
             $sliderLang->text = $request->editor_content;
+            if(empty($request->editor_content)){
+                $sliderLang->text = '';
+            }
             $sliderLang->save();
             return redirect()->back()->with('success',"Banner güncəlləndi.");
         }
@@ -98,6 +102,13 @@ class HomeSliderController extends Controller
         }
 
         return response()->json(['text' => '', 'lang' => '']);
+    }
+
+
+    public function sliderLangfind($lang){
+        $language = Language::where('lang', $lang)->first();
+        return response()->json(['lang' => $language]);
+
     }
 
     /**
