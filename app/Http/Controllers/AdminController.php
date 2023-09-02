@@ -109,9 +109,10 @@ class AdminController extends Controller
         if ($slider) {
             $slider->status = 1;
             $slider->save();
+            return redirect()->back()->with("success","Banner aktiv edildi.");;
         }
 
-        return redirect()->back();
+        return redirect()->back()->with("error","Banner aktiv olunmadı.");
     }
 
     public function slider_d_deactive(Request $request)
@@ -121,8 +122,9 @@ class AdminController extends Controller
         if($slider){
             $slider->status = 0;
             $slider->save();
+            return redirect()->back()->with("success","Banner deaktiv edildi.");
         }
-        return redirect()->back();
+        return redirect()->back()->with("error","Banner deaktiv olunmadı.");
     }
 
     public function setDarkMode($value)
