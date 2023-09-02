@@ -64,8 +64,8 @@ class HomeSliderController extends Controller
 
     public function EditsliderLang(Request $request)
     {
-        $sliderId = $request->sliderId;
-        $sliderLang = HomeSlider::where('home_slider_id', $sliderId)
+        $sliderId = $request->slider_id;
+        $sliderLang = HomeSliderLanguage::where('home_slider_id', $sliderId)
             ->where('lang', $request->lang)
             ->first();
 
@@ -83,7 +83,7 @@ class HomeSliderController extends Controller
             $query->where('lang', $lang);
         }])
         ->find($sliderId);
-        
+
         $lang = Language::where("lang",$lang)->first();
 
         if ($slider) {
