@@ -6,6 +6,7 @@ use App\Models\HomeSlider;
 use App\Models\HomeSliderLanguage;
 use App\Models\Language;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Lang;
 
 class HomeSliderController extends Controller
 {
@@ -49,32 +50,42 @@ class HomeSliderController extends Controller
 
         return redirect()
             ->back()
-            ->with('error', 'Dosya yüklenirken bir hata oluştu.');
+            ->with('error', 'Dosya yüklnməsində xəta baş verdi.');
     }
 
     public function sliderLang(Request $request)
     {
+        $request->validate([
+            'lang' => 'required',
+            'slider_id' => 'required',
+            'editor_content' => 'required|min:10|max:5000',
+        ]);
+
         $sliderLang = new HomeSliderLanguage();
         $sliderLang->home_slider_id = $request->slider_id;
         $sliderLang->lang = $request->lang;
         $sliderLang->text = $request->editor_content;
         $sliderLang->save();
-        return redirect()->back();
+        return redirect()->back()->with("success","Bannerə yazı əlavə olundu.");
     }
 
     public function EditsliderLang(Request $request)
     {
-        $sliderId = $request->sliderId;
-        $sliderLang = HomeSlider::where('home_slider_id', $sliderId)
+        $sliderId = $request->slider_id;
+        $sliderLang = HomeSliderLanguage::where('home_slider_id', $sliderId)
             ->where('lang', $request->lang)
             ->first();
 
         if ($sliderLang) {
             $sliderLang->text = $request->editor_content;
+            if(empty($request->editor_content)){
+                $sliderLang->text = '';
+            }
             $sliderLang->save();
+            return redirect()->back()->with('success',"Banner güncəlləndi.");
         }
 
-        return redirect()->back();
+        return redirect()->back()->with('error',"Banner güncəllənmədə xəta baş verdi.");
     }
 
     public function sliderLangEdit($sliderId, $lang)
@@ -83,7 +94,7 @@ class HomeSliderController extends Controller
             $query->where('lang', $lang);
         }])
         ->find($sliderId);
-        
+
         $lang = Language::where("lang",$lang)->first();
 
         if ($slider) {
@@ -91,6 +102,13 @@ class HomeSliderController extends Controller
         }
 
         return response()->json(['text' => '', 'lang' => '']);
+    }
+
+
+    public function sliderLangfind($lang){
+        $language = Language::where('lang', $lang)->first();
+        return response()->json(['lang' => $language]);
+
     }
 
     /**

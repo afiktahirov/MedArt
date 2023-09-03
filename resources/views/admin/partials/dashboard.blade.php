@@ -39,23 +39,13 @@
                         <div class="mb-3">
                             <label for="recipient-name" class="col-form-label">Yazı dili</label>
                             <select name="lang" id="" class="form-control">
-                                @foreach (languages() as $lang)
-                                    <option value="{{ $lang->lang }}">{{ $lang->name }}</option>
-                                @endforeach
+                                <option id="lang" value=""></option>
                             </select>
                         </div>
                         <div class="mb-3">
                             <label for="recipient-name" class="col-form-label">Yazı məzmunu:</label>
-                            {{-- <input type="text" class="form-control" name="title" id="recipient-name"> --}}
                             <textarea name="editor_content" id="editor_add" cols="40" rows="10"></textarea>
-                            {{-- <input type="text" name="editor_content" id="editor"> --}}
-
                         </div>
-                        {{-- <div class="mb-3">
-                            <label for="message-text" class="col-form-label">Məlumat:</label>
-                            <textarea class="form-control" id="message-text" name="text"></textarea>
-                        </div> --}}
-                        <!-- Fotoraf Yükleme Alanı -->
                         <div class="modal-footer">
                             <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Bağla</button>
                             <button type="submit" class="btn btn-primary">Yadda Saxla</button>
@@ -80,7 +70,7 @@
                         <div class="mb-3">
                             <label for="recipient-name" class="col-form-label">Yazı dili</label>
                             <select name="lang" id="EditBannerLang" class="form-control">
-                                    <option value="" name="lang"></option>
+                                <option value="" name="lang"></option>
                             </select>
                         </div>
                         <div class="mb-3">
@@ -323,15 +313,18 @@
                                 <button class="btn btn-warning mt-1 editBanner" data-bs-toggle="modal"
                                     data-bs-target="#EditBannerText" data-sliderid="{{ $slider->id }}"
                                     @php
-                                     if(!count($slider->languages)){
+if(!count($slider->languages)){
                                         echo 'style="pointer-events: none; opacity: 0.5;"';
-                                     }
-                                    @endphp
-                                    >Redakte
+                                     } @endphp>Redakte
                                     et</button>
                                 <button class="btn btn-warning mt-1 add-language-button"
                                     data-bs-target="#addBannerLanguage" data-bs-toggle="modal"
-                                    data-sliderid="{{ $slider->id }}">Yazı əlavə et</button>
+                                    data-sliderid="{{ $slider->id }}"
+                                    @php
+if(isset($slider->languages[0])){
+                                       echo 'style="pointer-events: none; opacity: 0.5;"';
+                                    } @endphp>Yazı
+                                    əlavə et</button>
                                 <button class="btn btn-info deactivateButton   mt-1 " data-bs-target="#deactivateBanner"
                                     data-sliderid="{{ $slider->id }}">Deaktiv Et</button>
                             </div>
@@ -340,27 +333,6 @@
                 @endforeach
             </div>
         </div>
-        {{-- <div class="bottom-data">
-            <div class="orders">
-                <h1 class="d-flex justify-content-center ">Aktiv Şöbələr</h1>
-                <hr color="white">
-                <div class="departmen_dashboard_colmn">
-                    <div class="our-departments-cont">
-                        <header class="entry-header d-flex flex-wrap align-items-center">
-                            <img src="images/cardiogram.png" alt="">
-                            <h3>Cardioology</h3>
-                        </header>
-                        <div class="entry-content">
-                            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec malesuada
-                                lorem maximus mauris.</p>
-                        </div>
-                        <footer class="entry-footer">
-                            <a href="#">Читать далее</a>
-                        </footer>
-                    </div>
-                </div>
-            </div>
-        </div> --}}
     </main>
 @endsection
 
@@ -372,6 +344,10 @@
         var addLanguageModal = new bootstrap.Modal(document.getElementById("addBannerLanguage"));
 
         var languageButtons = document.querySelectorAll(".add-language-button");
+        var languageEditButtons = document.querySelectorAll(".editBanner");
+        var LanguageBannerLang = document.querySelector("#addBannerLanguage option[id='lang']");
+
+
 
         let deactivateBannerButton = document.querySelectorAll(".deactivateButton");
         let deactivateBannerModal = new bootstrap.Modal(document.getElementById("bannerDisableModal"));
@@ -386,16 +362,42 @@
             });
         });
 
+
+        var langParamadd = new URLSearchParams(window.location.search).get("lang");
+        var selectedLangadd = langParamadd || "az";
+
+
         languageButtons.forEach(function(button) {
+            button.addEventListener("click", function() {
+                var sliderId = button.getAttribute("data-sliderid")
+                let sliderIdInput = document.querySelector(
+                    " #addBannerLanguage input[name='slider_id']");
+                sliderIdInput.value = sliderId;
+                fetch("/admin/findSliderContent/" + selectedLangadd)
+                    .then(response => response.json())
+                    .then(data => {
+
+                        LanguageBannerLang.value = data.lang.lang
+                        LanguageBannerLang.textContent = data.lang.name
+                    })
+            })
+        })
+
+
+        languageEditButtons.forEach(function(button) {
             button.addEventListener("click", function() {
                 var sliderId = button.getAttribute("data-sliderid");
                 var sliderIdInput = document.querySelector(
-                    "#addBannerLanguage input[name='slider_id']");
+                    "#EditBannerText input[name='slider_id']"
+                );
+                console.log(sliderId);
                 sliderIdInput.value = sliderId;
+            })
+        })
 
-                addLanguageModal.show();
-            });
-        });
+
+
+
 
         let deleteSliderButtons = document.querySelectorAll("#deleteSlider");
 
@@ -405,6 +407,7 @@
                 let sliderIdInput = document.querySelector(
                     " #deleteSliderModal input[name='id']");
                 sliderIdInput.value = sliderId;
+
             })
         })
     });
@@ -469,6 +472,9 @@
                 editBannerModal.show();
             });
         });
+
+
+
 
     });
 </script>
