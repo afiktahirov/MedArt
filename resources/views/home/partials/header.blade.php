@@ -17,11 +17,12 @@
                         <div class="row h-100">
                             <div class="col-12 col-lg-6 d-flex flex-column justify-content-center align-items-start">
                                 <header class="entry-header">
-                                    <h1>{{ $title }}</h1>
+                                    <div class="content">
+                                        {!! str_replace(['{', '}'], '', $text) !!}
+                                    </div>
                                 </header>
                                 <div class="entry-content mt-4">
-                                    <p>{{ $text }}
-                                    </p>
+                                    {{-- {!! str_replace(['{', '}'], '', $text) !!} --}}
                                 </div>
                                 <footer class="entry-footer d-flex flex-wrap align-items-center mt-4">
                                     @if(Str::length($text)>0 && Str::length($title)>0)

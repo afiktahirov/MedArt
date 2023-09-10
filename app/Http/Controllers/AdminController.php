@@ -45,7 +45,7 @@ class AdminController extends Controller
         return view('admin.index');
     }
 
-    public function dashboard()
+    public function dashboard(Request $request)
     {
         $lang = request()->lang ? request()->lang : 'az';
         $languages = languages();
@@ -63,7 +63,15 @@ class AdminController extends Controller
                 },
             ])
             ->get();
-        return view('admin.partials.dashboard', compact('languages', 'slidersActive', 'slidersDeactive'));
+        $sliderId =  $request->sliderId;
+        $sliderLang = null;
+        if(isset($sliderId)){
+            $sliderId = $request->sliderId;
+            $sliderLang = HomeSlider::where('home_slider_id', $sliderId)
+                                    ->where('lang', $request->lang)
+                                    ->first();
+        }
+        return view('admin.partials.dashboard', compact('languages', 'slidersActive', 'slidersDeactive',"sliderLang"));
     }
 
     public function settingsPages(){
@@ -101,9 +109,22 @@ class AdminController extends Controller
         if ($slider) {
             $slider->status = 1;
             $slider->save();
+            return redirect()->back()->with("success","Banner aktiv edildi.");;
         }
 
-        return redirect()->back();
+        return redirect()->back()->with("error","Banner aktiv olunmadı.");
+    }
+
+    public function slider_d_deactive(Request $request)
+    {
+        $sliderId = $request->slider_id;
+        $slider = HomeSlider::find($sliderId);
+        if($slider){
+            $slider->status = 0;
+            $slider->save();
+            return redirect()->back()->with("success","Banner deaktiv edildi.");
+        }
+        return redirect()->back()->with("error","Banner deaktiv olunmadı.");
     }
 
     public function setDarkMode($value)
