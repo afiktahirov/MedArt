@@ -76,7 +76,7 @@ $("[data-bs-target='#deleteModal']").click(function () {
                 let sliderIdInput = document.querySelector(
                     " #addBannerLanguage input[name='slider_id']");
                 sliderIdInput.value = sliderId;
-                fetch("/"+selectedLangadd+"/admin/findSliderContent/" + selectedLangadd)
+                fetch("/admin/findSliderContent/" + selectedLangadd)
                     .then(response => response.json())
                     .then(data => {
 
@@ -157,14 +157,13 @@ $("[data-bs-target='#deleteModal']").click(function () {
 
         var editBannerButtons = document.querySelectorAll(".editBanner");
 
-        var langParamadd = new URLSearchParams(window.location.search).get("lang");
-        var selectedLangadd = langParamadd || "az";
-        
+
+
         editBannerButtons.forEach(function(button) {
             button.addEventListener("click", function() {
                 var sliderId = button.getAttribute("data-sliderid");
 
-                fetch("/"+selectedLangadd+'/admin/getSliderContent/' +
+                fetch('/admin/getSliderContent/' +
                         sliderId + '/' + selectedLang
                     )
                     .then(response => response.json())

@@ -96,7 +96,6 @@ class HomeSliderController extends Controller
         ->find($sliderId);
 
         $lang = Language::where("lang",$lang)->first();
-
         if ($slider) {
             return response()->json(['text' => $slider->languages[0]->text, 'lang' => $lang]);
         }
