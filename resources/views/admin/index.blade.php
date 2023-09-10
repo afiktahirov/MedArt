@@ -36,11 +36,10 @@
             <div class="logo-name"><span>Adim</span>Panel</div>
         </a>
         <ul class="side-menu">
-            <li class="{{request()->routeIs("admin.dashboard")?"active":""}}"><a href="{{route("admin.dashboard")}}"><i class='bx bxs-dashboard'></i>Dashboard</a></li>
-            <li class="{{request()->routeIs("admin.shoup")?"active":""}}"><a href="{{route("admin.shoup")}}"><i class='bx bxs-news'></i>News</a></li>
-            <li class="{{request()->routeIs("admin.dslider")?"active":""}}"><a href="{{route("admin.dslider")}}"><i class='bx bx-analyse'></i>Analytics</a></li>
-            <li class="{{request()->routeIs("admin.settingsPages")?"active":""}}"><a href="{{route("admin.settingsPages")}}"><i class='bx bx-message-square-dots'></i>Tickets</a></li>
-            <li class=""><a href="{{route("admin.test_tiny")}}"><i class='bx bx-group'></i>Users</a></li>
+            <li class="{{request()->routeIs("admin.dashboard")?"active":""}}"><a href="{{route("admin.dashboard",['locale' => app()->getLocale()])}}"><i class='bx bxs-dashboard'></i>Dashboard</a></li>
+            <li class="{{request()->routeIs("admin.shoup")?"active":""}}"><a href="{{route("admin.shoup", ['locale' => app()->getLocale()])}}"><i class='bx bxs-news'></i>News</a></li>
+            <li class="{{request()->routeIs("admin.dslider")?"active":""}}"><a href="{{route("admin.dslider", ['locale' => app()->getLocale()])}}"><i class='bx bx-analyse'></i>Analytics</a></li>
+            <li class="{{request()->routeIs("admin.settingsPages")?"active":""}}"><a href="{{route("admin.settingsPages", ['locale' => app()->getLocale()])}}"><i class='bx bx-message-square-dots'></i>Tickets</a></li>
             <li class=""><a href="#"><i class='bx bx-cog'></i>Settings</a></li>
         </ul>
         <ul class="side-menu">

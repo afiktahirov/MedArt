@@ -9,7 +9,7 @@
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body">
-                    <form action="{{ route('slider.save') }}" method="POST" enctype="multipart/form-data">
+                    <form action="{{ route('slider.save', ['locale' => app()->getLocale()]) }}" method="POST" enctype="multipart/form-data">
                         @csrf
                         <div class="mb-3">
                             <label for="recipient-name" class="col-form-label">Başlıq:</label>
@@ -48,7 +48,7 @@
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body">
-                    <form action="{{ route('sliderLang') }}" method="POST" enctype="multipart/form-data">
+                    <form action="{{ route('sliderLang', ['locale' => app()->getLocale()]) }}" method="POST" enctype="multipart/form-data">
                         @csrf
                         <input type="hidden" name="slider_id">
                         <div class="mb-3">
@@ -79,7 +79,7 @@
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body">
-                    <form action="{{ route('editSliderLang') }}" method="POST" enctype="multipart/form-data">
+                    <form action="{{ route('editSliderLang', ['locale' => app()->getLocale()]) }}" method="POST" enctype="multipart/form-data">
                         @csrf
                         <input type="hidden" name="slider_id">
                         <div class="mb-3">
@@ -110,7 +110,7 @@
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body">
-                    <form action="{{ route('language.save') }}" method="POST">
+                    <form action="{{ route('language.save', ['locale' => app()->getLocale()]) }}" method="POST">
                         @csrf
                         <div class="mb-3">
                             <label for="recipient-name" class="col-form-label">Adı:</label>
@@ -144,7 +144,7 @@
                 </div>
                 <div class="modal-footer justify-content-between">
                     <button type="button" class="btn bg-secondary text-white" data-bs-dismiss="modal">Bağla</button>
-                    <form action="{{ route('admin.dsilder.active') }}" method="POST" class="d-inline-block">
+                    <form action="{{ route('admin.dsilder.active', ['locale' => app()->getLocale()]) }}" method="POST" class="d-inline-block">
                         @csrf
                         <input type="hidden" name="slider_id">
                         <button type="submit" class="btn bg-gradient-danger">Bəli, aktiv edilsin</button>
@@ -168,7 +168,7 @@
                 </div>
                 <div class="modal-footer justify-content-between">
                     <button type="button" class="btn bg-secondary text-white" data-bs-dismiss="modal">Bağla</button>
-                    <form action="{{ route('slider.destroy') }}" method="POST" class="d-inline-block">
+                    <form action="{{ route('slider.destroy', ['locale' => app()->getLocale()]) }}" method="POST" class="d-inline-block">
                         @csrf
                         @method('DELETE')
                         <input type="hidden" name="id" id="delete__item__id" value="">

@@ -29,32 +29,7 @@ use Illuminate\Support\Facades\Route;
 // Route::get("/admin/shoup",[AdminController::class ,"shoup"])->name("admin.shoup");
 // // End
 
-Route::prefix('admin')->group(function () {
-    Route::get('/login', [AdminController::class, 'login'])
-        ->name('login')
-        ->middleware('guest');
-    Route::post('/login', [AdminController::class, 'authenticate']);
-    Route::middleware('auth')->group(function () {
-        Route::get('/',[AdminController::class,"index"])->name("admin");
-        Route::get("/dashboard",[AdminController::class,"dashboard"])->name("admin.dashboard");
-        Route::post("/languages",[LanguageController::class,"store"])->name("language.save");
-        Route::post("/languages/delete",[LanguageController::class,"destroy"])->name("language.destroy");
-        Route::post("/slider/add",[HomeSliderController::class,"store"])->name("slider.save");
-        Route::delete("/slider/delete",[HomeSliderController::class,"destroy"])->name("slider.destroy");
-        Route::post("/slider/add/languages",[HomeSliderController::class,"sliderLang"])->name("sliderLang");
-        Route::get('/getSliderContent/{sliderId}/{lang}',[HomeSliderController::class,"sliderLangEdit"])->name("sliderLangEdit");
-        Route::get('/findSliderContent/{lang}',[HomeSliderController::class,"sliderLangfind"])->name("sliderLangfind");
-        Route::post("/slider/edit/languages",[HomeSliderController::class,"EditsliderLang"])->name("editSliderLang");
-        Route::get("/shoup",[AdminController::class ,"shoup"])->name("admin.shoup");
-        Route::get("/settings/pages",[AdminController::class,"settingsPages"])->name("admin.settingsPages");
-        Route::get("/slider/deactive",[AdminController::class ,"slider_d"])->name("admin.dslider");
-        Route::post("/slider/active",[AdminController::class ,"slider_d_active"])->name("admin.dsilder.active");
-        Route::post("/slider/deactive",[AdminController::class ,"slider_d_deactive"])->name("admin.dsilder.deactive");
 
-        Route::get("/test/tiny",[AdminController::class,"test_tiny"])->name("admin.test_tiny");
-
-    });
-});
 
 //Front Routes
 Route::get('/', function () {
@@ -67,4 +42,37 @@ Route::group(['prefix' => '{locale}', 'middleware' => 'setLocale'], function () 
     Route::get('/services', [PageController::class, 'servicesIndex'])->name('services');
     Route::get('/news', [PageController::class, 'newsIndex'])->name('news');
     Route::get('/contact', [PageController::class, 'contactIndex'])->name('contact');
+
+
+    Route::prefix('admin')->group(function () {
+        Route::get('/login', [AdminController::class, 'login'])
+            ->name('login')
+            ->middleware('guest');
+        Route::post('/login', [AdminController::class, 'authenticate']);
+        Route::middleware('auth')->group(function () {
+            Route::get('/',[AdminController::class,"index"])->name("admin");
+            Route::get("/dashboard",[AdminController::class,"dashboard"])->name("admin.dashboard");
+            Route::post("/languages",[LanguageController::class,"store"])->name("language.save");
+            Route::post("/languages/delete",[LanguageController::class,"destroy"])->name("language.destroy");
+            Route::post("/slider/add",[HomeSliderController::class,"store"])->name("slider.save");
+            Route::delete("/slider/delete",[HomeSliderController::class,"destroy"])->name("slider.destroy");
+            Route::post("/slider/add/languages",[HomeSliderController::class,"sliderLang"])->name("sliderLang");
+            Route::get('/getSliderContent/{sliderId}/{lang}',[HomeSliderController::class,"sliderLangEdit"])->name("sliderLangEdit");
+            Route::get('/findSliderContent/{lang}',[HomeSliderController::class,"sliderLangfind"])->name("sliderLangfind");
+            Route::post("/slider/edit/languages",[HomeSliderController::class,"EditsliderLang"])->name("editSliderLang");
+            Route::get("/shoup",[AdminController::class ,"shoup"])->name("admin.shoup");
+            Route::get("/settings/pages",[AdminController::class,"settingsPages"])->name("admin.settingsPages");
+            Route::get("/slider/deactive",[AdminController::class ,"slider_d"])->name("admin.dslider");
+            Route::post("/slider/active",[AdminController::class ,"slider_d_active"])->name("admin.dsilder.active");
+            Route::post("/slider/deactive",[AdminController::class ,"slider_d_deactive"])->name("admin.dsilder.deactive");
+
+        });
+    });
 });
+
+
+
+// Route::prefix('admin')->group(function () {
+
+
+//  });

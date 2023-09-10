@@ -1,33 +1,3 @@
-// tinymce.init({
-//     selector: ".editor",
-//     height: 120,
-//     height: 500,
-//     width: 500,
-//     plugins: [
-//         "advlist textcolor autolink link image lists charmap print preview hr anchor pagebreak spellchecker",
-//         "searchreplace wordcount visualblocks visualchars code fullscreen insertdatetime media nonbreaking",
-//         "save table contextmenu directionality emoticons template paste  colorpicker",
-//     ],
-//     toolbar:
-//         "textcolor | sizeselect | bold italic | fontselect |  fontsizeselect | insertfile undo redo | styleselect | bold italic | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent | link image | print preview media fullpage | forecolor backcolor emoticons",
-
-
-//         tinycomments_mode: 'embedded',
-//         tinycomments_author: 'Author name',
-//         mergetags_list: [{
-//                 value: 'First.Name',
-//                 title: 'First Name'
-//             },
-//             {
-//                 value: 'Email',
-//                 title: 'Email'
-//             },
-//         ],
-
-//     });
-
-
-
 $(".switch__language li").click(function () {
     const lang = $(this).data().target;
     $('[class^="lang__"].active').removeClass("active");
@@ -106,7 +76,7 @@ $("[data-bs-target='#deleteModal']").click(function () {
                 let sliderIdInput = document.querySelector(
                     " #addBannerLanguage input[name='slider_id']");
                 sliderIdInput.value = sliderId;
-                fetch("/admin/findSliderContent/" + selectedLangadd)
+                fetch("/"+selectedLangadd+"/admin/findSliderContent/" + selectedLangadd)
                     .then(response => response.json())
                     .then(data => {
 
@@ -187,11 +157,14 @@ $("[data-bs-target='#deleteModal']").click(function () {
 
         var editBannerButtons = document.querySelectorAll(".editBanner");
 
+        var langParamadd = new URLSearchParams(window.location.search).get("lang");
+        var selectedLangadd = langParamadd || "az";
+        
         editBannerButtons.forEach(function(button) {
             button.addEventListener("click", function() {
                 var sliderId = button.getAttribute("data-sliderid");
 
-                fetch('/admin/getSliderContent/' +
+                fetch("/"+selectedLangadd+'/admin/getSliderContent/' +
                         sliderId + '/' + selectedLang
                     )
                     .then(response => response.json())

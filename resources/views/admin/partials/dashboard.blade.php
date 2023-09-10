@@ -9,7 +9,7 @@
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body">
-                    <form action="{{ route('slider.save') }}" method="POST" enctype="multipart/form-data">
+                    <form action="{{ route('slider.save', ['locale' => app()->getLocale()]) }}" method="POST" enctype="multipart/form-data">
                         @csrf
                         <div class="mb-3">
                             <label class="col-form-label">Banner Şəkili:</label>
@@ -33,7 +33,7 @@
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body">
-                    <form action="{{ route('sliderLang') }}" method="POST" enctype="multipart/form-data">
+                    <form action="{{ route('sliderLang', ['locale' => app()->getLocale()]) }}" method="POST" enctype="multipart/form-data">
                         @csrf
                         <input type="hidden" name="slider_id">
                         <div class="mb-3">
@@ -64,7 +64,7 @@
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body">
-                    <form action="{{ route('editSliderLang') }}" method="POST" enctype="multipart/form-data">
+                    <form action="{{ route('editSliderLang', ['locale' => app()->getLocale()]) }}" method="POST" enctype="multipart/form-data">
                         @csrf
                         <input type="hidden" name="slider_id">
                         <div class="mb-3">
@@ -95,7 +95,7 @@
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body">
-                    <form action="{{ route('language.save') }}" method="POST">
+                    <form action="{{ route('language.save', ['locale' => app()->getLocale()]) }}" method="POST">
                         @csrf
                         <div class="mb-3">
                             <label for="recipient-name" class="col-form-label">Adı:</label>
@@ -129,7 +129,7 @@
                 </div>
                 <div class="modal-footer justify-content-between">
                     <button type="button" class="btn bg-secondary text-white" data-bs-dismiss="modal">Bağla</button>
-                    <form action="{{ route('language.destroy') }}" method="POST" class="d-inline-block">
+                    <form action="{{ route('language.destroy', ['locale' => app()->getLocale()]) }}" method="POST" class="d-inline-block">
                         @csrf
                         <input type="hidden" name="id" id="delete__item__id" value="">
                         <button type="submit" class="btn bg-gradient-danger">Bəli, silinsin</button>
@@ -153,7 +153,7 @@
                 </div>
                 <div class="modal-footer justify-content-between">
                     <button type="button" class="btn bg-secondary text-white" data-bs-dismiss="modal">Bağla</button>
-                    <form action="{{ route('slider.destroy') }}" method="POST" class="d-inline-block">
+                    <form action="{{ route('slider.destroy', ['locale' => app()->getLocale()]) }}" method="POST" class="d-inline-block">
                         @csrf
                         @method('DELETE')
                         <input type="hidden" name="id" id="delete__item__id" value="">
@@ -178,7 +178,7 @@
                 </div>
                 <div class="modal-footer justify-content-between">
                     <button type="button" class="btn bg-secondary text-white" data-bs-dismiss="modal">Bağla</button>
-                    <form action="{{ route('admin.dsilder.deactive') }}" method="POST" class="d-inline-block">
+                    <form action="{{ route('admin.dsilder.deactive', ['locale' => app()->getLocale()]) }}" method="POST" class="d-inline-block">
                         @csrf
                         <input type="hidden" name="slider_id">
                         <button type="submit" class="btn bg-gradient-danger">Bəli, deaktiv edilsin</button>
@@ -190,13 +190,13 @@
     <main>
         <div class="header">
             <div class="left">
-                <h1>Dashboard</h1>
+                <h1>Ana Səhifə</h1>
                 <ul class="breadcrumb">
                     <li><a href="#">
-                            Analytics
+                            İdarə etmə
                         </a></li>
                     /
-                    <li><a href="#" class="active">Shop</a></li>
+                    <li><a href="#" class="active">Paneli</a></li>
                 </ul>
             </div>
         </div>
@@ -205,6 +205,9 @@
                 Banner</button>
             <button class="btn btn-primary mt-2 mx-2" data-bs-toggle="modal" data-bs-target="#lang_modal">Yeni
                 Dil</button>
+
+            <button class="btn btn-primary mt-2 mx-2" data-bs-toggle="modal" data-bs-target="#lang_modal">Yeni
+                Şöbə</button>
         </div>
         @if (count($errors))
             <div id="myAlert" class="alert alert-warning d-flex justify-content-between" role="alert">
@@ -271,8 +274,6 @@
             <div class="orders">
                 <h1 class="d-flex justify-content-center ">Aktiv Bannerlər</h1>
                 <hr color="white">
-
-                <hr color="white">
                 @foreach ($slidersActive as $slider)
                     @php
                         if (count($slider->languages)) {
@@ -313,7 +314,7 @@
                                 <button class="btn btn-warning mt-1 editBanner" data-bs-toggle="modal"
                                     data-bs-target="#EditBannerText" data-sliderid="{{ $slider->id }}"
                                     @php
-if(!count($slider->languages)){
+                                     if(!count($slider->languages)){
                                         echo 'style="pointer-events: none; opacity: 0.5;"';
                                      } @endphp>Redakte
                                     et</button>
@@ -321,7 +322,7 @@ if(!count($slider->languages)){
                                     data-bs-target="#addBannerLanguage" data-bs-toggle="modal"
                                     data-sliderid="{{ $slider->id }}"
                                     @php
-if(isset($slider->languages[0])){
+                                    if(isset($slider->languages[0])){
                                        echo 'style="pointer-events: none; opacity: 0.5;"';
                                     } @endphp>Yazı
                                     əlavə et</button>
@@ -331,6 +332,11 @@ if(isset($slider->languages[0])){
                         </div>
                     </div>
                 @endforeach
+            </div>
+        </div>
+        <div class="bottom-data">
+            <div class="orders">
+
             </div>
         </div>
     </main>
