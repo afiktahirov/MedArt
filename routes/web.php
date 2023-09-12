@@ -78,7 +78,6 @@ Route::get('/login', [AdminController::class, 'login'])
             ->middleware('guest');
         Route::post('/login', [AdminController::class, 'authenticate']);
         Route::middleware('auth')->group(function () {
-
         Route::get('/getSliderContent/{sliderId}/{lang}',[HomeSliderController::class,"sliderLangEdit"])->name("sliderLangEdit");
         Route::post("/slider/edit/languages",[HomeSliderController::class,"EditsliderLang"])->name("editSliderLang");
         Route::get('/findSliderContent/{lang}',[HomeSliderController::class,"sliderLangfind"])->name("sliderLangfind");
