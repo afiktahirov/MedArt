@@ -50,7 +50,7 @@ Route::group(['prefix' => '{locale}', 'middleware' => 'setLocale'], function () 
             ->middleware('guest');
         Route::post('/login', [AdminController::class, 'authenticate']);
         Route::middleware('auth')->group(function () {
-            Route::get('/',[AdminController::class,"index"])->name("admin");
+            Route::get('{locale}/admin', [AdminController::class, "index"])->name("admin");
             Route::get("/dashboard",[AdminController::class,"dashboard"])->name("admin.dashboard");
             Route::post("/languages",[LanguageController::class,"store"])->name("language.save");
             Route::post("/languages/delete",[LanguageController::class,"destroy"])->name("language.destroy");
