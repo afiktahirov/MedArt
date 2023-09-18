@@ -13,8 +13,8 @@ return new class extends Migration
     {
         Schema::create('departments', function (Blueprint $table) {
             $table->id();
-            $table->unsignedBigInteger("doctor_id");
             $table->string("name");
+            $table->string("image");
             $table->string("lang");
             $table->timestamps();
         });

@@ -24,6 +24,29 @@
             </div>
         </div>
     </div>
+    <div class="modal fade" id="exampleModalIcon" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h1 class="modal-title fs-5" id="exampleModalLabel">Yeni Şöbə</h1>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <form action="{{ route('department.save') }}" method="POST" enctype="multipart/form-data">
+                        @csrf
+                        <div class="mb-3">
+                            <label class="col-form-label">Şöbə iconu yüklə:</label>
+                            <input type="file" name="image" class="form-control" id="photo-upload" accept="image/*">
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Bağla</button>
+                            <button type="submit" class="btn btn-primary sum">Gönder</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
     {{-- Add Banner text Modal --}}
     <div class="modal fade" id="addBannerLanguage" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
         <div class="modal-dialog">
@@ -205,6 +228,8 @@
                 Banner</button>
             <button class="btn btn-primary mt-2 mx-2" data-bs-toggle="modal" data-bs-target="#lang_modal">Yeni
                 Dil</button>
+            <button class="btn btn-primary mt-2 mx-2" data-bs-toggle="modal" data-bs-target="#exampleModalIcon">Yeni
+                Şöbə</button>
         </div>
         @if (count($errors))
             <div id="myAlert" class="alert alert-warning d-flex justify-content-between" role="alert">

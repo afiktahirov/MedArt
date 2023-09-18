@@ -3,6 +3,7 @@
 use App\Http\Controllers\AboutController;
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\ContactController;
+use App\Http\Controllers\DepartmentController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\HomeSliderController;
 use App\Http\Controllers\LanguageController;
@@ -50,8 +51,8 @@ Route::prefix('admin')->group(function () {
         Route::get("/slider/deactive",[AdminController::class ,"slider_d"])->name("admin.dslider");
         Route::post("/slider/active",[AdminController::class ,"slider_d_active"])->name("admin.dsilder.active");
         Route::post("/slider/deactive",[AdminController::class ,"slider_d_deactive"])->name("admin.dsilder.deactive");
-
         Route::get("/test/tiny",[AdminController::class,"test_tiny"])->name("admin.test_tiny");
+        Route::post("/department/save",[DepartmentController::class,"create"])->name("department.save");
 
     });
 });
