@@ -50,7 +50,7 @@ class HomeSliderController extends Controller
 
         return redirect()
             ->back()
-            ->with('error', 'Dosya yüklnməsində xəta baş verdi.');
+            ->with('error', 'Fayl yüklnməsində xəta baş verdi.');
     }
 
     public function sliderLang(Request $request)

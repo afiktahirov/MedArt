@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Department;
+use App\Models\department_icon;
 use Illuminate\Http\Request;
 
 class DepartmentController extends Controller
@@ -20,7 +21,7 @@ class DepartmentController extends Controller
      */
     public function create()
     {
-        
+
     }
 
     /**
@@ -28,7 +29,16 @@ class DepartmentController extends Controller
      */
     public function store(Request $request)
     {
-        //
+       $department_icon = new department_icon();
+
+       $hashname = $request->file('image')->hashName();
+       $request->file('image')->storeAs('/uploads/depart_icon',$hashname,"public");
+       $department_icon->icon = $hashname;
+       $department_icon->save();
+
+       return redirect()
+           ->back()
+           ->with("success","Yeni şöbə icon-u yükləndi.");
     }
 
     /**
