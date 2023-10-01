@@ -296,8 +296,6 @@
             <div class="orders">
                 <h1 class="d-flex justify-content-center ">Aktiv Bannerlər</h1>
                 <hr color="white">
-
-                <hr color="white">
                 @foreach ($slidersActive as $slider)
                     @php
                         if (count($slider->languages)) {
@@ -338,7 +336,7 @@
                                 <button class="btn btn-warning mt-1 editBanner" data-bs-toggle="modal"
                                     data-bs-target="#EditBannerText" data-sliderid="{{ $slider->id }}"
                                     @php
-if(!count($slider->languages)){
+                                    if(!count($slider->languages)){
                                         echo 'style="pointer-events: none; opacity: 0.5;"';
                                      } @endphp>Redakte
                                     et</button>
@@ -346,7 +344,7 @@ if(!count($slider->languages)){
                                     data-bs-target="#addBannerLanguage" data-bs-toggle="modal"
                                     data-sliderid="{{ $slider->id }}"
                                     @php
-if(isset($slider->languages[0])){
+                                    if(isset($slider->languages[0])){
                                        echo 'style="pointer-events: none; opacity: 0.5;"';
                                     } @endphp>Yazı
                                     əlavə et</button>
@@ -356,6 +354,12 @@ if(isset($slider->languages[0])){
                         </div>
                     </div>
                 @endforeach
+            </div>
+        </div>
+        <div class="bottom-data">
+            <div class="orders">
+                <h1 class="d-flex justify-content-center ">Aktiv Şöbələr</h1>
+                <hr color="white">
             </div>
         </div>
     </main>
