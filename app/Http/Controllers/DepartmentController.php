@@ -35,10 +35,11 @@ class DepartmentController extends Controller
        $request->file('image')->storeAs('/uploads/depart_icon',$hashname,"public");
        $department_icon->icon = $hashname;
        $department_icon->save();
+       
 
        return redirect()
            ->back()
-           ->with("success","Yeni şöbə icon-u yükləndi.");
+           ->with("success","Yeni şöbə  yaradıldı.");
     }
 
     /**

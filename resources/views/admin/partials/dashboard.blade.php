@@ -24,6 +24,7 @@
             </div>
         </div>
     </div>
+    {{-- Department Add Modal --}}
     <div class="modal fade" id="exampleModalIcon" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
         <div class="modal-dialog">
             <div class="modal-content">
@@ -34,6 +35,22 @@
                 <div class="modal-body">
                     <form action="{{ route('department.save') }}" method="POST" enctype="multipart/form-data">
                         @csrf
+                        <div class="mb-3">
+                            <label for="recipient-name" class="col-form-label">Dil</label>
+                            <select name="lang" id="departmentLang" class="form-control">
+                                @foreach ($languages as $lang )
+                                <option value={{$lang->id}} name="lang">{{$lang->name}}</option>
+                                @endforeach
+                            </select>
+                        </div>
+                        <div class="mb-3">
+                            <label for="recipient-name" class="col-form-label">Şöbənin Adı:</label>
+                             <input type="text" class="form-control" name="department_name">
+                        </div>
+                        <div class="mb-3">
+                            <label for="recipient-name" class="col-form-label">Şöbənin haqqında məlumat:</label>
+                             <textarea name="department_info" class="form-control" cols="30" rows="10"></textarea>
+                        </div>
                         <div class="mb-3">
                             <label class="col-form-label">Şöbə iconu yüklə:</label>
                             <input type="file" name="image" class="form-control" id="photo-upload" accept="image/*">
