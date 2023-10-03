@@ -11,12 +11,10 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('departments', function (Blueprint $table) {
+        Schema::create('department_icons', function (Blueprint $table) {
             $table->id();
-            $table->string("name");
-            $table->bigInteger("department_id");
-            $table->string("lang");
             $table->timestamps();
+            $table->string("icon");
         });
     }
 
@@ -25,6 +23,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('departments');
+        Schema::dropIfExists('department_icons');
     }
 };

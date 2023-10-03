@@ -24,6 +24,46 @@
             </div>
         </div>
     </div>
+    {{-- Department Add Modal --}}
+    <div class="modal fade" id="exampleModalIcon" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h1 class="modal-title fs-5" id="exampleModalLabel">Yeni Şöbə</h1>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <form action="{{ route('department.save') }}" method="POST" enctype="multipart/form-data">
+                        @csrf
+                        <div class="mb-3">
+                            <label for="recipient-name" class="col-form-label">Dil</label>
+                            <select name="lang" id="departmentLang" class="form-control">
+                                @foreach ($languages as $lang )
+                                <option value={{$lang->id}} name="lang">{{$lang->name}}</option>
+                                @endforeach
+                            </select>
+                        </div>
+                        <div class="mb-3">
+                            <label for="recipient-name" class="col-form-label">Şöbənin Adı:</label>
+                             <input type="text" class="form-control" name="department_name">
+                        </div>
+                        <div class="mb-3">
+                            <label for="recipient-name" class="col-form-label">Şöbənin haqqında məlumat:</label>
+                             <textarea name="department_info" class="form-control" cols="30" rows="10"></textarea>
+                        </div>
+                        <div class="mb-3">
+                            <label class="col-form-label">Şöbə iconu yüklə:</label>
+                            <input type="file" name="image" class="form-control" id="photo-upload" accept="image/*">
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Bağla</button>
+                            <button type="submit" class="btn btn-primary sum">Gönder</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
     {{-- Add Banner text Modal --}}
     <div class="modal fade" id="addBannerLanguage" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
         <div class="modal-dialog">
@@ -205,6 +245,8 @@
                 Banner</button>
             <button class="btn btn-primary mt-2 mx-2" data-bs-toggle="modal" data-bs-target="#lang_modal">Yeni
                 Dil</button>
+            <button class="btn btn-primary mt-2 mx-2" data-bs-toggle="modal" data-bs-target="#exampleModalIcon">Yeni
+                Şöbə</button>
         </div>
         @if (count($errors))
             <div id="myAlert" class="alert alert-warning d-flex justify-content-between" role="alert">
@@ -271,8 +313,6 @@
             <div class="orders">
                 <h1 class="d-flex justify-content-center ">Aktiv Bannerlər</h1>
                 <hr color="white">
-
-                <hr color="white">
                 @foreach ($slidersActive as $slider)
                     @php
                         if (count($slider->languages)) {
@@ -313,7 +353,7 @@
                                 <button class="btn btn-warning mt-1 editBanner" data-bs-toggle="modal"
                                     data-bs-target="#EditBannerText" data-sliderid="{{ $slider->id }}"
                                     @php
-if(!count($slider->languages)){
+                                    if(!count($slider->languages)){
                                         echo 'style="pointer-events: none; opacity: 0.5;"';
                                      } @endphp>Redakte
                                     et</button>
@@ -321,7 +361,7 @@ if(!count($slider->languages)){
                                     data-bs-target="#addBannerLanguage" data-bs-toggle="modal"
                                     data-sliderid="{{ $slider->id }}"
                                     @php
-if(isset($slider->languages[0])){
+                                    if(isset($slider->languages[0])){
                                        echo 'style="pointer-events: none; opacity: 0.5;"';
                                     } @endphp>Yazı
                                     əlavə et</button>
@@ -331,6 +371,12 @@ if(isset($slider->languages[0])){
                         </div>
                     </div>
                 @endforeach
+            </div>
+        </div>
+        <div class="bottom-data">
+            <div class="orders">
+                <h1 class="d-flex justify-content-center ">Aktiv Şöbələr</h1>
+                <hr color="white">
             </div>
         </div>
     </main>

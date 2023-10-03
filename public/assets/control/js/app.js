@@ -1,30 +1,4 @@
-// tinymce.init({
-//     selector: ".editor",
-//     height: 120,
-//     height: 500,
-//     width: 500,
-//     plugins: [
-//         "advlist textcolor autolink link image lists charmap print preview hr anchor pagebreak spellchecker",
-//         "searchreplace wordcount visualblocks visualchars code fullscreen insertdatetime media nonbreaking",
-//         "save table contextmenu directionality emoticons template paste  colorpicker",
-//     ],
-//     toolbar:
-//         "textcolor | sizeselect | bold italic | fontselect |  fontsizeselect | insertfile undo redo | styleselect | bold italic | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent | link image | print preview media fullpage | forecolor backcolor emoticons",
 
-
-//         tinycomments_mode: 'embedded',
-//         tinycomments_author: 'Author name',
-//         mergetags_list: [{
-//                 value: 'First.Name',
-//                 title: 'First Name'
-//             },
-//             {
-//                 value: 'Email',
-//                 title: 'Email'
-//             },
-//         ],
-
-//     });
 
 
 
@@ -205,6 +179,9 @@ $("[data-bs-target='#deleteModal']").click(function () {
             });
         });
 
+
+        var departmentAddModal = new bootstrap.Modal(document.getElementById("exampleModalIcon"));
+        
 
 
 
