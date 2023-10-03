@@ -377,6 +377,26 @@
             <div class="orders">
                 <h1 class="d-flex justify-content-center ">Aktiv Şöbələr</h1>
                 <hr color="white">
+                <table class="table table-dark table-striped rounded">
+                    <thead>
+                        <tr>
+                            <th scope="col">#</th>
+                            <th scope="col">İcon</th>
+                            <th scope="col">Adı</th>
+                            <th scope="col">Məlumatı</th>
+                            <th scope="col">Əməliyyatlar</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @dd($departments)
+                        {{-- @foreach ($departments as $key => $department)
+                        <tr>
+                            <th scope="row">{{ $key + 1 }}</th>
+                        </tr>
+                        @endforeach --}}
+                    </tbody>
+                </table>
+
             </div>
         </div>
     </main>
