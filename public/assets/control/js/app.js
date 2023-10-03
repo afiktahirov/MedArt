@@ -180,6 +180,9 @@ $("[data-bs-target='#deleteModal']").click(function () {
         });
 
 
+        var departmentAddModal = new bootstrap.Modal(document.getElementById("exampleModalIcon"));
+        
+
 
 
     });
