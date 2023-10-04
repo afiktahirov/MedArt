@@ -35,7 +35,7 @@
                 <div class="modal-body">
                     <form action="{{ route('department.save') }}" method="POST" enctype="multipart/form-data">
                         @csrf
-                        <div class="mb-3">
+                        {{-- <div class="mb-3">
                             <label for="recipient-name" class="col-form-label">Dil</label>
                             <select name="lang" id="departmentLang" class="form-control">
                                 @foreach ($languages as $lang )
@@ -50,7 +50,7 @@
                         <div class="mb-3">
                             <label for="recipient-name" class="col-form-label">Şöbənin haqqında məlumat:</label>
                              <textarea name="department_info" class="form-control" cols="30" rows="10"></textarea>
-                        </div>
+                        </div> --}}
                         <div class="mb-3">
                             <label class="col-form-label">Şöbə iconu yüklə:</label>
                             <input type="file" name="image" class="form-control" id="photo-upload" accept="image/*">
@@ -388,12 +388,28 @@
                         </tr>
                     </thead>
                     <tbody>
-                        @dd($departments)
-                        {{-- @foreach ($departments as $key => $department)
+                        {{-- @dd($departments) --}}
+                        @foreach ($departments as $key => $department)
                         <tr>
-                            <th scope="row">{{ $key + 1 }}</th>
+                            <th scope="row" style="width: 100px;">{{ $key + 1 }}</th>
+                            <th scope="row" style="width: 200px;" >
+                                <img src="{{ asset("storage/uploads/depart_icon/$department->icon") }}" alt="" width="50" height="50">
+                            </th>
+                            <th scope="row" style="width: 200px;">
+                                <p>Tərcümə yoxdu</p>
+                            </th>
+                            <th scope="row" style="width: 900px;">
+                                <p class="text-truncate">
+                                    Tərcümə yoxdu
+                                </p>
+                            </th>
+                            <th>
+                                <button class="btn btn-danger">Düzəliş et</button>
+                                <button class="btn btn-warning">Yazı əlavə et</button>
+                                <button class="btn btn-primary">Sil</button>
+                            </th>
                         </tr>
-                        @endforeach --}}
+                        @endforeach
                     </tbody>
                 </table>
 

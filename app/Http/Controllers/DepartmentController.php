@@ -30,17 +30,8 @@ class DepartmentController extends Controller
     public function store(Request $request)
     {
 
-       $request->validate([
-        "lang" =>"required",
-        "department_name"=>"required|min:3|max:30",
-        "department_info"=>"required|min:10|max:255",
-        "image"=>"required|file|max:2048" //2MB
-       ]);
 
        if($request->hasFile('image')){
-          $lang = $request->lang;
-          $department_name = $request->department_name;
-          $department_info = $request->department_info;
 
           $department_icon = new department_icon();
 
@@ -49,20 +40,10 @@ class DepartmentController extends Controller
           $department_icon->icon = $hashname;
           $department_icon->save();
 
-          $department = new Department();
-
-          $department->name = $department_name;
-          $department->image_id = $department_icon->id;
-          $department->info = $department_info;
-          $department->lang = $lang;
-
-          $department->save();
-       }
-
-
-       return redirect()
+           return redirect()
            ->back()
            ->with("success","Yeni şöbə  yaradıldı.");
+       }
     }
 
     /**
