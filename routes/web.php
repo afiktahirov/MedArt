@@ -53,6 +53,7 @@ Route::prefix('admin')->group(function () {
         Route::post("/slider/deactive",[AdminController::class ,"slider_d_deactive"])->name("admin.dsilder.deactive");
         Route::get("/test/tiny",[AdminController::class,"test_tiny"])->name("admin.test_tiny");
         Route::post("/department/save",[DepartmentController::class,"store"])->name("department.save");
+        Route::post("/department/addtext",[DepartmentController::class,"department_text"])->name("department.addText");
 
     });
 });

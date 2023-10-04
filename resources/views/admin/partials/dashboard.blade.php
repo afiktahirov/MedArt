@@ -64,6 +64,43 @@
             </div>
         </div>
     </div>
+    {{-- Department AddText Modal --}}
+    <div class="modal fade" id="exampleModalIconText" tabindex="-1" aria-labelledby="exampleModalLabelText" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h1 class="modal-title fs-5" id="exampleModalLabel">Yeni Şöbə</h1>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <form action="{{ route('department.addText') }}" method="POST" enctype="multipart/form-data">
+                        @csrf
+                        <input type="hidden" name="department_id">
+                        <div class="mb-3">
+                            <label for="recipient-name" class="col-form-label">Dil</label>
+                            <select name="lang" id="departmentLang" class="form-control">
+                                @foreach ($languages as $lang )
+                                <option value={{$lang->lang}} name="lang">{{$lang->name}}</option>
+                                @endforeach
+                            </select>
+                        </div>
+                        <div class="mb-3">
+                            <label for="recipient-name" class="col-form-label">Şöbənin Adı:</label>
+                             <input type="text" class="form-control" name="department_name">
+                        </div>
+                        <div class="mb-3">
+                            <label for="recipient-name" class="col-form-label">Şöbənin haqqında məlumat:</label>
+                             <textarea name="department_info" class="form-control" cols="30" rows="10"></textarea>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Bağla</button>
+                            <button type="submit" class="btn btn-primary sum">Gönder</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
     {{-- Add Banner text Modal --}}
     <div class="modal fade" id="addBannerLanguage" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
         <div class="modal-dialog">
@@ -388,24 +425,35 @@
                         </tr>
                     </thead>
                     <tbody>
-                        {{-- @dd($departments) --}}
                         @foreach ($departments as $key => $department)
+                        @php
+                        if (count($department->languages)) {
+                            $name = $department->languages[0]->name;
+                            $info = $department->languages[0]->info;
+                        } else {
+                            $name = 'Tərcümə Tapılmadı';
+                            $info = 'Tərcümə Tapılmadı.';
+                        }
+                    @endphp
                         <tr>
                             <th scope="row" style="width: 100px;">{{ $key + 1 }}</th>
                             <th scope="row" style="width: 200px;" >
                                 <img src="{{ asset("storage/uploads/depart_icon/$department->icon") }}" alt="" width="50" height="50">
                             </th>
                             <th scope="row" style="width: 200px;">
-                                <p>Tərcümə yoxdu</p>
+                                <p class="text-truncate">
+                                    {{$name}}
+                                </p>
                             </th>
                             <th scope="row" style="width: 900px;">
                                 <p class="text-truncate">
-                                    Tərcümə yoxdu
+                                    {{$info}}
                                 </p>
                             </th>
                             <th>
                                 <button class="btn btn-danger">Düzəliş et</button>
-                                <button class="btn btn-warning">Yazı əlavə et</button>
+                                <button class="btn btn-warning" id="department_text" data-bs-toggle="modal"
+                                data-bs-target="#exampleModalIconText" data-departmentId="{{ $department->id }}">Yazı əlavə et</button>
                                 <button class="btn btn-primary">Sil</button>
                             </th>
                         </tr>

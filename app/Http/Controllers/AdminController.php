@@ -56,7 +56,7 @@ class AdminController extends Controller
             'languages' => function ($query) use ($lang) {
                 return $query->where('lang', $lang);
             },
-        ])->get();;
+        ])->get();
 
         $slidersActive = HomeSlider::where('status', 1)
             ->with([
