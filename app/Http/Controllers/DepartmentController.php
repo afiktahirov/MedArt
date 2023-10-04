@@ -29,17 +29,21 @@ class DepartmentController extends Controller
      */
     public function store(Request $request)
     {
-       $department_icon = new department_icon();
 
-       $hashname = $request->file('image')->hashName();
-       $request->file('image')->storeAs('/uploads/depart_icon',$hashname,"public");
-       $department_icon->icon = $hashname;
-       $department_icon->save();
-       
 
-       return redirect()
+       if($request->hasFile('image')){
+
+          $department_icon = new department_icon();
+
+          $hashname = $request->file('image')->hashName();
+          $request->file('image')->storeAs('/uploads/depart_icon',$hashname,"public");
+          $department_icon->icon = $hashname;
+          $department_icon->save();
+
+           return redirect()
            ->back()
            ->with("success","Yeni şöbə  yaradıldı.");
+       }
     }
 
     /**

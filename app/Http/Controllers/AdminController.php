@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Department;
+use App\Models\department_icon;
 use App\Models\HomeSlider;
 use App\Models\Language;
 use Illuminate\Contracts\Session\Session;
@@ -49,6 +51,13 @@ class AdminController extends Controller
     {
         $lang = request()->lang ? request()->lang : 'az';
         $languages = languages();
+
+        $departments = department_icon::with([
+            'languages' => function ($query) use ($lang) {
+                return $query->where('lang', $lang);
+            },
+        ])->get();;
+
         $slidersActive = HomeSlider::where('status', 1)
             ->with([
                 'languages' => function ($query) use ($lang) {
@@ -56,13 +65,8 @@ class AdminController extends Controller
                 },
             ])
             ->get();
-        $slidersDeactive = HomeSlider::where('status', 0)
-            ->with([
-                'languages' => function ($query) use ($lang) {
-                    return $query->where('lang', $lang);
-                },
-            ])
-            ->get();
+
+
         $sliderId =  $request->sliderId;
         $sliderLang = null;
         if(isset($sliderId)){
@@ -71,7 +75,7 @@ class AdminController extends Controller
                                     ->where('lang', $request->lang)
                                     ->first();
         }
-        return view('admin.partials.dashboard', compact('languages', 'slidersActive', 'slidersDeactive',"sliderLang"));
+        return view('admin.partials.dashboard', compact('languages', 'slidersActive','sliderLang','departments'));
     }
 
     public function settingsPages(){

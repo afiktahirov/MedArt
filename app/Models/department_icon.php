@@ -10,7 +10,7 @@ class department_icon extends Model
     use HasFactory;
     protected $with = ["languages"];
 
-    public function language(){
+    public function languages(){
         return $this->hasMany(Department::class);
     }
 

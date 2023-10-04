@@ -14,8 +14,10 @@ return new class extends Migration
         Schema::create('departments', function (Blueprint $table) {
             $table->id();
             $table->string("name");
-            $table->bigInteger("department_id");
+            $table->bigInteger("department_icon_id");
+            $table->bigInteger("image_id");
             $table->string("lang");
+            $table->string("info");
             $table->timestamps();
         });
     }
