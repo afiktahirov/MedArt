@@ -445,15 +445,26 @@
                                     {{$name}}
                                 </p>
                             </th>
-                            <th scope="row" style="width: 900px;">
+                            <th scope="row" style="max-width: 900px; min-width:900px">
                                 <p class="text-truncate">
                                     {{$info}}
                                 </p>
                             </th>
                             <th>
-                                <button class="btn btn-danger">Düzəliş et</button>
+                                <button class="btn btn-danger"
+                                @php
+                                if(!count($department->languages)){
+                                    echo 'style="pointer-events: none; opacity: 0.5;"';
+                                 } @endphp
+                                >Düzəliş et</button>
                                 <button class="btn btn-warning" id="department_text" data-bs-toggle="modal"
-                                data-bs-target="#exampleModalIconText" data-departmentId="{{ $department->id }}">Yazı əlavə et</button>
+                                data-bs-target="#exampleModalIconText" data-departmentId="{{ $department->id }}"
+                                @php
+                                if(isset($department->languages[0])){
+                                   echo 'style="pointer-events: none; opacity: 0.5;"';
+                                } @endphp
+                                >Yazı əlavə et
+                            </button>
                                 <button class="btn btn-primary">Sil</button>
                             </th>
                         </tr>
