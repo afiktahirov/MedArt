@@ -179,9 +179,18 @@ $("[data-bs-target='#deleteModal']").click(function () {
             });
         });
 
+    //   Departments
 
-        var departmentAddModal = new bootstrap.Modal(document.getElementById("exampleModalIcon"));
-        
+
+      let department_textBtn = document.querySelectorAll("#department_text");
+
+      department_textBtn.forEach(function(button){
+        button.addEventListener("click",function(){
+            let department_id = button.getAttribute("data-departmentId");
+            let department_modalId = document.querySelector("#exampleModalIconText input[name='department_id']");
+            department_modalId.value = department_id;
+        })
+      })
 
 
 

@@ -9,10 +9,10 @@ class Department extends Model
 {
     use HasFactory;
 
-    protected $with = ['doctors'];
+    // protected $with = ['doctors'];
 
-    public function doctors()
-    {
-        return $this->hasMany(Doctor::class);
-    }
+    // public function doctors()
+    // {
+    //     return $this->hasMany(Doctor::class);
+    // }
 }

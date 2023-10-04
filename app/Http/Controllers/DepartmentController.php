@@ -29,19 +29,42 @@ class DepartmentController extends Controller
      */
     public function store(Request $request)
     {
-       $department_icon = new department_icon();
+       if($request->hasFile('image')){
 
-       $hashname = $request->file('image')->hashName();
-       $request->file('image')->storeAs('/uploads/depart_icon',$hashname,"public");
-       $department_icon->icon = $hashname;
-       $department_icon->save();
-       
+          $department_icon = new department_icon();
 
-       return redirect()
+          $hashname = $request->file('image')->hashName();
+          $request->file('image')->storeAs('/uploads/depart_icon',$hashname,"public");
+          $department_icon->icon = $hashname;
+          $department_icon->save();
+
+           return redirect()
            ->back()
            ->with("success","Yeni şöbə  yaradıldı.");
+       }
+
+       return redirect()
+       ->back()
+       ->with("error","Xeta bas verdi");
     }
 
+    public function department_text(Request $request){
+
+        $department = new Department();
+
+        $department->department_icon_id = $request->department_id;
+        $department->name = $request->department_name;
+        $department->lang = $request->lang;
+        $department->info = $request->department_info;
+
+        $department->save();
+
+        return redirect()
+        ->back()
+        ->with("success","Şöbə güncəlləndi.");
+
+
+    }
     /**
      * Display the specified resource.
      */
