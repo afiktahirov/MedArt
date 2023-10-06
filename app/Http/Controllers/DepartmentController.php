@@ -101,23 +101,23 @@ class DepartmentController extends Controller
         $departmentId = $request->id;
 
         $department = department_icon::find($departmentId);
-        $departmentLang = Department::find($departmentId);
-        
-
 
         if ($department) {
-            $department->delete();
-            if ($departmentLang) {
-                $departmentLang->delete();
+            $departmentLang = Department::where('department_icon_id', $departmentId)->get();
+
+            foreach ($departmentLang as $lang) {
+                $lang->delete();
             }
+
+            $department->delete();
+
             return redirect()
                 ->back()
-                ->with('success', 'Sobe  silindi.');
+                ->with('success', 'Şöbə silindi.');
         } else {
             return redirect()
                 ->back()
-                ->with('error', 'Sobe Tapılmadı.');
+                ->with('error', 'Şöbə tapılmadı.');
         }
     }
-
 }
