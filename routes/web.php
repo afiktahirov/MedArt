@@ -54,6 +54,8 @@ Route::prefix('admin')->group(function () {
         Route::get("/test/tiny",[AdminController::class,"test_tiny"])->name("admin.test_tiny");
         Route::post("/department/save",[DepartmentController::class,"store"])->name("department.save");
         Route::post("/department/addtext",[DepartmentController::class,"department_text"])->name("department.addText");
+        Route::get('/findDepartmentLang/{lang}',[DepartmentController::class,"sliderLangfind"])->name("sliderLangfind");
+
 
     });
 });
