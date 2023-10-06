@@ -205,6 +205,18 @@ $("[data-bs-target='#deleteModal']").click(function () {
         })
       })
 
+      let deleteDepartment = document.querySelectorAll("#deleteDepartment");
+
+      deleteDepartment.forEach(function(button) {
+          button.addEventListener("click", function() {
+              let departmentId = button.getAttribute("data-departmentId");
+              let departmentIdInput = document.querySelector(
+                  " #deleteDepartmentModal input[name='id']");
+              departmentIdInput.value = departmentId;
+
+          })
+      })
+
 
 
     });
