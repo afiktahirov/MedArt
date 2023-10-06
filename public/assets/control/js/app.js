@@ -189,6 +189,19 @@ $("[data-bs-target='#deleteModal']").click(function () {
             let department_id = button.getAttribute("data-departmentId");
             let department_modalId = document.querySelector("#exampleModalIconText input[name='department_id']");
             department_modalId.value = department_id;
+            let departmentLang = document.querySelector("#departmentLang option[name='lang']");
+
+            let langParam = new URLSearchParams(window.location.search).get("lang");
+            let selectedLang = langParam || "az";
+
+            fetch("/admin/findDepartmentLang/" + selectedLang)
+                    .then(response => response.json())
+                    .then(data => {
+                        console.log(data);
+                        departmentLang.value = data.lang.lang
+                        departmentLang.textContent = data.lang.name
+                    })
+
         })
       })
 

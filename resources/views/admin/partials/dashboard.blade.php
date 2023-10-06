@@ -79,9 +79,7 @@
                         <div class="mb-3">
                             <label for="recipient-name" class="col-form-label">Dil</label>
                             <select name="lang" id="departmentLang" class="form-control">
-                                @foreach ($languages as $lang )
-                                <option value={{$lang->lang}} name="lang">{{$lang->name}}</option>
-                                @endforeach
+                                <option value="" name="lang"></option>
                             </select>
                         </div>
                         <div class="mb-3">

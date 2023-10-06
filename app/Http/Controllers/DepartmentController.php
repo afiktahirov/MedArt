@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use App\Models\Department;
 use App\Models\department_icon;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Lang;
+use App\Models\Language;
 
 class DepartmentController extends Controller
 {
@@ -21,7 +23,6 @@ class DepartmentController extends Controller
      */
     public function create()
     {
-
     }
 
     /**
@@ -29,27 +30,26 @@ class DepartmentController extends Controller
      */
     public function store(Request $request)
     {
-       if($request->hasFile('image')){
+        if ($request->hasFile('image')) {
+            $department_icon = new department_icon();
 
-          $department_icon = new department_icon();
+            $hashname = $request->file('image')->hashName();
+            $request->file('image')->storeAs('/uploads/depart_icon', $hashname, 'public');
+            $department_icon->icon = $hashname;
+            $department_icon->save();
 
-          $hashname = $request->file('image')->hashName();
-          $request->file('image')->storeAs('/uploads/depart_icon',$hashname,"public");
-          $department_icon->icon = $hashname;
-          $department_icon->save();
+            return redirect()
+                ->back()
+                ->with('success', 'Yeni şöbə  yaradıldı.');
+        }
 
-           return redirect()
-           ->back()
-           ->with("success","Yeni şöbə  yaradıldı.");
-       }
-
-       return redirect()
-       ->back()
-       ->with("error","Xeta bas verdi");
+        return redirect()
+            ->back()
+            ->with('error', 'Xeta bas verdi');
     }
 
-    public function department_text(Request $request){
-
+    public function department_text(Request $request)
+    {
         $department = new Department();
 
         $department->department_icon_id = $request->department_id;
@@ -60,10 +60,14 @@ class DepartmentController extends Controller
         $department->save();
 
         return redirect()
-        ->back()
-        ->with("success","Şöbə güncəlləndi.");
+            ->back()
+            ->with('success', 'Şöbə güncəlləndi.');
+    }
 
-
+    public function sliderLangfind($lang)
+    {
+        $language = Language::where('lang', $lang)->first();
+        return response()->json(['lang' => $language]);
     }
     /**
      * Display the specified resource.
