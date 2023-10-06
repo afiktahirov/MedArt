@@ -38,7 +38,7 @@
                         {{-- <div class="mb-3">
                             <label for="recipient-name" class="col-form-label">Dil</label>
                             <select name="lang" id="departmentLang" class="form-control">
-                                @foreach ($languages as $lang )
+                                @foreach ($languages as $lang)
                                 <option value={{$lang->id}} name="lang">{{$lang->name}}</option>
                                 @endforeach
                             </select>
@@ -64,8 +64,70 @@
             </div>
         </div>
     </div>
+    {{-- Department AddText Modal --}}
+    <div class="modal fade" id="exampleModalIconText" tabindex="-1" aria-labelledby="exampleModalLabelText"
+        aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h1 class="modal-title fs-5" id="exampleModalLabel">Yeni Şöbə</h1>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <form action="{{ route('department.addText') }}" method="POST" enctype="multipart/form-data">
+                        @csrf
+                        <input type="hidden" name="department_id">
+                        <div class="mb-3">
+                            <label for="recipient-name" class="col-form-label">Dil</label>
+                            <select name="lang" id="departmentLang" class="form-control">
+                                <option value="" name="lang"></option>
+                            </select>
+                        </div>
+                        <div class="mb-3">
+                            <label for="recipient-name" class="col-form-label">Şöbənin Adı:</label>
+                            <input type="text" class="form-control" name="department_name">
+                        </div>
+                        <div class="mb-3">
+                            <label for="recipient-name" class="col-form-label">Şöbənin haqqında məlumat:</label>
+                            <textarea name="department_info" class="form-control" cols="30" rows="10"></textarea>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Bağla</button>
+                            <button type="submit" class="btn btn-primary sum">Gönder</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+    {{-- Department Delete Modal --}}
+    <div class="modal fade" id="deleteDepartmentModal" tabindex="-1" role="dialog" aria-labelledby="deleteModalLabel"
+        aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered" role="document">
+            <div class="modal-content text-center">
+                <div class="modal-header justify-content-center">
+                    <h5 class="modal-title font-weight-normal" id="deleteModalLabel">Əminsinizmi ?</h5>
+                </div>
+                <div class="modal-body">
+                    <strong class="text-danger">
+                        Şöbə silinəcək və geri alına bilməz
+                        !</strong>
+                </div>
+                <div class="modal-footer justify-content-between">
+                    <button type="button" class="btn bg-secondary text-white" data-bs-dismiss="modal">Bağla</button>
+                    <form action="{{ route('department.destroy') }}" method="POST" class="d-inline-block">
+                        @csrf
+                        @method('DELETE')
+                        <input type="hidden" name="id" id="delete__item__id" value="">
+                        <button type="submit" class="btn bg-gradient-danger">Bəli, silinsin</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
     {{-- Add Banner text Modal --}}
-    <div class="modal fade" id="addBannerLanguage" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal fade" id="addBannerLanguage" tabindex="-1" aria-labelledby="exampleModalLabel"
+        aria-hidden="true">
         <div class="modal-dialog">
             <div class="modal-content" style="width:700px;height:650px">
                 <div class="modal-header">
@@ -353,7 +415,7 @@
                                 <button class="btn btn-warning mt-1 editBanner" data-bs-toggle="modal"
                                     data-bs-target="#EditBannerText" data-sliderid="{{ $slider->id }}"
                                     @php
-                                    if(!count($slider->languages)){
+if(!count($slider->languages)){
                                         echo 'style="pointer-events: none; opacity: 0.5;"';
                                      } @endphp>Redakte
                                     et</button>
@@ -361,7 +423,7 @@
                                     data-bs-target="#addBannerLanguage" data-bs-toggle="modal"
                                     data-sliderid="{{ $slider->id }}"
                                     @php
-                                    if(isset($slider->languages[0])){
+if(isset($slider->languages[0])){
                                        echo 'style="pointer-events: none; opacity: 0.5;"';
                                     } @endphp>Yazı
                                     əlavə et</button>
@@ -388,27 +450,51 @@
                         </tr>
                     </thead>
                     <tbody>
-                        {{-- @dd($departments) --}}
                         @foreach ($departments as $key => $department)
-                        <tr>
-                            <th scope="row" style="width: 100px;">{{ $key + 1 }}</th>
-                            <th scope="row" style="width: 200px;" >
-                                <img src="{{ asset("storage/uploads/depart_icon/$department->icon") }}" alt="" width="50" height="50">
-                            </th>
-                            <th scope="row" style="width: 200px;">
-                                <p>Tərcümə yoxdu</p>
-                            </th>
-                            <th scope="row" style="width: 900px;">
-                                <p class="text-truncate">
-                                    Tərcümə yoxdu
-                                </p>
-                            </th>
-                            <th>
-                                <button class="btn btn-danger">Düzəliş et</button>
-                                <button class="btn btn-warning">Yazı əlavə et</button>
-                                <button class="btn btn-primary">Sil</button>
-                            </th>
-                        </tr>
+                            @php
+                                if (count($department->languages)) {
+                                    $name = $department->languages[0]->name;
+                                    $info = $department->languages[0]->info;
+                                } else {
+                                    $name = 'Tərcümə Tapılmadı';
+                                    $info = 'Tərcümə Tapılmadı.';
+                                }
+                            @endphp
+                            <tr>
+                                <th scope="row" style="width: 100px;">{{ $key + 1 }}</th>
+                                <th scope="row" style="width: 200px;">
+                                    <img src="{{ asset("storage/uploads/depart_icon/$department->icon") }}"
+                                        alt="" width="50" height="50">
+                                </th>
+                                <th scope="row" style="width: 200px;">
+                                    <p class="text-truncate">
+                                        {{ $name }}
+                                    </p>
+                                </th>
+                                <th scope="row" style="max-width: 900px; min-width:900px">
+                                    <p class="text-truncate">
+                                        {{ $info }}
+                                    </p>
+                                </th>
+                                <th>
+                                    <button class="btn btn-danger"
+                                        @php
+                                if(!count($department->languages)){
+                                    echo 'style="pointer-events: none; opacity: 0.5;"';
+                                 } @endphp>Düzəliş
+                                        et</button>
+                                    <button class="btn btn-warning" id="department_text" data-bs-toggle="modal"
+                                        data-bs-target="#exampleModalIconText" data-departmentId="{{ $department->id }}"
+                                        @php
+                                if(isset($department->languages[0])){
+                                   echo 'style="pointer-events: none; opacity: 0.5;"';
+                                } @endphp>Yazı
+                                        əlavə et
+                                    </button>
+                                    <button class="btn btn-primary" id="deleteDepartment" data-bs-toggle="modal"
+                                    data-bs-target="#deleteDepartmentModal" data-departmentId="{{$department->id}}">Sil</button>
+                                </th>
+                            </tr>
                         @endforeach
                     </tbody>
                 </table>
@@ -417,7 +503,3 @@
         </div>
     </main>
 @endsection
-
-
-
-

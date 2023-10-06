@@ -15,9 +15,8 @@ return new class extends Migration
             $table->id();
             $table->string("name");
             $table->bigInteger("department_icon_id");
-            $table->bigInteger("image_id");
             $table->string("lang");
-            $table->string("info");
+            $table->mediumText("info");
             $table->timestamps();
         });
     }
