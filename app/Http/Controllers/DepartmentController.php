@@ -96,8 +96,28 @@ class DepartmentController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(Department $department)
+    public function destroy(Request $request)
     {
-        //
+        $departmentId = $request->id;
+
+        $department = department_icon::find($departmentId);
+        $departmentLang = Department::find($departmentId);
+        
+
+
+        if ($department) {
+            $department->delete();
+            if ($departmentLang) {
+                $departmentLang->delete();
+            }
+            return redirect()
+                ->back()
+                ->with('success', 'Sobe  silindi.');
+        } else {
+            return redirect()
+                ->back()
+                ->with('error', 'Sobe Tapılmadı.');
+        }
     }
+
 }

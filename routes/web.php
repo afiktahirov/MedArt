@@ -10,6 +10,7 @@ use App\Http\Controllers\LanguageController;
 use App\Http\Controllers\NewsController;
 use App\Http\Controllers\PageController;
 use App\Http\Controllers\ServicesController;
+use App\Models\Department;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -55,6 +56,9 @@ Route::prefix('admin')->group(function () {
         Route::post("/department/save",[DepartmentController::class,"store"])->name("department.save");
         Route::post("/department/addtext",[DepartmentController::class,"department_text"])->name("department.addText");
         Route::get('/findDepartmentLang/{lang}',[DepartmentController::class,"sliderLangfind"])->name("sliderLangfind");
+        Route::delete("/department/delete",[DepartmentController::class,"destroy"])->name("department.destroy");
+
+
 
 
     });
