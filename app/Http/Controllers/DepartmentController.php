@@ -50,12 +50,18 @@ class DepartmentController extends Controller
 
     public function department_text(Request $request)
     {
+        $request->validate([
+            "department_name" => "required|min:3|max:50",
+            "lang" => "required",
+            "department_info" => "required|max:5000", // Daha makul bir sınırlama
+        ]);
+
         $department = new Department();
 
         $department->department_icon_id = $request->department_id;
         $department->name = $request->department_name;
         $department->lang = $request->lang;
-        $department->info = $request->department_info;
+        $department->info = htmlspecialchars($request->department_info, ENT_QUOTES, 'UTF-8');
 
         $department->save();
 
@@ -63,6 +69,7 @@ class DepartmentController extends Controller
             ->back()
             ->with('success', 'Şöbə güncəlləndi.');
     }
+
 
     public function sliderLangfind($lang)
     {
@@ -98,6 +105,7 @@ class DepartmentController extends Controller
      */
     public function destroy(Request $request)
     {
+
         $departmentId = $request->id;
 
         $department = department_icon::find($departmentId);
