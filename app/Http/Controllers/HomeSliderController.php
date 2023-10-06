@@ -142,21 +142,27 @@ class HomeSliderController extends Controller
     {
         $sliderId = $request->id;
 
-        $slider = HomeSlider::find($sliderId);
-        $sliderLanguages = HomeSliderLanguage::find($sliderId);
-
-        if ($slider) {
-            $slider->delete();
-            if ($sliderLanguages) {
-                $sliderLanguages->delete();
-            }
+        if (!$sliderId) {
             return redirect()
                 ->back()
-                ->with('success', 'Slider  silindi.');
+                ->with('error', 'invalid slider ID.');
+        }
+
+        $slider = HomeSlider::find($sliderId);
+
+        if ($slider) {
+            HomeSliderLanguage::where('home_slider_id', $sliderId)->delete();
+
+            $slider->delete();
+
+            return redirect()
+                ->back()
+                ->with('success', 'Slider silindi.');
         } else {
             return redirect()
                 ->back()
-                ->with('error', 'Slider Tapılmadı.');
+                ->with('error', 'Slider tapılmadı.');
         }
     }
+
 }
