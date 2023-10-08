@@ -19,10 +19,9 @@ $("[data-bs-target='#deleteModal']").click(function () {
 
 
     document.addEventListener("DOMContentLoaded", function() {
-        var addLanguageModal = new bootstrap.Modal(document.getElementById("addBannerLanguage"));
-        var languageButtons = document.querySelectorAll(".add-language-button");
-        var languageEditButtons = document.querySelectorAll(".editBanner");
-        var LanguageBannerLang = document.querySelector("#addBannerLanguage option[id='lang']");
+        var languageButtons = document?.querySelectorAll(".add-language-button");
+        var languageEditButtons = document?.querySelectorAll(".editBanner");
+        var LanguageBannerLang = document?.querySelector("#addBannerLanguage option[id='lang']");
 
         // Deaktive banner
         let deactivateBannerModalElement = document.getElementById("bannerDisableModal");
@@ -138,6 +137,9 @@ $("[data-bs-target='#deleteModal']").click(function () {
 
 
         }
+
+        // let editor_add = document.querySelector("#editor_add");
+
         ClassicEditor
             .create(document.querySelector('#editor_add'))
             .catch(error => {
@@ -152,32 +154,43 @@ $("[data-bs-target='#deleteModal']").click(function () {
                 console.error(error);
             });;
 
-        var editBannerModal = new bootstrap.Modal(document.getElementById("EditBannerText"));
-        var editorEdit = document.querySelector('#editor_edit');
-        var langParam = new URLSearchParams(window.location.search).get("lang");
-        var selectedLang = langParam || "az";
-        var selectLang = document.querySelector('#EditBannerText select[name="lang"]');
-        var editBannerLang = document.querySelector("#EditBannerLang option[name='lang']");
+        // Edit Banner Modal
+        let editBannerModalElement = document.getElementById("EditBannerText");
+        let editBannerModal
 
-        var editBannerButtons = document.querySelectorAll(".editBanner");
+        if(editBannerModalElement){
+            editBannerModal = new bootstrap.Modal(editBannerModalElement);
+        }
+        if(editBannerModal){
+            let editorEdit = document.querySelector('#editor_edit');
+            let langParam = new URLSearchParams(window.location.search).get("lang");
+            let selectedLang = langParam || "az";
+            let selectLang = document.querySelector('#EditBannerText select[name="lang"]');
+            let editBannerLang = document.querySelector("#EditBannerLang option[name='lang']");
 
-        editBannerButtons.forEach(function(button) {
-            button.addEventListener("click", function() {
-                var sliderId = button.getAttribute("data-sliderid");
+            let editBannerButtons = document.querySelectorAll(".editBanner");
 
-                fetch('/admin/getSliderContent/' +
-                        sliderId + '/' + selectedLang
-                    )
-                    .then(response => response.json())
-                    .then(data => {
-                        editorEdit.setData(data.text);
-                        editBannerLang.value = data.lang.lang
-                        editBannerLang.textContent = data.lang.name
-                    });
 
-                editBannerModal.show();
+            editBannerButtons.forEach(function(button) {
+                button.addEventListener("click", function() {
+                    var sliderId = button.getAttribute("data-sliderid");
+
+                    fetch('/admin/getSliderContent/' +
+                            sliderId + '/' + selectedLang
+                        )
+                        .then(response => response.json())
+                        .then(data => {
+                            editorEdit.setData(data.text);
+                            editBannerLang.value = data.lang.lang
+                            editBannerLang.textContent = data.lang.name
+                        });
+
+                    editBannerModal.show();
+                });
             });
-        });
+
+        }
+
 
     //   Departments
 
@@ -204,7 +217,7 @@ $("[data-bs-target='#deleteModal']").click(function () {
 
         })
       })
-
+    //   Deparment Control
       let deleteDepartment = document.querySelectorAll("#deleteDepartment");
 
       deleteDepartment.forEach(function(button) {
@@ -216,6 +229,18 @@ $("[data-bs-target='#deleteModal']").click(function () {
 
           })
       })
+
+    //   Testimonail control
+
+    let deleteTestimonial = document.querySelectorAll("#deleteTestimonial");
+
+    deleteTestimonial.forEach(function(button){
+        button.addEventListener('click',function(){
+            let testimonialId = button.getAttribute("data-testimonialId");
+            let testimonialInput = document.querySelector("#deleteTestimonialModal input[name='id']");
+            testimonialInput.value = testimonialId;
+        });
+    });
 
 
 

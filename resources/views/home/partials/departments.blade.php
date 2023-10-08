@@ -18,20 +18,21 @@
                         }
                         @endphp
 
-                          <div class="col-12 col-md-6 col-lg-4">
-                            <div class="our-departments-cont">
-                                <header class="entry-header d-flex flex-wrap align-items-center">
-                                    <img src="{{asset("storage/uploads/depart_icon/$department->icon")}}" alt="">
-                                    <h3>{{$name}}</h3>
-                                </header>
-                                <div class="entry-content">
-                                    <p>{{$info}}</p>
-                                </div>
-                                <footer class="entry-footer">
-                                    <a href="#">{{__("words.read_more")}}</a>
-                                </footer>
-                            </div>
-                          </div>
+                         <div class="col-12 col-md-6 col-lg-4 ">
+                             <div class="our-departments-cont border rounded p-3 d-flex flex-column" style="width: 300px; height: 300px;">
+                                 <header class="entry-header d-flex flex-wrap align-items-center">
+                                     <img src="{{asset("storage/uploads/depart_icon/$department->icon")}}" alt="">
+                                     <h3>{{$name}}</h3>
+                                 </header>
+                                 <div class="entry-content flex-grow-1">
+                                     <p>{{$info}}</p>
+                                 </div>
+                                 <footer class="entry-footer">
+                                     <a href="#" class="btn btn-primary">{{__("words.read_more")}}</a>
+                                 </footer>
+                             </div>
+                         </div>
+
                         @endforeach
                     </div>
                 </div>

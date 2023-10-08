@@ -10,6 +10,7 @@ use App\Http\Controllers\LanguageController;
 use App\Http\Controllers\NewsController;
 use App\Http\Controllers\PageController;
 use App\Http\Controllers\ServicesController;
+use App\Http\Controllers\TestimonialsController;
 use App\Models\Department;
 use Illuminate\Support\Facades\Route;
 
@@ -48,7 +49,7 @@ Route::prefix('admin')->group(function () {
         Route::get('/findSliderContent/{lang}',[HomeSliderController::class,"sliderLangfind"])->name("sliderLangfind");
         Route::post("/slider/edit/languages",[HomeSliderController::class,"EditsliderLang"])->name("editSliderLang");
         Route::get("/shoup",[AdminController::class ,"shoup"])->name("admin.shoup");
-        Route::get("/settings/pages",[AdminController::class,"settingsPages"])->name("admin.settingsPages");
+        Route::get("/testimonials/pages",[AdminController::class,"testimonialsPages"])->name("admin.testimonials");
         Route::get("/slider/deactive",[AdminController::class ,"slider_d"])->name("admin.dslider");
         Route::post("/slider/active",[AdminController::class ,"slider_d_active"])->name("admin.dsilder.active");
         Route::post("/slider/deactive",[AdminController::class ,"slider_d_deactive"])->name("admin.dsilder.deactive");
@@ -57,6 +58,8 @@ Route::prefix('admin')->group(function () {
         Route::post("/department/addtext",[DepartmentController::class,"department_text"])->name("department.addText");
         Route::get('/findDepartmentLang/{lang}',[DepartmentController::class,"sliderLangfind"])->name("sliderLangfind");
         Route::delete("/department/delete",[DepartmentController::class,"destroy"])->name("department.destroy");
+        Route::post('testimonial/add',[TestimonialsController::class,"store"])->name("testimonial.add");
+        Route::delete('testimonial/delete',[TestimonialsController::class,"destroy"])->name("testimonial.destroy");
 
 
 
