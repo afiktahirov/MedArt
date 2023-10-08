@@ -6,6 +6,7 @@ use App\Models\Department;
 use App\Models\department_icon;
 use App\Models\HomeSlider;
 use App\Models\Language;
+use App\Models\Testimonials;
 use Illuminate\Contracts\Session\Session;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -78,8 +79,9 @@ class AdminController extends Controller
         return view('admin.partials.dashboard', compact('languages', 'slidersActive','sliderLang','departments'));
     }
 
-    public function settingsPages(){
-       return view("admin.partials.settings");
+    public function testimonialsPages(){
+        $testimonials = Testimonials::all();
+       return view("admin.partials.testimonialsPages",compact("testimonials"));
     }
 
 
