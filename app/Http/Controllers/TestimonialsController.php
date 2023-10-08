@@ -33,12 +33,25 @@ class TestimonialsController extends Controller
          "user_comment"=>"required",
        ]);
 
-       $testimonials = new Testimonials();
+       if($request->hasFile("image")){
 
-       $testimonials->user_name = $request->username;
-       $testimonials->user_comment = $request->user_comment;
-       $testimonials->user_image = $request->user_image;
-       
+        $testimonials = new Testimonials();
+        $testimonials->user_name = $request->username;
+        $testimonials->user_comment = $request->user_comment;
+        $testimonials->user_image = $request->user_image;
+
+        $hashname = $request->file("image")->hashName();
+        $request->file("image")->storeAs("uploads/testimonials",$hashname,"public");
+        $testimonials->user_image = $hashname;
+        $testimonials->save();
+
+        return redirect()->back()->with("success","Rey əlavə olundu.");
+
+       }
+       else{
+          return redirect()->back()->with("error","Xeta bas verdi");
+       }
+
     }
 
 
@@ -69,8 +82,17 @@ class TestimonialsController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(Testimonials $testimonials)
+    public function destroy(Request $request)
     {
-        //
+
+        $testimonialId = $request->id;
+        if(!$testimonialId){
+           redirect()->back()->with("error","Xeta");
+        }
+
+        $testimonial = Testimonials::find($testimonialId);
+        $testimonial->delete();
+        return redirect()->back()->with("success","Rəy silindi.");
+
     }
 }
