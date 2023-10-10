@@ -60,6 +60,7 @@ Route::prefix('admin')->group(function () {
         Route::delete("/department/delete",[DepartmentController::class,"destroy"])->name("department.destroy");
         Route::post('testimonial/add',[TestimonialsController::class,"store"])->name("testimonial.add");
         Route::delete('testimonial/delete',[TestimonialsController::class,"destroy"])->name("testimonial.destroy");
+        Route::post('news/add',[NewsController::class,'store'])->name("news.add");
 
 
 

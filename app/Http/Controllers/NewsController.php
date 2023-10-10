@@ -28,7 +28,15 @@ class NewsController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $newsPhoto = new News();
+
+        $hashname = $request->file("image")->hashName();
+        $request->file("image")->storeAs('uploads/news',$hashname,'public');
+
+        $newsPhoto->image = $hashname;
+        $newsPhoto->save();
+
+        return redirect()->back()->with("success","Yenilik şəkli əlavə olundu.");
     }
 
     /**
