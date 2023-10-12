@@ -8,4 +8,11 @@ use Illuminate\Database\Eloquent\Model;
 class News extends Model
 {
     use HasFactory;
+
+    protected $with = ["languages"];
+
+    public function languages()
+    {
+        return $this->hasMany(NewsLanguages::class);
+    }
 }
