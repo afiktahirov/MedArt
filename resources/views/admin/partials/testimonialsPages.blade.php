@@ -1,6 +1,8 @@
 @extends('admin.index')
 @section('content')
 
+
+@dd($news)
 {{-- Testimonial Delete Modal --}}
 <div class="modal fade" id="deleteTestimonialModal" tabindex="-1" role="dialog" aria-labelledby="deleteModalLabel"
         aria-hidden="true">
@@ -133,7 +135,30 @@
                 </table>
             </div>
         </div>
-        <div class="div"></div>
+
+        <div class="bottom-data">
+            <div class="orders">
+                <table class="table table-dark table-striped rounded">
+                    <thead>
+                        <tr>
+                            <th>#</th>
+                            <th>Şəkli</th>
+                            <th>Başlığı</th>
+                            <th>Məlumatı</th>
+                            <th>Əməliyyatlar</th>
+                        </tr>
+                    </thead>
+                </table>
+                <tbody>
+                    <tr>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                    </tr>
+                </tbody>
+            </div>
+        </div>
     </main>
 @endsection
 

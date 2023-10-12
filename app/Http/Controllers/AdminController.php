@@ -6,6 +6,7 @@ use App\Models\Department;
 use App\Models\department_icon;
 use App\Models\HomeSlider;
 use App\Models\Language;
+use App\Models\News;
 use App\Models\Testimonials;
 use Illuminate\Contracts\Session\Session;
 use Illuminate\Http\Request;
@@ -59,6 +60,7 @@ class AdminController extends Controller
             },
         ])->get();
 
+
         $slidersActive = HomeSlider::where('status', 1)
             ->with([
                 'languages' => function ($query) use ($lang) {
@@ -80,8 +82,13 @@ class AdminController extends Controller
     }
 
     public function testimonialsPages(){
+        $lang = request()->lang ? request()->lang : 'az';
+        $news = News::with(["languages"=>function($query) use ($lang){
+            return $query->where('lang',$lang);
+        }])->get();
+
         $testimonials = Testimonials::all();
-       return view("admin.partials.testimonialsPages",compact("testimonials"));
+       return view("admin.partials.testimonialsPages",compact("testimonials","news"));
     }
 
 
