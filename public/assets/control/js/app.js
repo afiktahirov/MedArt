@@ -1,7 +1,3 @@
-
-
-
-
 $(".switch__language li").click(function () {
     const lang = $(this).data().target;
     $('[class^="lang__"].active').removeClass("active");
@@ -19,7 +15,7 @@ $("[data-bs-target='#deleteModal']").click(function () {
 
 
     document.addEventListener("DOMContentLoaded", function() {
-        var languageButtons = document?.querySelectorAll(".add-language-button");
+        var languageButtons = document.querySelectorAll(".add-language-button");
         var languageEditButtons = document?.querySelectorAll(".editBanner");
         var LanguageBannerLang = document?.querySelector("#addBannerLanguage option[id='lang']");
 
@@ -140,19 +136,19 @@ $("[data-bs-target='#deleteModal']").click(function () {
 
         // let editor_add = document.querySelector("#editor_add");
 
-        ClassicEditor
-            .create(document.querySelector('#editor_add'))
-            .catch(error => {
-                console.error(error);
-            });
-        ClassicEditor
-            .create(document.querySelector('#editor_edit'))
-            .then(newEditor => {
-                editorEdit = newEditor;
-            })
-            .catch(error => {
-                console.error(error);
-            });;
+        // ClassicEditor
+        //     .create(document.querySelector('#editor_add'))
+        //     .catch(error => {
+        //         console.error(error);
+        //     });
+        // ClassicEditor
+        //     .create(document.querySelector('#editor_edit'))
+        //     .then(newEditor => {
+        //         editorEdit = newEditor;
+        //     })
+        //     .catch(error => {
+        //         console.error(error);
+        //     });;
 
         // Edit Banner Modal
         let editBannerModalElement = document.getElementById("EditBannerText");
@@ -162,6 +158,21 @@ $("[data-bs-target='#deleteModal']").click(function () {
             editBannerModal = new bootstrap.Modal(editBannerModalElement);
         }
         if(editBannerModal){
+            ClassicEditor
+            .create(document.querySelector('#editor_add'))
+            .catch(error => {
+                console.error(error);
+            });
+            пш
+            ClassicEditor
+            .create(document.querySelector('#editor_edit'))
+            .then(newEditor => {
+                editorEdit = newEditor;
+            })
+            .catch(error => {
+                console.error(error);
+            });;
+
             let editorEdit = document.querySelector('#editor_edit');
             let langParam = new URLSearchParams(window.location.search).get("lang");
             let selectedLang = langParam || "az";
