@@ -2,7 +2,7 @@
 @section('content')
 
 
-@dd($news)
+{{-- @dd($news) --}}
 {{-- Testimonial Delete Modal --}}
 <div class="modal fade" id="deleteTestimonialModal" tabindex="-1" role="dialog" aria-labelledby="deleteModalLabel"
         aria-hidden="true">
