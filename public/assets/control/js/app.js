@@ -134,22 +134,6 @@ $("[data-bs-target='#deleteModal']").click(function () {
 
         }
 
-        // let editor_add = document.querySelector("#editor_add");
-
-        // ClassicEditor
-        //     .create(document.querySelector('#editor_add'))
-        //     .catch(error => {
-        //         console.error(error);
-        //     });
-        // ClassicEditor
-        //     .create(document.querySelector('#editor_edit'))
-        //     .then(newEditor => {
-        //         editorEdit = newEditor;
-        //     })
-        //     .catch(error => {
-        //         console.error(error);
-        //     });;
-
         // Edit Banner Modal
         let editBannerModalElement = document.getElementById("EditBannerText");
         let editBannerModal
@@ -163,7 +147,7 @@ $("[data-bs-target='#deleteModal']").click(function () {
             .catch(error => {
                 console.error(error);
             });
-            
+
             ClassicEditor
             .create(document.querySelector('#editor_edit'))
             .then(newEditor => {
