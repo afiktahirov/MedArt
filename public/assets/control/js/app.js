@@ -163,7 +163,7 @@ $("[data-bs-target='#deleteModal']").click(function () {
             .catch(error => {
                 console.error(error);
             });
-            пш
+            
             ClassicEditor
             .create(document.querySelector('#editor_edit'))
             .then(newEditor => {
