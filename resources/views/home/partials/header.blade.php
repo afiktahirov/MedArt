@@ -11,7 +11,7 @@
                 }
             @endphp
             <div class="swiper-slide hero-content-wrap"
-                style="background-image: url('{{ asset("storage/uploads/sliders/$slider->image") }}')">
+                style="background-image: url('{{ asset("/sliders/$slider->image") }}')">
                 <div class="hero-content-overlay position-absolute w-100 h-100">
                     <div class="container h-100">
                         <div class="row h-100">
