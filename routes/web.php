@@ -32,6 +32,19 @@ use Illuminate\Support\Facades\Route;
 // Route::get("/admin/shoup",[AdminController::class ,"shoup"])->name("admin.shoup");
 // // End
 
+Route::get('/storage-link',function(){
+
+    $targetFolder = storage_path('app/public');
+    $linkFolder = public_path('storage');
+
+    if (file_exists($linkFolder)) {
+        echo 'The symbolic link already exists.';
+    } else {
+        symlink($targetFolder, $linkFolder);
+        echo 'The symbolic link has been created.';
+    }
+
+});
 
 Route::prefix('admin')->group(function () {
     Route::get('/login', [AdminController::class, 'login'])
