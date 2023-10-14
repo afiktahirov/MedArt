@@ -32,6 +32,8 @@ use Illuminate\Support\Facades\Route;
 // Route::get("/admin/shoup",[AdminController::class ,"shoup"])->name("admin.shoup");
 // // End
 
+
+
 Route::prefix('admin')->group(function () {
     Route::get('/login', [AdminController::class, 'login'])
         ->name('login')
