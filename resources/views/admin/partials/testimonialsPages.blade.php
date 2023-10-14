@@ -2,7 +2,6 @@
 @section('content')
 
 
-{{-- @dd($news) --}}
 {{-- Testimonial Delete Modal --}}
 <div class="modal fade" id="deleteTestimonialModal" tabindex="-1" role="dialog" aria-labelledby="deleteModalLabel"
         aria-hidden="true">
@@ -148,15 +147,18 @@
                             <th>Əməliyyatlar</th>
                         </tr>
                     </thead>
-                </table>
                 <tbody>
+                    @foreach ($news as $key=>$n)
                     <tr>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
+                        <th>{{$key+1}}</th>
+                        <th></th>
+                        <th></th>
+                        <th></th>
                     </tr>
+                    @endforeach
+
                 </tbody>
+            </table>
             </div>
         </div>
     </main>
