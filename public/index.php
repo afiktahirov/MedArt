@@ -55,6 +55,4 @@ $response = $kernel->handle(
 $kernel->terminate($request, $response);
 
 
-$target = __DIR__.'/public/storage';
-$link = $_SERVER['DOCUMENT_ROOT'].'/storage';
-symlink($target, $link);
+
