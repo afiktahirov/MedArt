@@ -32,14 +32,7 @@ use Illuminate\Support\Facades\Route;
 // Route::get("/admin/shoup",[AdminController::class ,"shoup"])->name("admin.shoup");
 // // End
 
-Route::get('/storage-link',function(){
 
-    $targetFolder = $_SERVER['DOCUMENT_ROOT'].'/storage/app/public';
-    $linkFolder = $_SERVER['DOCUMENT_ROOT'].'/public/storage';
-    symlink($targetFolder,$linkFolder);
-    echo 'Symlink process successfully completed';
-
-});
 
 Route::prefix('admin')->group(function () {
     Route::get('/login', [AdminController::class, 'login'])
