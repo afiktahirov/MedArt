@@ -103,6 +103,19 @@
             əlavə et</button>
             <button class="btn btn-primary mt-2 mx-2" data-bs-toggle="modal" data-bs-target="#addNewComment">Yeni
                 Rəy</button>
+        </div>
+        <div class="bottom-data">
+            <div class="orders">
+                <h1 class="d-flex justify-content-center ">Dilə görə filtrələ</h1>
+                <hr color="white">
+                <div class="con">
+                    @foreach (languages() as $key => $lang)
+                        <a href="?lang={{ $lang->lang }}"
+                            class="text-white btn btn-success mt-2 mx-2">{{ $lang->name }}</a>
+                    @endforeach
+                </div>
+            </div>
+        </div>
         <div class="bottom-data">
             <div class="orders">
                 <table class="table table-dark table-striped rounded">
@@ -149,11 +162,29 @@
                     </thead>
                 <tbody>
                     @foreach ($news as $key=>$n)
+                    @php
+                    if (count($n->languages)) {
+                        $name = $n->languages[0]->name;
+                        $info = $n->languages[0]->info;
+                    } else {
+                        $name = 'Tərcümə Tapılmadı';
+                        $info = 'Tərcümə Tapılmadı.';
+                    }
+                @endphp
                     <tr>
                         <th>{{$key+1}}</th>
-                        <th></th>
-                        <th></th>
-                        <th></th>
+                        <td>
+                            <div class="w-100 h-100">
+                                <img src="{{asset("storage/uploads/news/$n->image")}}" alt="">
+                            </div>
+                        </td>
+                        <td>{{$name}}</td>
+                        <td>{{$info}}</td>
+                        <td>
+                            <button class="btn btn-warning">Düzəliş et</button>
+                            <button class="btn btn-success">Yazı əlvə et</button>
+                            <button class="btn btn-danger">Sil</button>
+                        </td>
                     </tr>
                     @endforeach
 
