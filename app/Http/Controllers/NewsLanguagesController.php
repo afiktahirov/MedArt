@@ -28,7 +28,15 @@ class NewsLanguagesController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $newsLanguages = new NewsLanguages();
+        $newsLanguages->news_id = $request->news_id;
+        $newsLanguages->name = $request->news_name;
+        $newsLanguages->info = $request->news_info;
+        $newsLanguages->lang = $request->lang;
+
+        $newsLanguages->save();
+
+        return redirect()->back()->with("success","Yeniliye yazi elave olundu");
     }
 
     /**

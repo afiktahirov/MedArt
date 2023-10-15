@@ -84,6 +84,42 @@
         </div>
     </div>
 </div>
+{{-- News AddText Modal --}}
+<div class="modal fade" id="addTextNewsModal" tabindex="-1" aria-labelledby="exampleModalLabelText"
+        aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h1 class="modal-title fs-5" id="exampleModalLabel">Yeni xəbər yazısı</h1>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <form action="{{ route('news.addText') }}" method="POST" enctype="multipart/form-data">
+                        @csrf
+                        <input type="hidden" name="news_id">
+                        <div class="mb-3">
+                            <label for="recipient-name" class="col-form-label">Dil</label>
+                            <select name="lang" id="newsLang" class="form-control">
+                                <option value="" name="lang"></option>
+                            </select>
+                        </div>
+                        <div class="mb-3">
+                            <label for="recipient-name" class="col-form-label">Xəbərin Başlığı:</label>
+                            <input type="text" class="form-control" name="news_name">
+                        </div>
+                        <div class="mb-3">
+                            <label for="recipient-name" class="col-form-label">Xəbər haqqında məlumat:</label>
+                            <textarea name="news_info" class="form-control" cols="30" rows="10"></textarea>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Bağla</button>
+                            <button type="submit" class="btn btn-primary sum">Gönder</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+</div>
 
     <main>
         <div class="header">
@@ -182,8 +218,9 @@
                         <td>{{$info}}</td>
                         <td>
                             <button class="btn btn-warning">Düzəliş et</button>
-                            <button class="btn btn-success">Yazı əlvə et</button>
-                            <button class="btn btn-danger">Sil</button>
+                            <button class="btn btn-success"  id="news_text" data-bs-toggle="modal"
+                            data-bs-target="#addTextNewsModal" data-newsId={{$n->id}}>Yazı əlvə et</button>
+                            <button class="btn btn-danger" >Sil</button>
                         </td>
                     </tr>
                     @endforeach
