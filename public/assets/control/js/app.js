@@ -262,4 +262,14 @@ $("[data-bs-target='#deleteModal']").click(function () {
         })
       })
 
+      let deleteNews = document.querySelectorAll("#deleteNews");
+
+      deleteNews.forEach(function(button){
+          button.addEventListener('click',function(){
+              let testimonialId = button.getAttribute("data-newsId");
+              let testimonialInput = document.querySelector("#deleteNewsModal input[name='id']");
+              testimonialInput.value = testimonialId;
+          });
+      });
+
     });

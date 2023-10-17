@@ -120,6 +120,32 @@
             </div>
         </div>
 </div>
+{{-- News Delete Modal --}}
+<div class="modal fade" id="deleteNewsModal" tabindex="-1" role="dialog" aria-labelledby="deleteModalLabel"
+        aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered" role="document">
+            <div class="modal-content text-center">
+                <div class="modal-header justify-content-center">
+                    <h5 class="modal-title font-weight-normal" id="deleteModalLabel">Əminsinizmi ?</h5>
+                </div>
+                <div class="modal-body">
+                    <strong class="text-danger">
+                        Yenilik silinəcək və geri alına bilməz
+                        !</strong>
+                </div>
+                <div class="modal-footer justify-content-between">
+                    <button type="button" class="btn bg-secondary text-white" data-bs-dismiss="modal">Bağla</button>
+                    <form action="{{ route('news.destroy') }}" method="POST" class="d-inline-block">
+                        @csrf
+                        @method('DELETE')
+                        <input type="hidden" name="id" id="delete__item__id" value="">
+                        <button type="submit" class="btn bg-gradient-danger">Bəli, silinsin</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+</div>
+
 
     <main>
         <div class="header">
@@ -217,10 +243,22 @@
                         <td>{{$name}}</td>
                         <td>{{$info}}</td>
                         <td>
-                            <button class="btn btn-warning">Düzəliş et</button>
+                            <button class="btn btn-warning"
+                            @php
+                                if(!count($n->languages)){
+                                    echo 'style="pointer-events: none; opacity: 0.5;"';
+                                 } @endphp
+                            >Düzəliş et</button>
                             <button class="btn btn-success"  id="news_text" data-bs-toggle="modal"
-                            data-bs-target="#addTextNewsModal" data-newsId={{$n->id}}>Yazı əlvə et</button>
-                            <button class="btn btn-danger" >Sil</button>
+                            data-bs-target="#addTextNewsModal" data-newsId={{$n->id}}
+                            @php
+                                if(isset($n->languages[0])){
+                                   echo 'style="pointer-events: none; opacity: 0.5;"';
+                                } @endphp
+                            >
+                            Yazı əlvə et
+                            </button>
+                            <button class="btn btn-danger" id="deleteNews" data-newsId={{$n->id}} data-bs-toggle="modal" data-bs-target="#deleteNewsModal">Sil</button>
                         </td>
                     </tr>
                     @endforeach
