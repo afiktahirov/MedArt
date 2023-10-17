@@ -28,7 +28,22 @@ class NewsLanguagesController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $request->validate([
+            'news_id'=>'required',
+            'news_name'=>'required|min:5|max:30',
+            'news_info'=>'required|min:15|max:10000',
+            'lang'=>'required',
+        ]);
+
+        $newsLanguages = new NewsLanguages();
+        $newsLanguages->news_id = $request->news_id;
+        $newsLanguages->name = $request->news_name;
+        $newsLanguages->info = $request->news_info;
+        $newsLanguages->lang = $request->lang;
+
+        $newsLanguages->save();
+
+        return redirect()->back()->with("success","Yeniliye yazi elave olundu");
     }
 
     /**

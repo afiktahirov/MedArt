@@ -237,6 +237,39 @@ $("[data-bs-target='#deleteModal']").click(function () {
         });
     });
 
+    // News Contol
 
+    let news_textBtn = document.querySelectorAll("#news_text");
+
+      news_textBtn.forEach(function(button){
+        button.addEventListener("click",function(){
+            let news_id = button.getAttribute("data-newsId");
+            let news_modalId = document.querySelector("#addTextNewsModal input[name='news_id']");
+            news_modalId.value = news_id;
+            let newsLang = document.querySelector("#newsLang option[name='lang']");
+
+            let langParam = new URLSearchParams(window.location.search).get("lang");
+            let selectedLang = langParam || "az";
+
+            fetch("/admin/findDepartmentLang/" + selectedLang)
+                    .then(response => response.json())
+                    .then(data => {
+                        console.log(data);
+                        newsLang.value = data.lang.lang
+                        newsLang.textContent = data.lang.name
+                    })
+
+        })
+      })
+
+      let deleteNews = document.querySelectorAll("#deleteNews");
+
+      deleteNews.forEach(function(button){
+          button.addEventListener('click',function(){
+              let testimonialId = button.getAttribute("data-newsId");
+              let testimonialInput = document.querySelector("#deleteNewsModal input[name='id']");
+              testimonialInput.value = testimonialId;
+          });
+      });
 
     });

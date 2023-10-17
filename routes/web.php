@@ -8,6 +8,7 @@ use App\Http\Controllers\HomeController;
 use App\Http\Controllers\HomeSliderController;
 use App\Http\Controllers\LanguageController;
 use App\Http\Controllers\NewsController;
+use App\Http\Controllers\NewsLanguagesController;
 use App\Http\Controllers\PageController;
 use App\Http\Controllers\ServicesController;
 use App\Http\Controllers\TestimonialsController;
@@ -63,6 +64,8 @@ Route::prefix('admin')->group(function () {
         Route::post('testimonial/add',[TestimonialsController::class,"store"])->name("testimonial.add");
         Route::delete('testimonial/delete',[TestimonialsController::class,"destroy"])->name("testimonial.destroy");
         Route::post('news/add',[NewsController::class,'store'])->name("news.add");
+        Route::post('news/addText',[NewsLanguagesController::class,'store'])->name("news.addText");
+        Route::post('news/destroy',[NewsController::class,'destroy'])->name("news.destroy");
 
 
 

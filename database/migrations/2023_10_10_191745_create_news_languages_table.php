@@ -14,8 +14,9 @@ return new class extends Migration
         Schema::create('news_languages', function (Blueprint $table) {
             $table->id();
             $table->bigInteger("news_id");
+            $table->mediumText("name");
+            $table->mediumText("info");
             $table->string("lang");
-            $table->mediumText("text");
             $table->timestamps();
         });
     }
