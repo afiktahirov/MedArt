@@ -130,7 +130,9 @@
                         </div>
                         <div class="mb-3">
                             <label for="recipient-name" class="col-form-label">Yazı məzmunu:</label>
-                            <textarea name="editor_content" id="editor_add" cols="40" rows="10"></textarea>
+                            <div style="max-height: 340px; overflow: auto;">
+                                <textarea name="editor_content" id="editor_add" cols="40" rows="10"></textarea>
+                            </div>
                         </div>
                         <div class="modal-footer">
                             <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Bağla</button>
@@ -161,7 +163,9 @@
                         </div>
                         <div class="mb-3">
                             <label for="recipient-name" class="col-form-label">Yazı məzmunu:</label>
-                            <textarea name="editor_content" id="editor_edit" cols="40" rows="10"></textarea>
+                            <div style="max-height: 340px; overflow: auto;">
+                                <textarea name="editor_content" id="editor_edit" cols="40" rows="10"></textarea>
+                            </div>
                         </div>
                         <div class="modal-footer">
                             <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Bağla</button>

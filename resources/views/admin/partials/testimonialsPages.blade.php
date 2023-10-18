@@ -259,7 +259,9 @@
                             </div>
                         </td>
                         <td>{{$name}}</td>
-                        <td>{{$info}}</td>
+                        <td style="max-width: 900px; min-width:800px" >
+                            <p class="text-truncate">{{$info}}</p>
+                        </td>
                         <td>
                             <button class="btn btn-warning"
                             @php

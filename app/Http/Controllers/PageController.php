@@ -25,10 +25,6 @@ class PageController extends Controller
             return $query->where("lang",$lang);
         }])->get();
 
-        // $news = News::with(["languages"=>function($query) use ($lang){
-        //     return $query->where('lang',$lang);
-        // }])->get();
-
 
         return view('home.index',compact("sliders","departments","news"));
 
