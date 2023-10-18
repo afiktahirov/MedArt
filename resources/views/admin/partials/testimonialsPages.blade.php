@@ -166,6 +166,24 @@
             <button class="btn btn-primary mt-2 mx-2" data-bs-toggle="modal" data-bs-target="#addNewComment">Yeni
                 Rəy</button>
         </div>
+        @if (count($errors))
+        <div id="myAlert" class="alert alert-warning d-flex justify-content-between" role="alert">
+            <a href="#" class="alert-link">
+                @foreach ($errors->all() as $error)
+                    <li style="color: white">{{ $error }}</li>
+                @endforeach
+            </a>
+            <a class="close_alert" style="font-size: 20px; cursor: pointer;">X</a>
+        </div>
+        @endif
+        @if (session('success'))
+            <div id="myAlert" class="alert alert-success d-flex justify-content-between" role="alert">
+                <a href="#" class="alert-link">
+                    <li style="color: white">{{ session('success') }}</li>
+                </a>
+                <a class="close_alert" style="font-size: 20px; cursor: pointer;">X</a>
+            </div>
+        @endif
         <div class="bottom-data">
             <div class="orders">
                 <h1 class="d-flex justify-content-center ">Dilə görə filtrələ</h1>
