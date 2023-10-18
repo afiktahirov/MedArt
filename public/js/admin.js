@@ -64,11 +64,6 @@ toggler.addEventListener('change', function() {
         console.log(data)
         const darkMode = data.dark_mode;
         document.body.classList.toggle('dark', darkMode);
-        // if(darkMode){
-        //     document.body.classList.add("dark");
-        // }
-        // else{
-        //     document.body.classList.remove("dark");
-        // }
+        location.reload();
     })
 });

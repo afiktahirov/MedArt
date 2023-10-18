@@ -280,13 +280,13 @@
     <main>
         <div class="header">
             <div class="left">
-                <h1>Dashboard</h1>
+                <h1>Ana Səhifə İdarə Paneli</h1>
                 <ul class="breadcrumb">
                     <li><a href="#">
-                            Analytics
+                            Admin
                         </a></li>
                     /
-                    <li><a href="#" class="active">Shop</a></li>
+                    <li><a href="#" class="active">Ana Səhifə İdarə Paneli</a></li>
                 </ul>
             </div>
         </div>
@@ -319,7 +319,7 @@
         <div class="bottom-data">
             <div class="orders">
                 <h1 class="d-flex justify-content-center">Aktiv Dillər</h1>
-                <table class="table table-dark table-striped rounded">
+                <table class="{{ Cache::get('darkMode') ? 'table-dark' : 'table-success' }} table-striped rounded">
                     <thead>
                         <tr>
                             <th scope="col">#</th>
@@ -403,7 +403,7 @@
                                 <button class="btn btn-warning mt-1 editBanner" data-bs-toggle="modal"
                                     data-bs-target="#EditBannerText" data-sliderid="{{ $slider->id }}"
                                     @php
-if(!count($slider->languages)){
+                                     if(!count($slider->languages)){
                                         echo 'style="pointer-events: none; opacity: 0.5;"';
                                      } @endphp>Redakte
                                     et</button>
@@ -411,7 +411,7 @@ if(!count($slider->languages)){
                                     data-bs-target="#addBannerLanguage" data-bs-toggle="modal"
                                     data-sliderid="{{ $slider->id }}"
                                     @php
-if(isset($slider->languages[0])){
+                                    if(isset($slider->languages[0])){
                                        echo 'style="pointer-events: none; opacity: 0.5;"';
                                     } @endphp>Yazı
                                     əlavə et</button>
@@ -427,7 +427,7 @@ if(isset($slider->languages[0])){
             <div class="orders">
                 <h1 class="d-flex justify-content-center ">Aktiv Şöbələr</h1>
                 <hr color="white">
-                <table class="table table-dark table-striped rounded">
+                <table class="table {{ Cache::get('darkMode') ? 'dark' : '' }} table-striped rounded">
                     <thead>
                         <tr>
                             <th scope="col">#</th>
