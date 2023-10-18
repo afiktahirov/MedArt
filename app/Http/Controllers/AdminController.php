@@ -44,12 +44,12 @@ class AdminController extends Controller
             ->onlyInput('email');
     }
 
-    public function index()
+    public function dashboard()
     {
-        return view('admin.index');
+        return view('admin.partials.panel');
     }
 
-    public function dashboard(Request $request)
+    public function homeControl(Request $request)
     {
         $lang = request()->lang ? request()->lang : 'az';
         $languages = languages();

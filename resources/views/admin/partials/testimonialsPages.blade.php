@@ -84,6 +84,68 @@
         </div>
     </div>
 </div>
+{{-- News AddText Modal --}}
+<div class="modal fade" id="addTextNewsModal" tabindex="-1" aria-labelledby="exampleModalLabelText"
+        aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h1 class="modal-title fs-5" id="exampleModalLabel">Yeni xəbər yazısı</h1>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <form action="{{ route('news.addText') }}" method="POST" enctype="multipart/form-data">
+                        @csrf
+                        <input type="hidden" name="news_id">
+                        <div class="mb-3">
+                            <label for="recipient-name" class="col-form-label">Dil</label>
+                            <select name="lang" id="newsLang" class="form-control">
+                                <option value="" name="lang"></option>
+                            </select>
+                        </div>
+                        <div class="mb-3">
+                            <label for="recipient-name" class="col-form-label">Xəbərin Başlığı:</label>
+                            <input type="text" class="form-control" name="news_name">
+                        </div>
+                        <div class="mb-3">
+                            <label for="recipient-name" class="col-form-label">Xəbər haqqında məlumat:</label>
+                            <textarea name="news_info" class="form-control" cols="30" rows="10"></textarea>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Bağla</button>
+                            <button type="submit" class="btn btn-primary sum">Gönder</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+</div>
+{{-- News Delete Modal --}}
+<div class="modal fade" id="deleteNewsModal" tabindex="-1" role="dialog" aria-labelledby="deleteModalLabel"
+        aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered" role="document">
+            <div class="modal-content text-center">
+                <div class="modal-header justify-content-center">
+                    <h5 class="modal-title font-weight-normal" id="deleteModalLabel">Əminsinizmi ?</h5>
+                </div>
+                <div class="modal-body">
+                    <strong class="text-danger">
+                        Yenilik silinəcək və geri alına bilməz
+                        !</strong>
+                </div>
+                <div class="modal-footer justify-content-between">
+                    <button type="button" class="btn bg-secondary text-white" data-bs-dismiss="modal">Bağla</button>
+                    <form action="{{ route('news.destroy') }}" method="POST" class="d-inline-block">
+                        @csrf
+                        @method('DELETE')
+                        <input type="hidden" name="id" id="delete__item__id" value="">
+                        <button type="submit" class="btn bg-gradient-danger">Bəli, silinsin</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+</div>
+
 
     <main>
         <div class="header">
@@ -104,6 +166,24 @@
             <button class="btn btn-primary mt-2 mx-2" data-bs-toggle="modal" data-bs-target="#addNewComment">Yeni
                 Rəy</button>
         </div>
+        @if (count($errors))
+        <div id="myAlert" class="alert alert-warning d-flex justify-content-between" role="alert">
+            <a href="#" class="alert-link">
+                @foreach ($errors->all() as $error)
+                    <li style="color: white">{{ $error }}</li>
+                @endforeach
+            </a>
+            <a class="close_alert" style="font-size: 20px; cursor: pointer;">X</a>
+        </div>
+        @endif
+        @if (session('success'))
+            <div id="myAlert" class="alert alert-success d-flex justify-content-between" role="alert">
+                <a href="#" class="alert-link">
+                    <li style="color: white">{{ session('success') }}</li>
+                </a>
+                <a class="close_alert" style="font-size: 20px; cursor: pointer;">X</a>
+            </div>
+        @endif
         <div class="bottom-data">
             <div class="orders">
                 <h1 class="d-flex justify-content-center ">Dilə görə filtrələ</h1>
@@ -179,11 +259,26 @@
                             </div>
                         </td>
                         <td>{{$name}}</td>
-                        <td>{{$info}}</td>
+                        <td style="max-width: 900px; min-width:800px" >
+                            <p class="text-truncate">{{$info}}</p>
+                        </td>
                         <td>
-                            <button class="btn btn-warning">Düzəliş et</button>
-                            <button class="btn btn-success">Yazı əlvə et</button>
-                            <button class="btn btn-danger">Sil</button>
+                            <button class="btn btn-warning"
+                            @php
+                                if(!count($n->languages)){
+                                    echo 'style="pointer-events: none; opacity: 0.5;"';
+                                 } @endphp
+                            >Düzəliş et</button>
+                            <button class="btn btn-success"  id="news_text" data-bs-toggle="modal"
+                            data-bs-target="#addTextNewsModal" data-newsId={{$n->id}}
+                            @php
+                                if(isset($n->languages[0])){
+                                   echo 'style="pointer-events: none; opacity: 0.5;"';
+                                } @endphp
+                            >
+                            Yazı əlvə et
+                            </button>
+                            <button class="btn btn-danger" id="deleteNews" data-newsId={{$n->id}} data-bs-toggle="modal" data-bs-target="#deleteNewsModal">Sil</button>
                         </td>
                     </tr>
                     @endforeach

@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\News;
+use App\Models\NewsLanguages;
 use Illuminate\Http\Request;
 
 class NewsController extends Controller
@@ -28,6 +29,10 @@ class NewsController extends Controller
      */
     public function store(Request $request)
     {
+
+        $request->validate([
+              'image'=>'required|mimes:png,jpg',
+        ]);
         $newsPhoto = new News();
 
         $hashname = $request->file("image")->hashName();
@@ -66,8 +71,28 @@ class NewsController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(News $news)
+    public function destroy(Request $request)
     {
-        //
+        $newsId = $request->id;
+
+        $news = News::find($newsId);
+
+        if ($news) {
+            $newsLang = NewsLanguages::where('news_id', $newsId)->get();
+
+            foreach ($newsLang as $lang) {
+                $lang->delete();
+            }
+
+            $news->delete();
+
+            return redirect()
+                ->back()
+                ->with('success', 'Yenilik silindi.');
+        } else {
+            return redirect()
+                ->back()
+                ->with('error', 'Yenilik tapılmadı.');
+        }
     }
 }

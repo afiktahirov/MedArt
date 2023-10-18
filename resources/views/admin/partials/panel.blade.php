@@ -3,13 +3,13 @@
 <main>
             <div class="header">
                 <div class="left">
-                    <h1>Dashboard</h1>
+                    <h1>Məlumat Paneli</h1>
                     <ul class="breadcrumb">
                         <li><a href="#">
-                                Analytics
+                                Admin
                             </a></li>
                         /
-                        <li><a href="#" class="active">Shop</a></li>
+                        <li><a href="#" class="active">Məlumat Paneli</a></li>
                     </ul>
                 </div>
                 <a href="#" class="report">

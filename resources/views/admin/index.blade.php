@@ -36,18 +36,18 @@
             <div class="logo-name"><span>Adim</span>Panel</div>
         </a>
         <ul class="side-menu">
-            <li class="{{request()->routeIs("admin.dashboard")?"active":""}}"><a href="{{route("admin.dashboard")}}"><i class='bx bxs-dashboard'></i>Dashboard</a></li>
-            <li class="{{request()->routeIs("admin.shoup")?"active":""}}"><a href="{{route("admin.shoup")}}"><i class='bx bxs-news'></i>News</a></li>
-            <li class="{{request()->routeIs("admin.dslider")?"active":""}}"><a href="{{route("admin.dslider")}}"><i class='bx bx-analyse'></i>Analytics</a></li>
-            <li class="{{request()->routeIs("admin.testimonials")?"active":""}}"><a href="{{route("admin.testimonials")}}"><i class='bx bx-message-square-dots'></i>Tickets</a></li>
-            <li class=""><a href="{{route("admin.test_tiny")}}"><i class='bx bx-group'></i>Users</a></li>
-            <li class=""><a href="#"><i class='bx bx-cog'></i>Settings</a></li>
+            <li class="{{request()->routeIs("admin.dashboard")?"active":""}}"><a href="{{route("admin.dashboard")}}"><i class='bx bxs-dashboard'></i>Məlumat Paneli</a></li>
+            <li class="{{request()->routeIs("admin.homeControl")?"active":""}}"><a href="{{route("admin.homeControl")}}"><i class='bx bxs-news'></i>Ana Səhifə </a></li>
+            <li class="{{request()->routeIs("admin.dslider")?"active":""}}"><a href="{{route("admin.dslider")}}"><i class='bx bx-analyse'></i>Banner  Paneli</a></li>
+            <li class="{{request()->routeIs("admin.testimonials")?"active":""}}"><a href="{{route("admin.testimonials")}}"><i class='bx bx-message-square-dots'></i>Yenilik/Rəy Paneli</a></li>
+            <li class="{{request()->routeIs("admin.doctor")?"active":""}}"><a href="{{route("admin.doctor")}}"><i class='bx bx-group'></i>Həkim İdarə Paneli</a></li>
+            <li class=""><a href="#"><i class='bx bx-cog'></i>Əlavə Tənzimləmələr</a></li>
         </ul>
         <ul class="side-menu">
             <li>
                 <a href="#" class="logout">
                     <i class='bx bx-log-out-circle'></i>
-                    Logout
+                    Çıxış
                 </a>
             </li>
         </ul>
