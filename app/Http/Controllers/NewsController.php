@@ -75,7 +75,7 @@ class NewsController extends Controller
     {
         $newsId = $request->id;
 
-        $$news = $news_icon::find($newsId);
+        $news = News::find($newsId);
 
         if ($news) {
             $newsLang = NewsLanguages::where('news_id', $newsId)->get();
