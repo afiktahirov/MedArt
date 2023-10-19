@@ -320,7 +320,7 @@
             <div class="orders">
                 <div class="d-flex justify-content-start">
                     <i class='bx bx-info-circle'></i>
-                    <p class="mx-3 font-weight-bold">Aktiv olan dillər</p>
+                    <p class="mx-3 font-weight-bold font-italic">Aktiv olan dillər</p>
                 </div>
                 <hr color="{{ Cache::get('darkMode') ? 'white' : 'black' }}">
                 <table class="{{ Cache::get('darkMode') ? 'table-dark' : 'table-success' }} table-striped rounded">
@@ -355,7 +355,7 @@
             <div class="orders">
                 <div class="d-flex justify-content-start">
                     <i class='bx bx-info-circle'></i>
-                    <p class="mx-3 font-weight-bold">Dilə görə filtrələ</p>
+                    <p class="mx-3 font-weight-bold font-italic">Dilə görə filtrələ</p>
                 </div>
                 <hr color="{{ Cache::get('darkMode') ? 'white' : 'black' }}">
                 <div class="con">
@@ -370,7 +370,7 @@
             <div class="orders">
                 <div class="d-flex justify-content-start">
                     <i class='bx bx-info-circle'></i>
-                    <p class="mx-3 font-weight-bold">Aktiv olan bannerlər</p>
+                    <p class="mx-3 font-weight-bold font-italic">Aktiv olan bannerlər</p>
                 </div>
                 <hr color="{{ Cache::get('darkMode') ? 'white' : 'black' }}">
                 @foreach ($slidersActive as $slider)
@@ -437,7 +437,7 @@
             <div class="orders">
                 <div class="d-flex justify-content-start">
                     <i class='bx bx-info-circle'></i>
-                    <p class="mx-3 font-weight-bold">Aktiv olan şöbələr</p>
+                    <p class="mx-3 font-weight-bold font-italic">Aktiv olan şöbələr</p>
                 </div>
                 <hr color="{{ Cache::get('darkMode') ? 'white' : 'black' }}">
                 <table class="table {{ Cache::get('darkMode') ? 'dark' : '' }} table-striped rounded">
