@@ -318,7 +318,11 @@
         @endif
         <div class="bottom-data">
             <div class="orders">
-                <h1 class="d-flex justify-content-center">Aktiv Dillər</h1>
+                <div class="d-flex justify-content-start">
+                    <i class='bx bx-info-circle'></i>
+                    <p class="mx-3 font-weight-bold font-italic">Aktiv olan dillər</p>
+                </div>
+                <hr color="{{ Cache::get('darkMode') ? 'white' : 'black' }}">
                 <table class="{{ Cache::get('darkMode') ? 'table-dark' : 'table-success' }} table-striped rounded">
                     <thead>
                         <tr>
@@ -349,8 +353,11 @@
         </div>
         <div class="bottom-data">
             <div class="orders">
-                <h1 class="d-flex justify-content-center ">Dilə görə filtrələ</h1>
-                <hr color="white">
+                <div class="d-flex justify-content-start">
+                    <i class='bx bx-info-circle'></i>
+                    <p class="mx-3 font-weight-bold font-italic">Dilə görə filtrələ</p>
+                </div>
+                <hr color="{{ Cache::get('darkMode') ? 'white' : 'black' }}">
                 <div class="con">
                     @foreach (languages() as $key => $lang)
                         <a href="?lang={{ $lang->lang }}"
@@ -361,8 +368,11 @@
         </div>
         <div class="bottom-data">
             <div class="orders">
-                <h1 class="d-flex justify-content-center ">Aktiv Bannerlər</h1>
-                <hr color="white">
+                <div class="d-flex justify-content-start">
+                    <i class='bx bx-info-circle'></i>
+                    <p class="mx-3 font-weight-bold font-italic">Aktiv olan bannerlər</p>
+                </div>
+                <hr color="{{ Cache::get('darkMode') ? 'white' : 'black' }}">
                 @foreach ($slidersActive as $slider)
                     @php
                         if (count($slider->languages)) {
@@ -425,8 +435,11 @@
         </div>
         <div class="bottom-data">
             <div class="orders">
-                <h1 class="d-flex justify-content-center ">Aktiv Şöbələr</h1>
-                <hr color="white">
+                <div class="d-flex justify-content-start">
+                    <i class='bx bx-info-circle'></i>
+                    <p class="mx-3 font-weight-bold font-italic">Aktiv olan şöbələr</p>
+                </div>
+                <hr color="{{ Cache::get('darkMode') ? 'white' : 'black' }}">
                 <table class="table {{ Cache::get('darkMode') ? 'dark' : '' }} table-striped rounded">
                     <thead>
                         <tr>
