@@ -35,7 +35,7 @@ class AdminController extends Controller
         ]);
         if (Auth::attempt($credentials)) {
             $request->session()->regenerate();
-            return redirect()->route('admin');
+            return redirect()->route('admin.dashboard');
         }
         return back()
             ->withErrors([
@@ -60,7 +60,6 @@ class AdminController extends Controller
             },
         ])->get();
 
-
         $slidersActive = HomeSlider::where('status', 1)
             ->with([
                 'languages' => function ($query) use ($lang) {
@@ -69,28 +68,29 @@ class AdminController extends Controller
             ])
             ->get();
 
-
-        $sliderId =  $request->sliderId;
+        $sliderId = $request->sliderId;
         $sliderLang = null;
-        if(isset($sliderId)){
+        if (isset($sliderId)) {
             $sliderId = $request->sliderId;
             $sliderLang = HomeSlider::where('home_slider_id', $sliderId)
-                                    ->where('lang', $request->lang)
-                                    ->first();
+                ->where('lang', $request->lang)
+                ->first();
         }
-        return view('admin.partials.dashboard', compact('languages', 'slidersActive','sliderLang','departments'));
+        return view('admin.partials.dashboard', compact('languages', 'slidersActive', 'sliderLang', 'departments'));
     }
 
-    public function testimonialsPages(){
+    public function testimonialsPages()
+    {
         $lang = request()->lang ? request()->lang : 'az';
-        $news = News::with(["languages"=>function($query) use ($lang){
-            return $query->where('lang',$lang);
-        }])->get();
+        $news = News::with([
+            'languages' => function ($query) use ($lang) {
+                return $query->where('lang', $lang);
+            },
+        ])->get();
 
         $testimonials = Testimonials::all();
-       return view("admin.partials.testimonialsPages",compact("testimonials","news"));
+        return view('admin.partials.testimonialsPages', compact('testimonials', 'news'));
     }
-
 
     public function shoup()
     {
@@ -122,22 +122,30 @@ class AdminController extends Controller
         if ($slider) {
             $slider->status = 1;
             $slider->save();
-            return redirect()->back()->with("success","Banner aktiv edildi.");;
+            return redirect()
+                ->back()
+                ->with('success', 'Banner aktiv edildi.');
         }
 
-        return redirect()->back()->with("error","Banner aktiv olunmadı.");
+        return redirect()
+            ->back()
+            ->with('error', 'Banner aktiv olunmadı.');
     }
 
     public function slider_d_deactive(Request $request)
     {
         $sliderId = $request->slider_id;
         $slider = HomeSlider::find($sliderId);
-        if($slider){
+        if ($slider) {
             $slider->status = 0;
             $slider->save();
-            return redirect()->back()->with("success","Banner deaktiv edildi.");
+            return redirect()
+                ->back()
+                ->with('success', 'Banner deaktiv edildi.');
         }
-        return redirect()->back()->with("error","Banner deaktiv olunmadı.");
+        return redirect()
+            ->back()
+            ->with('error', 'Banner deaktiv olunmadı.');
     }
 
     public function setDarkMode($value)
@@ -163,12 +171,9 @@ class AdminController extends Controller
         return response()->json(['dark_mode' => $darkMode]);
     }
 
-
-
-
-    public function test_tiny(){
-
-        return view("admin.partials.tiny_test");
+    public function test_tiny()
+    {
+        return view('admin.partials.tiny_test');
     }
     /**
      * Store a newly created resource in storage.
