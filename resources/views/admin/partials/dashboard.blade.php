@@ -386,10 +386,10 @@
                 @php
                     $info = '<p class="mx-3 font-weight-bold font-italic" style="color:#e91e63">Hal hazırda web saytda heç bir banner aktiv deyil</p>';
                     if (!count($slidersActive)) {
-                       echo $info;
+                        echo $info;
                     }
                 @endphp
-                @foreach ($slidersActive as $index=>$slider)
+                @foreach ($slidersActive as $index => $slider)
                     @php
                         if (count($slider->languages)) {
                             $title = $slider->languages[0]->title;
@@ -429,7 +429,7 @@
                                 <button class="btn btn-warning mt-1 editBanner" data-bs-toggle="modal"
                                     data-bs-target="#EditBannerText" data-sliderid="{{ $slider->id }}"
                                     @php
-                                     if(!count($slider->languages)){
+if(!count($slider->languages)){
                                         echo 'style="pointer-events: none; opacity: 0.5;"';
                                      } @endphp>Redakte
                                     et</button>
@@ -437,7 +437,7 @@
                                     data-bs-target="#addBannerLanguage" data-bs-toggle="modal"
                                     data-sliderid="{{ $slider->id }}"
                                     @php
-                                    if(isset($slider->languages[0])){
+if(isset($slider->languages[0])){
                                        echo 'style="pointer-events: none; opacity: 0.5;"';
                                     } @endphp>Yazı
                                     əlavə et</button>
@@ -462,16 +462,24 @@
                 </div>
                 <hr color="{{ Cache::get('darkMode') ? 'white' : 'black' }}">
                 <table class="table {{ Cache::get('darkMode') ? 'dark' : '' }} table-striped rounded">
-                    <thead>
-                        <tr>
-                            <th scope="col">#</th>
-                            <th scope="col">İcon</th>
-                            <th scope="col">Adı</th>
-                            <th scope="col">Məlumatı</th>
-                            <th scope="col">Əməliyyatlar</th>
-                        </tr>
-                    </thead>
+                    @if (count($departments))
+                        <thead>
+                            <tr>
+                                <th scope="col">#</th>
+                                <th scope="col">İcon</th>
+                                <th scope="col">Adı</th>
+                                <th scope="col">Məlumatı</th>
+                                <th scope="col">Əməliyyatlar</th>
+                            </tr>
+                        </thead>
+                    @endif
                     <tbody>
+                        @php
+                            $info = '<p class="mx-3 font-weight-bold font-italic" style="color:#e91e63">Hal hazırda web saytda heç bir şöbə yoxdur!</p>';
+                            if (!count($departments)) {
+                                echo $info;
+                            }
+                        @endphp
                         @foreach ($departments as $key => $department)
                             @php
                                 if (count($department->languages)) {
@@ -501,31 +509,32 @@
                                 <th>
                                     <button class="btn btn-danger"
                                         @php
-                                if(!count($department->languages)){
+if(!count($department->languages)){
                                     echo 'style="pointer-events: none; opacity: 0.5;"';
                                  } @endphp>Düzəliş
                                         et</button>
                                     <button class="btn btn-warning" id="department_text" data-bs-toggle="modal"
                                         data-bs-target="#exampleModalIconText" data-departmentId="{{ $department->id }}"
                                         @php
-                                if(isset($department->languages[0])){
+if(isset($department->languages[0])){
                                    echo 'style="pointer-events: none; opacity: 0.5;"';
                                 } @endphp>Yazı
                                         əlavə et
                                     </button>
                                     <button class="btn btn-primary" id="deleteDepartment" data-bs-toggle="modal"
-                                    data-bs-target="#deleteDepartmentModal" data-departmentId="{{$department->id}}">Sil</button>
+                                        data-bs-target="#deleteDepartmentModal"
+                                        data-departmentId="{{ $department->id }}">Sil</button>
                                 </th>
                             </tr>
                         @endforeach
                     </tbody>
                 </table>
+                <hr color="{{ Cache::get('darkMode') ? 'white' : 'black' }}">
 
             </div>
         </div>
         {{-- Active Department bottom-data end --}}
     </main>
 
-    <script>
-    </script>
+    <script></script>
 @endsection
