@@ -383,6 +383,12 @@
                     <p class="mx-3 font-weight-bold font-italic">Aktiv olan bannerlər</p>
                 </div>
                 <hr color="{{ Cache::get('darkMode') ? 'white' : 'black' }}">
+                @php
+                    $info = '<p class="mx-3 font-weight-bold font-italic" style="color:#e91e63">Hal hazırda web saytda heç bir banner aktiv deyil</p>';
+                    if (!count($slidersActive)) {
+                       echo $info;
+                    }
+                @endphp
                 @foreach ($slidersActive as $index=>$slider)
                     @php
                         if (count($slider->languages)) {
@@ -393,7 +399,6 @@
                             $text = 'Tərcümə Tapılmadı.';
                         }
                     @endphp
-                    <div class="page-button"></div>
                     <div class="slider_container" data-page="{{ $index + 1 }}">
                         <div class="swiper-slide hero-content-wrap s_container"
                             style="background-image: url('{{ asset("storage/uploads/sliders/$slider->image") }}')">
@@ -442,6 +447,8 @@
                         </div>
                     </div>
                 @endforeach
+                <hr color="{{ Cache::get('darkMode') ? 'white' : 'black' }}">
+                <div class="page-button"></div>
             </div>
         </div>
         {{-- Active Banner bottom-data end --}}

@@ -123,15 +123,13 @@ $("[data-bs-target='#deleteModal']").click(function () {
             if (alertLink) {
                 alertLink.addEventListener("click", function(event) {
                     event.preventDefault();
-                    window.location.reload();
+                    alertDiv.classList.add("hidden"); // CSS sınıfını ekleyerek animasyonu başlat
                 });
             }
 
             setTimeout(function() {
-                alertDiv.style.display = "none";
-            }, 1000);
-
-
+                alertDiv.classList.add("hidden"); // CSS sınıfını ekleyerek animasyonu başlat
+            }, 2500);
         }
 
         // Edit Banner Modal

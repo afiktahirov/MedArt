@@ -24,7 +24,7 @@
 
 
     {{-- <script src="{{asset("js/custom.js")}}"></script> --}}
-    <title>Responsive Dashboard Design #2 | AsmrProg</title>
+    <title>Medart | AdminPanel</title>
 </head>
 
 <body class="{{ Cache::get('darkMode') ? 'dark' : '' }}">
@@ -45,7 +45,7 @@
         </ul>
         <ul class="side-menu">
             <li>
-                <a href="#" class="logout">
+                <a href="{{ route('logout') }}" class="logout">
                     <i class='bx bx-log-out-circle'></i>
                     Çıxış
                 </a>
@@ -61,7 +61,7 @@
             <i class='bx bx-menu'></i>
             <form action="#">
                 <div class="form-input">
-                    <input type="search" placeholder="Search...">
+                    <input type="search" placeholder="Axtar...">
                     <button class="search-btn" type="submit"><i class='bx bx-search'></i></button>
                 </div>
             </form>
@@ -72,7 +72,7 @@
                 <span class="count">12</span>
             </a>
             <a href="#" class="profile">
-                <img src="images/logo.png">
+                <img src="{{asset("images/admin/admin.jpg")}}">
             </a>
         </nav>
 
