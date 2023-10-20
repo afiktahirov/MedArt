@@ -37,7 +37,7 @@
         </a>
         <ul class="side-menu">
             <li class="{{request()->routeIs("admin.dashboard")?"active":""}}"><a href="{{route("admin.dashboard")}}"><i class='bx bxs-dashboard'></i>Məlumat Paneli</a></li>
-            <li class="{{request()->routeIs("admin.homeControl")?"active":""}}"><a href="{{route("admin.homeControl")}}"><i class='bx bxs-news'></i>Ana Səhifə </a></li>
+            <li class="{{request()->routeIs("admin.homeControl")?"active":""}}"><a href="{{route("admin.homeControl")}}"><i class='bx bx-detail'></i>Ana Səhifə </a></li>
             <li class="{{request()->routeIs("admin.dslider")?"active":""}}"><a href="{{route("admin.dslider")}}"><i class='bx bx-analyse'></i>Banner  Paneli</a></li>
             <li class="{{request()->routeIs("admin.testimonials")?"active":""}}"><a href="{{route("admin.testimonials")}}"><i class='bx bx-message-square-dots'></i>Yenilik/Rəy Paneli</a></li>
             <li class="{{request()->routeIs("admin.doctor")?"active":""}}"><a href="{{route("admin.doctor")}}"><i class='bx bx-group'></i>Həkim İdarə Paneli</a></li>

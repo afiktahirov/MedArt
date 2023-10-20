@@ -179,6 +179,18 @@
         </div>
     </div>
     <main>
+        <div class="header">
+            <div class="left">
+                <h1>Banner İdarə Paneli</h1>
+                <ul class="breadcrumb">
+                    <li><a href="#">
+                            Admin
+                        </a></li>
+                    /
+                    <li><a href="#" class="active">Banner İdarə Paneli</a></li>
+                </ul>
+            </div>
+        </div>
         @if (count($errors))
             <div id="myAlert" class="alert alert-warning d-flex justify-content-between" role="alert">
                 <a href="#" class="alert-link">
@@ -197,6 +209,7 @@
                 <a class="close_alert" style="font-size: 20px; cursor: pointer;">X</a>
             </div>
         @endif
+        {{-- Filter Languages bottom-data --}}
         <div class="bottom-data">
             <div class="orders">
                 <div class="d-flex justify-content-start">
@@ -211,11 +224,12 @@
                     @endforeach
                 </div>
             </div>
+        {{-- Filter Languages bottom-data end --}}
         <div class="bottom-data">
             <div class="orders">
                 <div class="d-flex justify-content-start">
                     <i class='bx bx-info-circle'></i>
-                    <p class="mx-3 font-weight-bold font-italic">Aktiv olan bannerlər</p>
+                    <p class="mx-3 font-weight-bold font-italic">Aktiv olmayan bannerlər</p>
                 </div>
                 <hr color="{{ Cache::get('darkMode') ? 'white' : 'black' }}">
                 @php
