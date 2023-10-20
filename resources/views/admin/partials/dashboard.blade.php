@@ -361,7 +361,7 @@
                 <div class="con">
                     @foreach (languages() as $key => $lang)
                         <a href="?lang={{ $lang->lang }}"
-                            class="text-white btn btn-success mt-2 mx-2">{{ $lang->name }}</a>
+                            class="text-white btn btn-primary mt-2 mx-2">{{ $lang->name }}</a>
                     @endforeach
                 </div>
             </div>

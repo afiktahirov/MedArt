@@ -8,8 +8,8 @@
 
                     @php
                    if (!count($n->languages)) {
-                      $text = '';
-                      $title = '';
+                      $name = '';
+                      $info = '';
                    } else {
                       $name = $n->languages[0]->name;
                       $info = $n->languages[0]->info;
