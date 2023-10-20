@@ -150,13 +150,13 @@
     <main>
         <div class="header">
             <div class="left">
-                <h1>Yeniliklər</h1>
+                <h1>Yenilik / Rəy İdarə Paneli</h1>
                 <ul class="breadcrumb">
                     <li><a href="#">
                             Ana Səhifə
                         </a></li>
                     /
-                    <li><a href="#" class="active">Yeniliklər</a></li>
+                    <li><a href="#" class="active">Yenilik/Rəy Paneli</a></li>
                 </ul>
             </div>
         </div>
@@ -184,21 +184,34 @@
                 <a class="close_alert" style="font-size: 20px; cursor: pointer;">X</a>
             </div>
         @endif
+
+        {{-- Filter Languages bottom-data --}}
         <div class="bottom-data">
             <div class="orders">
-                <h1 class="d-flex justify-content-center ">Dilə görə filtrələ</h1>
-                <hr color="white">
+                <div class="d-flex justify-content-start">
+                    <i class='bx bx-info-circle'></i>
+                    <p class="mx-3 font-weight-bold font-italic">Dilə görə filtrələ</p>
+                </div>
+                <hr color="{{ Cache::get('darkMode') ? 'white' : 'black' }}">
                 <div class="con">
                     @foreach (languages() as $key => $lang)
                         <a href="?lang={{ $lang->lang }}"
-                            class="text-white btn btn-success mt-2 mx-2">{{ $lang->name }}</a>
+                            class="text-white btn btn-primary mt-2 mx-2">{{ $lang->name }}</a>
                     @endforeach
                 </div>
-            </div>
         </div>
+        {{-- Filter Languages bottom-data end --}}
+
+        {{-- Testimonials bottom-data --}}
         <div class="bottom-data">
             <div class="orders">
-                <table class="table table-dark table-striped rounded">
+                <div class="d-flex justify-content-start">
+                    <i class='bx bx-info-circle'></i>
+                    <p class="mx-3 font-weight-bold font-italic">Əlavə olunan rəylər</p>
+                </div>
+                <hr color="{{ Cache::get('darkMode') ? 'white' : 'black' }}">
+                <table class="{{ Cache::get('darkMode') ? 'table-dark' : 'table-success' }} table-striped rounded">
+                    @if (count($testimonials))
                     <thead>
                         <tr>
                             <th scope="col">#</th>
@@ -208,12 +221,21 @@
                             <th scope="col">Əməliyyatlar</th>
                         </tr>
                     </thead>
+                    @endif
                     <tbody>
+                        @php
+                        $info = '<p class="mx-3 font-weight-bold font-italic" style="color:#e91e63">Hal hazırda web saytda heç bir istifadəçi rəyi  yoxdur</p>';
+                        if (!count($testimonials)) {
+                           echo $info;
+                        }
+                        @endphp
                        @foreach ($testimonials as $key=>$testimonial )
                           <tr>
-                            <th scope="row">{{$key +1}}</th>
+                            <th scope="col">{{$key +1}}</th>
                             <td><img src="{{asset("storage/uploads/testimonials/$testimonial->user_image")}}" alt=""></td>
-                            <td>{{$testimonial->user_name}}</td>
+                            <td style="max-width:100px; min-width:50px">
+                                <p>{{$testimonial->user_name}}</p>
+                            </td>
                             <td style="max-width: 900px; min-width:800px" >
                                 <p class="text-truncate">{{$testimonial->user_comment}}</p>
                             </td>
@@ -227,10 +249,18 @@
                 </table>
             </div>
         </div>
+        {{-- Testimonials bottom-data end--}}
 
+        {{-- News bottom-data  --}}
         <div class="bottom-data">
             <div class="orders">
-                <table class="table table-dark table-striped rounded">
+                <div class="d-flex justify-content-start">
+                    <i class='bx bx-info-circle'></i>
+                    <p class="mx-3 font-weight-bold font-italic">Əlavə olunan xəbərlər</p>
+                </div>
+                <hr color="{{ Cache::get('darkMode') ? 'white' : 'black' }}">
+                <table class="{{ Cache::get('darkMode') ? 'table-dark' : 'table-success' }} table-striped rounded">
+                    @if (count($news))
                     <thead>
                         <tr>
                             <th>#</th>
@@ -240,7 +270,14 @@
                             <th>Əməliyyatlar</th>
                         </tr>
                     </thead>
+                    @endif
                 <tbody>
+                    @php
+                    $info = '<p class="mx-3 font-weight-bold font-italic" style="color:#e91e63">Hal hazırda web saytda heç bir xəbər yoxdur</p>';
+                    if (!count($news)) {
+                       echo $info;
+                    }
+                    @endphp
                     @foreach ($news as $key=>$n)
                     @php
                     if (count($n->languages)) {
@@ -258,8 +295,10 @@
                                 <img src="{{asset("storage/uploads/news/$n->image")}}" alt="">
                             </div>
                         </td>
-                        <td>{{$name}}</td>
-                        <td style="max-width: 900px; min-width:800px" >
+                        <td>
+                            <p>{{$name}}</p>
+                            </td>
+                        <td style="max-width: 900px; min-width:900px" >
                             <p class="text-truncate">{{$info}}</p>
                         </td>
                         <td>
@@ -282,11 +321,12 @@
                         </td>
                     </tr>
                     @endforeach
-
                 </tbody>
             </table>
+            <hr color="{{ Cache::get('darkMode') ? 'white' : 'black' }}">
             </div>
         </div>
+        {{-- News bottom-data end  --}}
     </main>
 @endsection
 
