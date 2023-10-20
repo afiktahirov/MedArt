@@ -14,43 +14,43 @@
                 </div>
                 <a href="#" class="report">
                     <i class='bx bx-cloud-download'></i>
-                    <span>Download CSV</span>
+                    <span>Yüklə CSV</span>
                 </a>
             </div>
 
             <!-- Insights -->
             <ul class="insights">
-                <li>
+                <li id="dateInfo">
                     <i class='bx bx-calendar-check'></i>
                     <span class="info">
                         <h3>
-                            1,074
+
                         </h3>
-                        <p>Paid Order</p>
+                        <p></p>
                     </span>
                 </li>
                 <li><i class='bx bx-show-alt'></i>
                     <span class="info">
                         <h3>
-                            3,944
+                            944
                         </h3>
-                        <p>Site Visit</p>
+                        <p>Ümumi baxış sayı</p>
                     </span>
                 </li>
                 <li><i class='bx bx-line-chart'></i>
                     <span class="info">
                         <h3>
-                            14,721
+                            721
                         </h3>
-                        <p>Searches</p>
+                        <p>Axtarışda görünmə sayı</p>
                     </span>
                 </li>
-                <li><i class='bx bx-dollar-circle'></i>
+                <li><i class='bx bxs-no-entry'></i>
                     <span class="info">
                         <h3>
-                            $6,742
+                            42
                         </h3>
-                        <p>Total Sales</p>
+                        <p>Bloklanan istifadəçi sayı</p>
                     </span>
                 </li>
             </ul>
@@ -60,7 +60,7 @@
                 <div class="orders">
                     <div class="header">
                         <i class='bx bx-receipt'></i>
-                        <h3>Recent Orders</h3>
+                        <h3>Ən son gələn müraciətlər</h3>
                         <i class='bx bx-filter'></i>
                         <i class='bx bx-search'></i>
                     </div>
@@ -139,4 +139,26 @@
             </div>
 
         </main>
+        <script>
+            function updateClock() {
+                var now = new Date();
+                var currentDate = now.getDate();
+                var currentMonth = now.toLocaleString('default', { month: 'long' });
+                var currentYear = now.getFullYear();
+                var currentTime = now.toLocaleTimeString();
+
+                var dateInfo = document.getElementById('dateInfo');
+                dateInfo.querySelector('h3').textContent = currentDate + ' ' + currentMonth + ' ' + currentYear;
+                dateInfo.querySelector('p').textContent = currentTime;
+            }
+
+            updateClock();
+
+            setInterval(updateClock, 1000);
+        </script>
+
+
+
+
+
 @endsection

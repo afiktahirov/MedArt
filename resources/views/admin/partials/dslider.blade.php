@@ -229,7 +229,7 @@
             <div class="orders">
                 <div class="d-flex justify-content-start">
                     <i class='bx bx-info-circle'></i>
-                    <p class="mx-3 font-weight-bold font-italic">Aktiv olan bannerlər</p>
+                    <p class="mx-3 font-weight-bold font-italic">Aktiv olmayan bannerlər</p>
                 </div>
                 <hr color="{{ Cache::get('darkMode') ? 'white' : 'black' }}">
                 @php
