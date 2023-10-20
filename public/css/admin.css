@@ -719,3 +719,23 @@ body{
 
     font-size: 15px !important;
 }
+
+.slider_container {
+    display: none;
+}
+.page-buttons {
+    margin-top: 20px;
+    text-align: center;
+}
+
+.page-buttons button {
+    margin: 5px;
+    padding: 5px 10px;
+    border: 1px solid #000;
+    cursor: pointer;
+}
+
+.page-buttons button.active {
+    background-color: #000;
+    color: #fff;
+}
