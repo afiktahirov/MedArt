@@ -123,15 +123,13 @@ $("[data-bs-target='#deleteModal']").click(function () {
             if (alertLink) {
                 alertLink.addEventListener("click", function(event) {
                     event.preventDefault();
-                    window.location.reload();
+                    alertDiv.classList.add("hidden"); // CSS sınıfını ekleyerek animasyonu başlat
                 });
             }
 
             setTimeout(function() {
-                alertDiv.style.display = "none";
-            }, 1000);
-
-
+                alertDiv.classList.add("hidden"); // CSS sınıfını ekleyerek animasyonu başlat
+            }, 2500);
         }
 
         // Edit Banner Modal
@@ -272,4 +270,47 @@ $("[data-bs-target='#deleteModal']").click(function () {
           });
       });
 
+    });
+
+    document.addEventListener("DOMContentLoaded", function () {
+        const sliderContainers = document.querySelectorAll(".slider_container");
+        const pageButtons = document.createElement("div");
+        pageButtons.classList.add("page-buttons");
+
+        sliderContainers.forEach((slider, index) => {
+            slider.setAttribute("data-page", index + 1);
+            if (index === 0) {
+                slider.style.display = "block";
+                createPageButton(index + 1, true);
+            } else {
+                slider.style.display = "none";
+                createPageButton(index + 1, false);
+            }
+        });
+
+        function createPageButton(page, active) {
+            const button = document.createElement("button");
+            button.textContent = page;
+            button.addEventListener("click", () => showPage(page));
+            if (active) {
+                button.classList.add("active");
+            }
+            pageButtons.appendChild(button);
+        }
+
+        function showPage(page) {
+            sliderContainers.forEach((slider) => {
+                slider.style.display = "none";
+            });
+            const selectedSlider = document.querySelector(`[data-page="${page}"]`);
+            selectedSlider.style.display = "block";
+
+            const buttons = pageButtons.querySelectorAll("button");
+            buttons.forEach((button) => {
+                button.classList.remove("active");
+            });
+            buttons[page - 1].classList.add("active");
+        }
+        let page_button = document?.querySelector(".page-button");
+        page_button?.append(pageButtons);
     });
