@@ -5,7 +5,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <link rel="icon" type="image/png" href="{{ asset('/assets/control/images/logo-ct.png') }}">
-    <title> Labco | Login </title>
+    <title> Medart Admin | Login </title>
     <link rel="stylesheet" type="text/css"
         href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700,900|Roboto+Slab:400,700" />
     <link href="{{ asset('assets/control/css/nucleo-icons.css') }}" rel="stylesheet" />

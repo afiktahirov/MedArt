@@ -67,7 +67,9 @@ Route::prefix('admin')->group(function () {
         Route::post('news/addText',[NewsLanguagesController::class,'store'])->name("news.addText");
         Route::delete('news/destroy',[NewsController::class,'destroy'])->name("news.destroy");
 
-        Route::get('admin/doctor',[DoctorController::class,'index'])->name('admin.doctor');
+        Route::get('/doctor',[DoctorController::class,'index'])->name('admin.doctor');
+
+        Route::get('/logout',[AdminController::class,'logout'])->name('logout');
 
 
 

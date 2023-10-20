@@ -278,6 +278,7 @@
         </div>
     </div>
     <main>
+        {{-- Main Header Navbar --}}
         <div class="header">
             <div class="left">
                 <h1>Ana Səhifə İdarə Paneli</h1>
@@ -316,6 +317,9 @@
                 <a class="close_alert" style="font-size: 20px; cursor: pointer;">X</a>
             </div>
         @endif
+        {{-- Main Header Navbar end --}}
+
+        {{-- Active Languages bottom-data --}}
         <div class="bottom-data">
             <div class="orders">
                 <div class="d-flex justify-content-start">
@@ -351,6 +355,9 @@
                 </table>
             </div>
         </div>
+        {{-- Active Languages bottom-data end --}}
+
+        {{-- Filter Languages bottom-data --}}
         <div class="bottom-data">
             <div class="orders">
                 <div class="d-flex justify-content-start">
@@ -361,11 +368,14 @@
                 <div class="con">
                     @foreach (languages() as $key => $lang)
                         <a href="?lang={{ $lang->lang }}"
-                            class="text-white btn btn-success mt-2 mx-2">{{ $lang->name }}</a>
+                            class="text-white btn btn-primary mt-2 mx-2">{{ $lang->name }}</a>
                     @endforeach
                 </div>
             </div>
         </div>
+        {{-- Filter Languages bottom-data end --}}
+
+        {{-- Active Banner bottom-data --}}
         <div class="bottom-data">
             <div class="orders">
                 <div class="d-flex justify-content-start">
@@ -373,7 +383,13 @@
                     <p class="mx-3 font-weight-bold font-italic">Aktiv olan bannerlər</p>
                 </div>
                 <hr color="{{ Cache::get('darkMode') ? 'white' : 'black' }}">
-                @foreach ($slidersActive as $slider)
+                @php
+                    $info = '<p class="mx-3 font-weight-bold font-italic" style="color:#e91e63">Hal hazırda web saytda heç bir banner aktiv deyil</p>';
+                    if (!count($slidersActive)) {
+                       echo $info;
+                    }
+                @endphp
+                @foreach ($slidersActive as $index=>$slider)
                     @php
                         if (count($slider->languages)) {
                             $title = $slider->languages[0]->title;
@@ -383,7 +399,7 @@
                             $text = 'Tərcümə Tapılmadı.';
                         }
                     @endphp
-                    <div class="slider_container">
+                    <div class="slider_container" data-page="{{ $index + 1 }}">
                         <div class="swiper-slide hero-content-wrap s_container"
                             style="background-image: url('{{ asset("storage/uploads/sliders/$slider->image") }}')">
                             <div class="hero-content-overlay position-absolute w-100 h-100">
@@ -431,8 +447,13 @@
                         </div>
                     </div>
                 @endforeach
+                <hr color="{{ Cache::get('darkMode') ? 'white' : 'black' }}">
+                <div class="page-button"></div>
             </div>
         </div>
+        {{-- Active Banner bottom-data end --}}
+
+        {{-- Active Department bottom-data  --}}
         <div class="bottom-data">
             <div class="orders">
                 <div class="d-flex justify-content-start">
@@ -502,5 +523,9 @@
 
             </div>
         </div>
+        {{-- Active Department bottom-data end --}}
     </main>
+
+    <script>
+    </script>
 @endsection
