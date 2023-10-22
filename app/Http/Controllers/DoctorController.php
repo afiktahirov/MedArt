@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\department_icon;
 use App\Models\Doctor;
 use Illuminate\Http\Request;
 
@@ -12,7 +13,8 @@ class DoctorController extends Controller
      */
     public function index()
     {
-        return view("admin.partials.doctor");
+        $departments = department_icon::all();
+        return view("admin.partials.doctor",compact("departments"));
     }
 
     /**
