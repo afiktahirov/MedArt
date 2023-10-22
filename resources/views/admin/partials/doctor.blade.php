@@ -1,7 +1,8 @@
 @extends('admin.index')
 @section('content')
+
     <div class="modal fade" id="addNewDoctor" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-        <div class="modal-dialog">
+        <div class="modal-dialog modal-xl">
             <div class="modal-content">
                 <div class="modal-header">
                     <h1 class="modal-title fs-5" id="exampleModalLabel">Yeni Həkim</h1>
@@ -10,46 +11,59 @@
                 <div class="modal-body">
                     <form action="{{ route('doctor.add') }}" method="POST" enctype="multipart/form-data">
                         @csrf
-                        <div class="mb-3">
-                            <label class="col-form-label">Həkim ad/soyad:</label>
-                            <input type="text" class="form-control" name="namesurname">
+                        <div class="row">
+                            <div class="info">
+                                <label for="" class="form-label mb-3">Hekim haqqinda melumat</label>
+                            </div>
+                            <div class="col-md-4 form-group">
+                                <label class="col-form-label">Həkim ad/soyad:</label>
+                                <input type="text" class="form-control" name="namesurname">
+                            </div>
+                            <div class="col-md-4">
+                                <label class="col-form-label">Cinsi:</label>
+                                <select class="form-control" name="gender" id="">
+                                    <option value="1">Kişi</option>
+                                    <option value="2">Qadın</option>
+                                </select>
+                            </div>
+                            <div class="col-md-4">
+                                <label class="col-form-label">Yaşı:</label>
+                                <input type="number" class="form-control" name="age">
+                            </div>
                         </div>
-                        <div class="mb-3">
-                            <label class="col-form-label">Maaş <span style="color:red;">(Manatla)</span>:</label>
-                            <input type="number" class="form-control" name="wage">
+                        <div class="row">
+                            <div class="info">
+                                <label for="" class="form-label  mt-5" >
+                                    <span style="font-size: 24px" >Hekimin isi melumatlari</span>
+                                </label>
+                            </div>
+                            <div class="col-md-4">
+                                <label for="recipient-name" class="col-form-label">İşləyəcəyi Şöbə</label>
+                                <select name="department" id="" class="form-control">
+                                    @foreach ($departments as $department)
+                                        @if (empty($department->languages[0]->name))
+                                            <option value="false">Bu şöbə azərbaycan dilində adlandırılmayıb</option>
+                                        @else
+                                            <option id="lang" value="{{ $department->id }}">
+                                                {{ $department->languages[0]->name }}</option>
+                                        @endif
+                                    @endforeach
+                                </select>
+                            </div>
+                            <div class="col-md-4">
+                                <label class="col-form-label">Vəzifə:</label>
+                                <input type="text" class="form-control" name="position">
+                            </div>
+                            <div class="col-md-4 form-group">
+                                <label class="col-form-label">Maaş <span style="color:red;">(Manatla)</span>:</label>
+                                <input type="number" class="form-control" name="wage">
+                            </div>
+                            <div class="col-md-4">
+                                <label class="col-form-label">Təcrübəsi <span style="color:red;">(Ay)</span>:</label>
+                                <input type="text" class="form-control" name="experience">
+                            </div>
                         </div>
-                        <div class="mb-3">
-                            <label class="col-form-label">Cinsi:</label>
-                            <select class="form-control" name="gender" id="">
-                                <option value="1">Kişi</option>
-                                <option value="2">Qadın</option>
-                            </select>
-                        </div>
-                        <div class="mb-3">
-                            <label class="col-form-label">Yaşı:</label>
-                            <input type="number" class="form-control" name="age">
-                        </div>
-                        <div class="mb-3">
-                            <label for="recipient-name" class="col-form-label">İşləyəcəyi Şöbə</label>
-                            <select name="department" id="" class="form-control">
-                                @foreach ($departments as $department)
-                                    @if (empty($department->languages[0]->name))
-                                        <option value="false">Bu şöbə azərbaycan dilində adlandırılmayıb</option>
-                                    @else
-                                        <option id="lang" value="{{ $department->id }}">
-                                            {{ $department->languages[0]->name }}</option>
-                                    @endif
-                                @endforeach
-                            </select>
-                        </div>
-                        <div class="mb-3">
-                            <label class="col-form-label">Vəzifə:</label>
-                            <input type="text" class="form-control" name="position">
-                        </div>
-                        <div class="mb-3">
-                            <label class="col-form-label">Təcrübəsi <span style="color:red;">(Ay)</span>:</label>
-                            <input type="text" class="form-control" name="experience">
-                        </div>
+
                         <div class="mb-3">
                             <label class="col-form-label">Həkim şəkli:</label>
                             <input type="file" name="image" class="form-control" id="photo-upload" accept="image/*">
