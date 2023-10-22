@@ -68,8 +68,10 @@ Route::prefix('admin')->group(function () {
         Route::delete('news/destroy',[NewsController::class,'destroy'])->name("news.destroy");
 
         Route::get('/doctor',[DoctorController::class,'index'])->name('admin.doctor');
+        Route::post('/doctor/add',[DoctorController::class,'store'])->name('doctor.add');
 
         Route::get('/logout',[AdminController::class,'logout'])->name('logout');
+
 
 
 
