@@ -19,6 +19,13 @@
                             <input type="number" class="form-control" name="wage">
                         </div>
                         <div class="mb-3">
+                            <label class="col-form-label">Cinsi:</label>
+                            <select class="form-control" name="gender" id="">
+                                <option value="1">Kişi</option>
+                                <option value="2">Qadın</option>
+                            </select>
+                        </div>
+                        <div class="mb-3">
                             <label class="col-form-label">Yaşı:</label>
                             <input type="number" class="form-control" name="age">
                         </div>
@@ -105,37 +112,61 @@
                     <i class='bx bx-filter'></i>
                     <i class='bx bx-search'></i>
                 </div>
-                <table>
+                <table class="doctorTable">
                     <thead>
                         <tr>
                             <th>Həkim</th>
+                            <th>Cins</th>
                             <th>Maaş</th>
                             <th>Yaş</th>
                             <th>Şöbəsi</th>
                             <th>Vəzifəsi</th>
                             <th>Təcrübəsi</th>
                             <th>Status</th>
-                            <th>Əməliyatlar</th>
+                            <th id="th_options">Əməliyatlar</th>
                         </tr>
                     </thead>
                     <tbody>
+                        @foreach ($doctors as $doctor )
+
                         <tr>
-                            <td>
-                                <img src="images/profile-1.jpg">
-                                <p>Afik Tahirov</p>
+                            <td id="user">
+                                <img src="{{asset("storage/uploads/doctors/$doctor->photo")}}">
+                                <p>{{$doctor->name}}</p>
                             </td>
-                            <td>2000</td>
-                            <td>34</td>
-                            <td>Kardilogiya</td>
-                            <td>Baş Həkim</td>
-                            <td>76ay</td>
-                            <td><span class="status completed">İşləyir</span></td>
-                            <td>
-                                <button class="btn btn-warning">Redakte et</button>
-                                <button class="btn btn-warning">Redakte et</button>
-                                <button class="btn btn-warning">Redakte et</button>
+                            <td id="gender">
+                                <p>{{$doctor->gender}}</p>
+                            </td>
+                            <td id="payment">
+                                <p>{{$doctor->wage}}</p>
+                            </td>
+                            <td id="age">
+                                <p>{{$doctor->age}}</p>
+                            </td>
+                            <td id="department">
+                                <p>{{$doctor->department_id}}</p>
+                            </td>
+                            <td id="position">
+                                <p>{{$doctor->position}}</p>
+                            </td>
+                            <td id="exp">
+                                <p>{{$doctor->experience}}<span>ay</span></p>
+                            </td>
+                            <td id="status">
+                                <p>
+                                    <span class="status completed">İşləyir</span>
+                                </p>
+                            </td>
+                            <td id="options">
+                                <div class="buttons">
+                                    <button class="btn btn-info">Tənzimlə</button>
+                                    <button class="btn btn-warning">Redakte et</button>
+                                    <button class="btn btn-danger">Sil</button>
+                                </div>
                             </td>
                         </tr>
+
+                        @endforeach
 
                     </tbody>
                 </table>

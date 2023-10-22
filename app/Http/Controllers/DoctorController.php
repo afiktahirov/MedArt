@@ -14,7 +14,8 @@ class DoctorController extends Controller
     public function index()
     {
         $departments = department_icon::all();
-        return view("admin.partials.doctor",compact("departments"));
+        $doctors = Doctor::all();
+        return view("admin.partials.doctor",compact("departments","doctors"));
     }
 
     /**
@@ -34,6 +35,7 @@ class DoctorController extends Controller
         'namesurname' => 'required|string|max:255',
         'wage' => 'required|numeric',
         'age' => 'required|integer',
+        'gender' => 'required',
         'department' => 'required|exists:departments,id',
         'position' => 'required|string|max:255',
         'experience' => 'required|integer',
@@ -50,6 +52,7 @@ class DoctorController extends Controller
     $doctor->department_id = $request->input('department');
     $doctor->position = $request->input('position');
     $doctor->experience = $request->input('experience');
+    $doctor->gender = $request->input("gender");
 
     $image = $request->file('image');
     $hashName = $image->hashName();
