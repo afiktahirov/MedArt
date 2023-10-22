@@ -14,9 +14,12 @@ return new class extends Migration
         Schema::create('doctors', function (Blueprint $table) {
             $table->id();
             $table->string("name");
-            $table->string("department");
-            $table->string("photo");
+            $table->float("wage");
             $table->string("age");
+            $table->bigInteger("department_id");
+            $table->string("position");
+            $table->integer("experience");
+            $table->string("photo");
             $table->timestamps();
         });
     }
