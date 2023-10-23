@@ -92,8 +92,17 @@ class DoctorController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(Doctor $doctor)
+    public function destroy(Request $request)
     {
-        //
+
+        $doctorId = $request->id;
+
+        if(!$doctorId){
+            return redirect()->back()->with('error',"Xəta baş verdi uygunluq yoxdu");
+        }
+
+        $doctor = Doctor::find($doctorId);
+        $doctor->delete();
+        return redirect()->back()->with('success',"Həkim məlumatları silindi!");
     }
 }
