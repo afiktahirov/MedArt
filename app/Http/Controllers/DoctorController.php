@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Department;
 use App\Models\department_icon;
 use App\Models\Doctor;
 use Illuminate\Http\Request;
@@ -14,8 +15,9 @@ class DoctorController extends Controller
     public function index()
     {
         $departments = department_icon::all();
+        $departmentName = Department::where("lang","az")->select("name","id")->get();
         $doctors = Doctor::all();
-        return view("admin.partials.doctor",compact("departments","doctors"));
+        return view("admin.partials.doctor",compact("departments","doctors","departmentName"));
     }
 
     /**

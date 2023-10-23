@@ -1,6 +1,6 @@
 @extends('admin.index')
 @section('content')
-
+{{-- @dd($departmentName) --}}
     {{-- Add New Doctor Modal --}}
     <div class="modal fade" id="addNewDoctor" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
         <div class="modal-dialog modal-xl">
@@ -161,7 +161,7 @@
                             <th>Yaş</th>
                             <th>Şöbəsi</th>
                             <th>Vəzifəsi</th>
-                            <th>Təcrübəsi</th>
+                            <th>İş Təcrübəsi</th>
                             <th>Status</th>
                             <th id="th_options">Əməliyatlar</th>
                         </tr>
@@ -183,7 +183,13 @@
                                     <p>{{ $doctor->age }}</p>
                                 </td>
                                 <td id="department">
-                                    <p>{{ $doctor->department_id }}</p>
+                                    <p>
+                                        @foreach ($departmentName as $department )
+                                             @if ($doctor->department_id==$department->id)
+                                                   {{$department->name}}
+                                             @endif
+                                        @endforeach
+                                    </p>
                                 </td>
                                 <td id="position">
                                     <p>{{ $doctor->position }}</p>
@@ -199,7 +205,7 @@
                                 <td id="options">
                                     <div class="buttons">
                                         <button class="btn btn-info">Tənzimlə</button>
-                                        <button class="btn btn-warning">Redakte et</button>
+                                        {{-- <button class="btn btn-warning">Redakte et</button> --}}
                                         <button class="btn btn-danger" id="deleteDoctor" data-bs-toggle="modal"
                                             data-bs-target="#deleteDoctorModal"
                                             data-id="{{ $doctor->id }}">Sil</button>
