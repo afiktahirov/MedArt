@@ -16,6 +16,7 @@ return new class extends Migration
             $table->string("name");
             $table->float("wage");
             $table->string("age");
+            $table->integer("gender");
             $table->bigInteger("department_id");
             $table->string("position");
             $table->integer("experience");

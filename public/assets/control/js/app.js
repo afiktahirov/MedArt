@@ -314,3 +314,14 @@ $("[data-bs-target='#deleteModal']").click(function () {
         let page_button = document?.querySelector(".page-button");
         page_button?.append(pageButtons);
     });
+
+    let deleteDoctor = document.querySelectorAll("#deleteDoctor");
+
+    deleteDoctor.forEach(function(button){
+        button.addEventListener('click',function(){
+            let doctorId = button.getAttribute("data-id");
+            let doctorInput = document.querySelector("#deleteDoctorModal input[name='id']");
+            doctorInput.value = doctorId;
+        });
+    });
+

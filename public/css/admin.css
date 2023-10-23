@@ -744,7 +744,7 @@ body{
 }
 
 .alert {
-    transition: opacity 0.5s ease; 
+    transition: opacity 0.5s ease;
     opacity: 1;
 }
 
@@ -758,3 +758,76 @@ body{
     display: none;
 }
 
+.doctorTable{
+    width: 100%;
+}
+.doctorTable #user{
+    width: 300px;
+}
+.doctorTable #user p{
+    margin-left: 20px;
+    padding-top: 20px;
+}
+
+.doctorTable #payment{
+    width: 100px;
+}
+.doctorTable #payment p{
+    padding-top: 15px;
+}
+.doctorTable #age{
+    width: 100px;
+}
+.doctorTable #age p{
+    padding-top: 15px;
+    padding-left: 5px;
+}
+.doctorTable #gender{
+    width: 100px;
+}
+.doctorTable #gender p{
+    padding-top: 15px;
+    padding-left: 5px;
+}
+.doctorTable #department{
+ width: 250px;
+}
+.doctorTable #department p{
+   padding-top: 15px;
+}
+.doctorTable #position{
+ width: 350px;
+}
+.doctorTable #position p{
+   width: 100%;
+   padding-top: 15px;
+}
+.doctorTable #exp{
+ width: 120px;
+}
+.doctorTable #exp p{
+   width: 100%;
+   padding-top: 15px;
+   padding-left: 15px;
+}
+.doctorTable #status{
+ width: 100px;
+}
+.doctorTable #status p{
+   width: 100%;
+   padding-top: 15px;
+}
+.doctorTable #options{
+ width: 400px;
+}
+.doctorTable #options .buttons{
+   width: 100%;
+   padding-top: 15px;
+   display: flex;
+   justify-content: center;
+   gap: 20px;
+}
+.doctorTable #th_options{
+    display: flex;
+    justify-content: center;
+}
