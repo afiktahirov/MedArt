@@ -2,7 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Department;
 use App\Models\department_icon;
+use App\Models\Doctor;
 use App\Models\HomeSlider;
 use App\Models\News;
 use Illuminate\Http\Request;
@@ -26,7 +28,9 @@ class PageController extends Controller
         }])->get();
 
 
-        return view('home.index',compact("sliders","departments","news"));
+        $doctors = Doctor::all();
+
+        return view('home.index',compact("sliders","departments","news","doctors"));
 
 
 

@@ -7,14 +7,19 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
-    <link rel="stylesheet" type="text/css"
-        href="{{asset("css/font-awesome.min.css")}}">
+    <link rel="stylesheet" type="text/css" href="{{ asset('css/font-awesome.min.css') }}">
 
-    <link rel="stylesheet" href="{{asset("css/style.css")}}">
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.4.1/dist/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
-    <link rel="stylesheet" href="{{asset("css/swiper.min.css")}}">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
-    <script src="{{asset("js/custom.js")}}"></script>
+    <link rel="stylesheet" href="{{ asset('css/style.css') }}">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.4.1/dist/css/bootstrap.min.css"
+        integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+    <link rel="stylesheet" href="{{ asset('css/swiper.min.css') }}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+        integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@10/swiper-bundle.min.css" />
+    <script src="{{ asset('js/custom.js') }}"></script>
+    <script src="https://cdn.jsdelivr.net/npm/swiper@10/swiper-bundle.min.js"></script>
+
     <script nonce="fb0ed9ab-d1f9-478a-90de-8195d8019a96">
         (function(w, d) {
             ! function(bt, bu, bv, bw) {
@@ -85,47 +90,47 @@
 </head>
 
 <body class="
-@if (empty(request()->segment(2)))
-home-pages
+@if (empty(request()->segment(2))) home-pages
 @else
-single-page
-@endif ">
-@include("layouts.partials.header")
+single-page @endif ">
+    @include('layouts.partials.header')
 
 
-@yield("content")
+    @yield('content')
 
 
-@include("layouts.partials.subscribe-banner")
-@include("layouts.partials.footer")
+    @include('layouts.partials.subscribe-banner')
+    @include('layouts.partials.footer')
 
-<script data-cfasync="false" src="{{asset("js/email-decode.min.js")}}"></script>
-<script type='text/javascript' src='{{asset("js/jquery.js")}}'></script>
-<script type='text/javascript' src='{{asset("js/jquery.collapsible.min.js")}}'></script>
-<script type='text/javascript' src='{{asset("js/swiper.min.js")}}'></script>
-<script type='text/javascript' src='{{asset("js/jquery.countdown.min.js")}}'></script>
-<script type='text/javascript' src='{{asset("js/circle-progress.min.js")}}'></script>
-<script type='text/javascript' src='{{asset("js/jquery.countTo.min.js")}}'></script>
-<script type='text/javascript' src='{{asset("js/jquery.barfiller.js")}}'></script>
-<script type='text/javascript' src='{{asset("js/custom.js")}}'></script>
+    <script data-cfasync="false" src="{{ asset('js/email-decode.min.js') }}"></script>
+    <script type='text/javascript' src='{{ asset('js/jquery.js') }}'></script>
+    <script type='text/javascript' src='{{ asset('js/jquery.collapsible.min.js') }}'></script>
+    <script type='text/javascript' src='{{ asset('js/swiper.min.js') }}'></script>
+    <script type='text/javascript' src='{{ asset('js/jquery.countdown.min.js') }}'></script>
+    <script type='text/javascript' src='{{ asset('js/circle-progress.min.js') }}'></script>
+    <script type='text/javascript' src='{{ asset('js/jquery.countTo.min.js') }}'></script>
+    <script type='text/javascript' src='{{ asset('js/jquery.barfiller.js') }}'></script>
+    <script type='text/javascript' src='{{ asset('js/custom.js') }}'></script>
 
-<script async src="https://www.googletagmanager.com/gtag/js?id=UA-23581568-13"></script>
-<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js" integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r" crossorigin="anonymous"></script>
-{{-- <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.min.js" integrity="sha384-Rx+T1VzGupg4BHQYs2gCW9It+akI2MM/mndMCy36UVfodzcJcF0GGLxZIzObiEfa" crossorigin="anonymous"></script> --}}
-<script>
-    window.dataLayer = window.dataLayer || [];
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-23581568-13"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js"
+        integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r" crossorigin="anonymous">
+    </script>
+    {{-- <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.min.js" integrity="sha384-Rx+T1VzGupg4BHQYs2gCW9It+akI2MM/mndMCy36UVfodzcJcF0GGLxZIzObiEfa" crossorigin="anonymous"></script> --}}
+    <script>
+        window.dataLayer = window.dataLayer || [];
 
-    function gtag() {
-        dataLayer.push(arguments);
-    }
-    gtag('js', new Date());
+        function gtag() {
+            dataLayer.push(arguments);
+        }
+        gtag('js', new Date());
 
-    gtag('config', 'UA-23581568-13');
-</script>
-<script defer src="https://static.cloudflareinsights.com/beacon.min.js/v8b253dfea2ab4077af8c6f58422dfbfd1689876627854"
-    integrity="sha512-bjgnUKX4azu3dLTVtie9u6TKqgx29RBwfj3QXYt5EKfWM/9hPSAI/4qcV5NACjwAo8UtTeWefx6Zq5PHcMm7Tg=="
-    data-cf-beacon='{"rayId":"7ef11a9f4c499243","token":"cd0b4b3a733644fc843ef0b185f98241","version":"2023.7.0","si":100}'
-    crossorigin="anonymous"></script>
+        gtag('config', 'UA-23581568-13');
+    </script>
+    <script defer src="https://static.cloudflareinsights.com/beacon.min.js/v8b253dfea2ab4077af8c6f58422dfbfd1689876627854"
+        integrity="sha512-bjgnUKX4azu3dLTVtie9u6TKqgx29RBwfj3QXYt5EKfWM/9hPSAI/4qcV5NACjwAo8UtTeWefx6Zq5PHcMm7Tg=="
+        data-cf-beacon='{"rayId":"7ef11a9f4c499243","token":"cd0b4b3a733644fc843ef0b185f98241","version":"2023.7.0","si":100}'
+        crossorigin="anonymous"></script>
 </body>
 
 </html>
