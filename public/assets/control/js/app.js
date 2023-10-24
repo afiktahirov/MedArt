@@ -325,3 +325,5 @@ $("[data-bs-target='#deleteModal']").click(function () {
         });
     });
 
+
+
