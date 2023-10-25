@@ -1,3 +1,4 @@
+@if (count($doctors))
 <div class="medical-team">
     <div class="container">
         <div class="row">
@@ -102,3 +103,9 @@
         },
       });
 </script>
+@else
+
+<div class="medical-team">
+    
+</div>
+@endif

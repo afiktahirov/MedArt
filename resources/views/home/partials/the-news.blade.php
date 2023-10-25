@@ -1,3 +1,4 @@
+@if (count($news))
 <div class="the-news">
     <div class="container">
         <div class="row">
@@ -25,11 +26,8 @@
                             <header class="entry-header">
                                 <h3>{{$name}}</h3>
                                 <div class="post-metas d-flex flex-wrap align-items-center">
-                                    <div class="posted-date"><label>Date: </label><a href="#">April 12,
-                                            2018</a></div>
-                                    <div class="posted-by"><label>By: </label><a href="#">Dr. Jake
-                                            Williams</a></div>
-                                    <div class="post-comments"><a href="#">2 Comments</a></div>
+                                    <div class="posted-date"><label>Date: </label><a href="#">{{$n->date}}</a></div>
+                                    <div class="posted-by"><label>By: </label><a href="#">{{$n->author}}</a></div>
                                 </div>
                             </header>
                             <div class="entry-content">
@@ -43,3 +41,5 @@
         </div>
     </div>
 </div>
+
+@endif

@@ -72,6 +72,10 @@
                 <form action="{{ route('news.add') }}" method="POST" enctype="multipart/form-data">
                     @csrf
                     <div class="mb-3">
+                        <label class="form-control-label">Xəbərin Mənbəyi:</label>
+                        <input type="text" class="form-control" id="author" name="author">
+                    </div>
+                    <div class="mb-3">
                         <label class="col-form-label">Xəbərin şəkli:</label>
                         <input type="file" name="image" class="form-control" id="photo-upload" accept="image/*">
                     </div>
