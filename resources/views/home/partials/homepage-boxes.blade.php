@@ -18,28 +18,37 @@
                     <h2 class="d-flex align-items-center">{{__("words.Emergency")}}</h2>
                     <div class="call-btn button gradient-bg">
                         <a class="d-flex justify-content-center align-items-center" href="#"><img
-                                src="{{asset("images/emergency-call.png")}}"> +34 586 778 8892</a>
+                                src="{{asset("images/emergency-call.png")}}"> +994773883238</a>
                     </div>
-                    <p>Lorem ipsum dolor sit amet, cons ectetur adipiscing elit. Donec males uada lorem maximus
-                        mauris sceler isque, at rutrum nulla.</p>
+                    <div class="infoNowDiv d-flex align-items-center" style="width: 100%;height:105px;">
+
+                        <p class="form-control" style="font-size: 16px;">{{__("words.infoNow")}}</p>
+                    </div>
                 </div>
             </div>
             <div class="col-12 col-md-6 col-lg-5 mt-5 mt-lg-0">
                 <div class="appointment-box">
                     <h2 class="d-flex align-items-center">{{__("words.Make_an_Appointment")}}</h2>
-                    <form class="d-flex flex-wrap justify-content-between">
+                    <form class="d-flex flex-wrap justify-content-between" action="">
                         <select class="select-department">
-                            <option value="value1">Select Department</option>
-                            <option value="value2">Select Department 1</option>
-                            <option value="value3">Select Department 2</option>
+                            <option value="value1">{{__("words.select_department")}}</option>
+                            @foreach ($departments as $department)
+                            @php
+                                if(!count($department->languages)){
+                                    $departmentName = "";
+                                }
+                                else {
+                                    $departmentName = $department->languages[0]->name;
+                                }
+                            @endphp
+                            <option value="{{$department->id}}">{{$departmentName}}</option>
+                            @endforeach
                         </select>
                         <select class="select-doctor">
-                            <option>Select Doctor</option>
-                            <option>Select Doctor 1</option>
-                            <option>Select Doctor 2</option>
+                            <option>{{__("words.select_doctor")}}</option>
                         </select>
-                        <input type="text" placeholder="Name">
-                        <input type="number" placeholder="Phone No">
+                        <input type="text" placeholder="{{__("words.yourname")}}">
+                        <input type="number" placeholder="{{__("words.phoneNo")}}">
                         <input class="button gradient-bg" type="submit" value="{{__("words.boom_appoitnmentt")}}">
                     </form>
                 </div>
@@ -47,3 +56,28 @@
         </div>
     </div>
 </div>
+
+<script>
+    document.addEventListener("DOMContentLoaded",function(){
+    //Department selected
+    document.querySelector(".select-department").addEventListener('change',function(select){
+        let departmentId = this.value;
+        let doctorSelect = document.querySelector(".select-doctor");
+
+        doctorSelect.innerHTML = '';
+
+         fetch('api/getdoctors/'+ departmentId)
+         .then(response=>response.json())
+         .then(doctors=>{
+            doctors.forEach(doctor =>{
+               let option = document.createElement("option");
+               option.value = doctor.id;
+               option.text = doctor.name+" - "+doctor.position;
+               doctorSelect.append(option);
+            });
+         })
+         .catch(error=>console.error("Xeta",error));
+    })
+})
+
+</script>

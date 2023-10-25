@@ -71,6 +71,9 @@ Route::prefix('admin')->group(function () {
         Route::post('/doctor/add',[DoctorController::class,'store'])->name('doctor.add');
         Route::delete('/doctor/delete',[DoctorController::class,'destroy'])->name('doctor.destroy');
 
+
+        
+
         Route::get('/logout',[AdminController::class,'logout'])->name('logout');
 
 
