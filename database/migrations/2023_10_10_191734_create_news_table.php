@@ -15,6 +15,8 @@ return new class extends Migration
             $table->id();
             $table->string("image");
             $table->integer("status")->default(0);
+            $table->date("date");
+            $table->string("author");
             $table->timestamps();
         });
     }

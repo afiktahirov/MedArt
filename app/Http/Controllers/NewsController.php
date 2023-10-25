@@ -31,15 +31,18 @@ class NewsController extends Controller
     {
 
         $request->validate([
-              'image'=>'required|mimes:png,jpg',
+              'image'=>'required|mimes:png,jpg,webp',
+              'author'=>'required|min:3|max:20',
         ]);
-        $newsPhoto = new News();
+        $news = new News();
 
         $hashname = $request->file("image")->hashName();
         $request->file("image")->storeAs('uploads/news',$hashname,'public');
 
-        $newsPhoto->image = $hashname;
-        $newsPhoto->save();
+        $news->image = $hashname;
+        $news->author = $request->author;
+        $news->date = now();
+        $news->save();
 
         return redirect()->back()->with("success","Yenilik şəkli əlavə olundu.");
     }
