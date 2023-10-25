@@ -17,6 +17,11 @@ return [
     "subscribe_email"=>"Yeniliklərdən xəbərdar olmaq üçün abonə olun",
     "subscribe_button"=>"Abonə Ol",
     "usefull_links" =>"Faydalı Linklər",
+    "infoNow" =>"7/24 sizin xidmətinizdəyik",
+    "select_department"=>"Şöbə",
+    "select_doctor"=>"Həkim",
+    "yourname"=>"Adınız",
+    "phoneNo"=>"Telefon nömrəniz",
 
     "monday"=>"Bazar ertəsi",
     "thursday"=>"Cümə axşamı",

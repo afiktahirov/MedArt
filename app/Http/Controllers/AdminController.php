@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Department;
 use App\Models\department_icon;
+use App\Models\Doctor;
 use App\Models\HomeSlider;
 use App\Models\Language;
 use App\Models\News;
@@ -213,5 +214,10 @@ class AdminController extends Controller
     public function destroy(string $id)
     {
         //
+    }
+
+    public function getDoctors($departmentId){
+        $doctors = Doctor::where('department_id',$departmentId)->get();
+        return response()->json($doctors);
     }
 }

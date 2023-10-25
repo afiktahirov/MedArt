@@ -107,4 +107,9 @@ class DoctorController extends Controller
         $doctor->delete();
         return redirect()->back()->with('success',"Həkim məlumatları silindi!");
     }
+
+    public function getDoctors($departmentId){
+        $doctors = Doctor::where('department_id',$departmentId)->get();
+        return response()->json($doctors);
+    }
 }
