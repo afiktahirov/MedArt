@@ -29,8 +29,9 @@
             <div class="col-12 col-md-6 col-lg-5 mt-5 mt-lg-0">
                 <div class="appointment-box">
                     <h2 class="d-flex align-items-center">{{__("words.Make_an_Appointment")}}</h2>
-                    <form class="d-flex flex-wrap justify-content-between" action="">
-                        <select class="select-department">
+                    <form class="d-flex flex-wrap justify-content-between" method="POST" action="{{route("ticket.add")}}">
+                        @csrf
+                        <select class="select-department" name="select-department">
                             <option value="value1">{{__("words.select_department")}}</option>
                             @foreach ($departments as $department)
                             @php
@@ -44,11 +45,11 @@
                             <option value="{{$department->id}}">{{$departmentName}}</option>
                             @endforeach
                         </select>
-                        <select class="select-doctor">
+                        <select class="select-doctor" name="select-doctor">
                             <option>{{__("words.select_doctor")}}</option>
                         </select>
-                        <input type="text" placeholder="{{__("words.yourname")}}">
-                        <input type="number" placeholder="{{__("words.phoneNo")}}">
+                        <input type="text"  name="p_name" placeholder="{{__("words.yourname")}}">
+                        <input type="number" name="p_phone" placeholder="{{__("words.phoneNo")}}">
                         <input class="button gradient-bg" type="submit" value="{{__("words.boom_appoitnmentt")}}">
                     </form>
                 </div>
