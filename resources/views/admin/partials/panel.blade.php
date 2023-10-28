@@ -105,32 +105,23 @@
                 <div class="reminders">
                     <div class="header">
                         <i class='bx bx-note'></i>
-                        <h3>Remiders</h3>
+                        <h3>Gələn Müraciətlər</h3>
                         <i class='bx bx-filter'></i>
                         <i class='bx bx-plus'></i>
                     </div>
                     <ul class="task-list">
+                        @foreach ($tickets as $ticket )
+
                         <li class="completed">
                             <div class="task-title">
-                                <i class='bx bx-check-circle'></i>
-                                <p>Start Our Meeting</p>
+                                <p>{{$ticket->name_patient}}</p>
                             </div>
-                            <i class='bx bx-dots-vertical-rounded'></i>
-                        </li>
-                        <li class="completed">
                             <div class="task-title">
-                                <i class='bx bx-check-circle'></i>
-                                <p>Analyse Our Site</p>
+                                <p>{{$ticket->patient_phone}}</p>
                             </div>
-                            <i class='bx bx-dots-vertical-rounded'></i>
                         </li>
-                        <li class="not-completed">
-                            <div class="task-title">
-                                <i class='bx bx-x-circle'></i>
-                                <p>Play Footbal</p>
-                            </div>
-                            <i class='bx bx-dots-vertical-rounded'></i>
-                        </li>
+                        {{-- not-completed --}}
+                        @endforeach
                     </ul>
                 </div>
 
