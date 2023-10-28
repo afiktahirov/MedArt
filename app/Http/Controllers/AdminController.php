@@ -9,6 +9,7 @@ use App\Models\HomeSlider;
 use App\Models\Language;
 use App\Models\News;
 use App\Models\Testimonials;
+use App\Models\Ticket;
 use Illuminate\Contracts\Session\Session;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -47,8 +48,10 @@ class AdminController extends Controller
 
     public function dashboard()
     {
-        return view('admin.partials.panel');
+        $tickets = Ticket::latest()->take(3)->get();
+        return view('admin.partials.panel', compact('tickets'));
     }
+
 
     public function homeControl(Request $request)
     {
