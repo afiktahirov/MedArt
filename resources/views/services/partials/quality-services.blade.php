@@ -2,7 +2,7 @@
     <div class="container">
         <div class="row">
             <div class="col-12">
-                <h2>Only Top Quality Services</h2>
+                <h2>{{__("words.Only_Top")}}</h2>
                 <div class="row">
                     <div class="col-12 col-md-6">
                         <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec malesuada lorem ma ximus
@@ -18,7 +18,7 @@
                     </div>
                 </div>
                 <div class="w-100 text-center mt-5">
-                    <a class="button gradient-bg" href="#">Read More</a>
+                    <a class="button gradient-bg" href="#">{{__("words.read_more")}}</a>
                 </div>
             </div>
         </div>
