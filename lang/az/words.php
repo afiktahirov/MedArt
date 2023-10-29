@@ -34,7 +34,9 @@ return [
     "faq_stuff"=>"Tez-tez verilən suallar və materiallar",
     "professional"=>"Peşəkar",
     "quality"=>"Keyfiyyət",
-    "medical_team"=>"Peşəkar Həkimlərimiz"
+    "medical_team"=>"Peşəkar Həkimlərimiz",
+    "Only_Top" => "Yalnız Yüksək Keyfiyyətli Xidmətlər",
+    "services" => "Xidmətlər",
 
 
 
