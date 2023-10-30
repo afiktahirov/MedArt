@@ -28,7 +28,9 @@ return [
     "faq_stuff"=>"Faq & Stuff",
     "professional"=>"Professional",
     "quality"=>"Quality",
-    "medical_team"=>"The Medical Team"
+    "medical_team"=>"The Medical Team",
+    "Only_Top" => "Only Top Quality Services",
+    "services" => "Services",
 
 
 
