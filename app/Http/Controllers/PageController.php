@@ -41,11 +41,22 @@ class PageController extends Controller
         $sliders = HomeSlider::where("status",1)->with(["languages"=>function ($query) use ($lang){
             return $query->where("lang",$lang);
         }])->get();
-        return view('aboute.index',compact("sliders"));
+        $departments = department_icon::with(["languages"=>function ($query) use ($lang){
+            return $query->where("lang",$lang);
+        }])->get();
+
+        $doctors = Doctor::all();
+
+        return view('aboute.index',compact("sliders","doctors","departments"));
     }
     public function servicesIndex()
     {
-        return view('services.index');
+        $lang = app()->getLocale();
+
+        $departments = department_icon::with(["languages"=>function ($query) use ($lang){
+            return $query->where("lang",$lang);
+        }])->get();
+        return view('services.index',compact("departments"));
     }
     public function newsIndex()
     {
@@ -56,5 +67,4 @@ class PageController extends Controller
     {
         return view('contact.index');
     }
-    //    All pages view index end
 }
