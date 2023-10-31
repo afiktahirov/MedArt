@@ -49,7 +49,17 @@ class AdminController extends Controller
     public function dashboard()
     {
         $tickets = Ticket::latest()->take(3)->get();
-        return view('admin.partials.panel', compact('tickets'));
+        
+        $lang = request()->lang ? request()->lang : 'az';
+
+        $departments = department_icon::with([
+            'languages' => function ($query) use ($lang) {
+                return $query->where('lang', $lang);
+            },
+        ])->get();
+
+        $doctors = Doctor::all();
+        return view('admin.partials.panel', compact('tickets','departments','doctors'));
     }
 
 

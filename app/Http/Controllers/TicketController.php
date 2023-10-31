@@ -28,23 +28,29 @@ class TicketController extends Controller
      */
     public function store(Request $request)
     {
+        $request->validate([
+            'p_phone' => 'required|digits_between:7,12',
+            'select-department' => 'required',
+            'select-doctor' => 'required',
+            'p_name' => 'required|max:255',
+        ]);
+
+        // Doğrulama başarılıysa veritabanına kayıt işlemini gerçekleştirin
         $department = $request->input("select-department");
         $doctor = $request->input("select-doctor");
         $p_name = $request->input("p_name");
         $p_phone = $request->input("p_phone");
-        $date = now();
 
         $ticket = new Ticket();
-
         $ticket->name_patient = $p_name;
         $ticket->patient_phone = $p_phone;
         $ticket->doctor = $doctor;
         $ticket->department = $department;
-        $ticket->date = $date;
-
         $ticket->save();
 
+        return redirect()->back()->with("success", "Müraciət qəbul olundu tezliklə sizinlə əlaqə saxlanılıcaq");
     }
+
 
     /**
      * Display the specified resource.
