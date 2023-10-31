@@ -14,7 +14,7 @@ return new class extends Migration
         Schema::create('tickets', function (Blueprint $table) {
             $table->id();
             $table->string("name_patient");
-            $table->integer("patient_phone");
+            $table->bigInteger("patient_phone");
             $table->bigInteger("department");
             $table->bigInteger("doctor");
             $table->date("date")->default(now());
