@@ -39,6 +39,9 @@ return [
     "services" => "Xidmətlər",
 
 
+    "search" => "Axtar"
+
+
 
 
 

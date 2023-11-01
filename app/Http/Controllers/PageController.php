@@ -60,7 +60,11 @@ class PageController extends Controller
     }
     public function newsIndex()
     {
-        return view('news.index');
+        $lang = app()->getLocale();
+        $news = News::with(["languages"=>function ($query) use ($lang){
+            return $query->where("lang",$lang);
+        }])->get();
+        return view('news.index',compact("news"));
     }
 
     public function contactIndex()
