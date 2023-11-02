@@ -39,7 +39,24 @@ return [
     "services" => "Xidmətlər",
 
 
-    "search" => "Axtar"
+    "search" => "Axtar",
+
+
+    "contact_info" =>"Əlaqə məlumatları",
+    "addres" =>"Adres",
+    "phone"=>"Əlaqə nömrəsi",
+    "email"=>"Poçt ünvanı",
+    "getInfo"=>"İsmarıc göndər",
+
+    "name" => "Adınız",
+    "email"=>"Mail adresi",
+    "subject"=>"Mövzu",
+    "message"=>"Metin",
+    "sendmessage"=>"İsmarıcı göndər"
+
+
+
+
 
 
 
