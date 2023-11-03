@@ -89,6 +89,7 @@ Route::get('/', function () {
 });
 
 Route::post('/ticket-add',[TicketController::class,"store"])->name("ticket.add");
+Route::post("/ticket-info/add",[TicketController::class,"ticket_info"])->name("ticket_info.add");
 
 Route::group(['prefix' => '{locale}', 'middleware' => 'setLocale'], function () {
     Route::get('/', [PageController::class, 'homeIndex'])->name('home');
