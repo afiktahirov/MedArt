@@ -122,6 +122,46 @@
             <!-- End of Reminders-->
 
         </div>
+        <div class="bottom-data">
+            <div class="orders">
+                <div class="header">
+                    <i class='bx bx-receipt'></i>
+                    <h3>Ən son gələn ismarıclar</h3>
+                </div>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Göndərən</th>
+                            <th>Mail adresi</th>
+                            <th>Mövzu</th>
+                            <th>İsmarıcı</th>
+                            <th>Status</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach ($tickets_info as $ticket )
+
+                        <tr>
+                            <td>{{$ticket->username}}</td>
+                            <td>{{$ticket->useremail}}</td>
+                            <td>{{$ticket->usersubject}}</td>
+                            <td style="max-width: 200px; min-width:200px" >
+                                <p class="text-truncate">{{$ticket->usermessage}}</p>
+                            </td>
+                            <td><span class="status pending">Baxılır</span></td>
+
+                        </tr>
+                            @endforeach
+                    </tbody>
+                </table>
+            </div>
+
+            <!-- Reminders -->
+
+
+            <!-- End of Reminders-->
+
+        </div>
 
     </main>
     <script>

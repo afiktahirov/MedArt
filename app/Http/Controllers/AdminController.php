@@ -10,6 +10,7 @@ use App\Models\Language;
 use App\Models\News;
 use App\Models\Testimonials;
 use App\Models\Ticket;
+use App\Models\ticket_info;
 use Illuminate\Contracts\Session\Session;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -49,7 +50,8 @@ class AdminController extends Controller
     public function dashboard()
     {
         $tickets = Ticket::latest()->take(3)->get();
-        
+        $tickets_info = ticket_info::latest()->take(3)->get();
+
         $lang = request()->lang ? request()->lang : 'az';
 
         $departments = department_icon::with([
@@ -59,7 +61,7 @@ class AdminController extends Controller
         ])->get();
 
         $doctors = Doctor::all();
-        return view('admin.partials.panel', compact('tickets','departments','doctors'));
+        return view('admin.partials.panel', compact('tickets','departments','doctors',"tickets_info"));
     }
 
 

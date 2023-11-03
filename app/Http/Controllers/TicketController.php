@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Ticket;
+use App\Models\ticket_info;
 use Illuminate\Http\Request;
 
 class TicketController extends Controller
@@ -51,7 +52,27 @@ class TicketController extends Controller
         return redirect()->back()->with("success", "Müraciət qəbul olundu tezliklə sizinlə əlaqə saxlanılıcaq");
     }
 
+    public function ticket_info(Request $request)
+    {
+        $request->validate([
+          "username" =>"required|min:3|max:12",
+          "useremail"=>"required|email",
+          "usersubject"=>"required|min:3|max:30",
+          "usermessage"=>"required|min:20|max:15000"
+        ]);
 
+        $ticket_info = new ticket_info();
+
+        $ticket_info->username = $request->username;
+        $ticket_info->useremail = $request->useremail;
+        $ticket_info->usersubject = $request->usersubject;
+        $ticket_info->usermessage = $request->usermessage;
+
+        $ticket_info->save();
+
+        return redirect()->back()->with("success","İsmarıcınız göndərildi.");
+
+    }
     /**
      * Display the specified resource.
      */
