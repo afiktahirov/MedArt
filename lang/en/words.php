@@ -17,6 +17,11 @@ return [
     "subscribe_email"=>"Subscribe to our newsletter",
     "subscribe_button"=>"Subscribe",
     "usefull_links" =>"Usefull Links",
+    "infoNow" =>"7/24 sizin xidmətinizdəyik",
+    "select_department"=>"Şöbə",
+    "select_doctor"=>"Həkim",
+    "yourname"=>"Adınız",
+    "phoneNo"=>"Telefon nömrəniz",
 
     "monday"=>"Monday",
     "thursday"=>"Thursday",
@@ -31,6 +36,22 @@ return [
     "medical_team"=>"The Medical Team",
     "Only_Top" => "Only Top Quality Services",
     "services" => "Services",
+
+
+    "search" => "Search",
+
+
+    "contact_info" =>"Contact Info",
+    "addres" =>"Addres",
+    "phone"=>"Phone",
+    "email"=>"Email",
+    "getInfo"=>"Info",
+
+    "name" => "Your Name",
+    "email"=>"Your Mail",
+    "subject"=>"Subject",
+    "message"=>"Your Message",
+    "sendmessage"=>"Send Message"
 
 
 
