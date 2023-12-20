@@ -45,7 +45,7 @@ return [
     "addres" =>"Addres",
     "phone"=>"Phone",
     "email"=>"Email",
-    "getInfo"=>"Info",
+    "getInfo"=>"Get in Touch",
 
     "name" => "Your Name",
     "email"=>"Your Mail",
