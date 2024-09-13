@@ -68,7 +68,7 @@ class DoctorController extends Controller
 
 
     /**
-     * Display the specified resource.
+     * Display thee specified resource.
      */
     public function show(Doctor $doctor)
     {
